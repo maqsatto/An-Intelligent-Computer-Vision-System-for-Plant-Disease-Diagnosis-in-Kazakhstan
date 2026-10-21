@@ -53,3 +53,7 @@ Final ARM64 APK is local at artifacts/android/agrovision-demo-arm64.apk; SHA2564
 ## Model cases evaluation
 
 The subsequent integrated Python run passed **73 tests**, including 10 evaluation regressions that require no local images, weights or GPU. Actual CPU replay covered the existing joint held-out 153 photos and PV held-out 88 photos; the paired comparison uses only 88 identical test SHA256s. [Measured cases](../evaluation/MEASURED_CASES.md) records errors, per-class/confusion results, deterministic perturbations, synthetic controls and bounded resources. These are additional local results; the earlier CI run and its commit above remain historical evidence, not a claim of a new hosted run.
+
+## Current documentation-consistency verification
+
+On 21 October 2026 (Asia/Aqtau), `uv run pytest -q --tb=short` passed **90 tests in 8.39 s**, followed by `pnpm test:mobile` with **14 passing tests**. This includes protocol consistency and evaluation regressions; it does not execute the planned ResNet18 experiment. The existing Starlette/AnyIO deprecation warning remains. The requirements matrix now links each current acceptance claim to the implemented checks and separates deferred functionality. Earlier test counts above are historical execution snapshots.

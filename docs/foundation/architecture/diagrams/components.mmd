@@ -1,22 +1,22 @@
 flowchart TB
-    Mobile["React Native mobile: UI и offline drafts"]
+    Mobile["Android Expo: UI, camera; draft в памяти"]
     Web["Будущий React web: только архитектурный план"]
     Shared["Shared TS API client и generated types"]
 
     subgraph Backend["Одно backend application / общий Python codebase"]
-        API["FastAPI API: identity, catalog, farms, observations, assessments, feedback"]
+        API["FastAPI API: identity, catalog, photos, observations, assessments, feedback"]
         Worker["Inference worker: claim, lease, retry, result"]
         Runtime["ml/runtime: preprocessing, ONNX, postprocessing"]
         Worker -->|"Локальный Python вызов"| Runtime
     end
 
     DB[("PostgreSQL: metadata, jobs, results, model versions")]
-    Storage[("Private S3-compatible: photos и model bundles")]
+    Storage[("Private local files / persistent volume: photos и pinned bundles")]
     Training["Offline ML: данные, splits, train, evaluate, export"]
 
     Shared -.->|"Build-time contract"| Mobile
     Shared -.->|"Будущая build-time dependency"| Web
-    Mobile -->|"HTTPS /v1"| API
+    Mobile -->|"/v1: local HTTP; production HTTPS"| API
     Web -.->|"Будущий HTTPS /v1"| API
     API -->|"Metadata и assessment + job transaction"| DB
     API -->|"Private upload / authorized URL"| Storage

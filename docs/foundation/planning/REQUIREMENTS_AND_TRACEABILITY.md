@@ -1,6 +1,46 @@
 # AgroVision — технические требования и методы проверки
 
-Историческая проектная спецификация от 21 октября 2026. Приоритеты M (Must) и S (Should) описывают предлагаемый объем, а не выполненные проверки. Актуальная реализация и измерения: [IMPLEMENTATION](../../development/IMPLEMENTATION.md), [DATA_AND_MODEL](../../development/DATA_AND_MODEL.md), [MOBILE_REPORT](../../development/MOBILE_REPORT.md). Offline и web не входят в текущий online MVP.
+Спецификация от 21 октября 2026. Приоритеты M (Must) и S (Should) задают важность в целевой системе; этап и фактическая приёмка каждого требования приведены в матрице ниже. Приоритет не означает реализацию. Актуальная реализация и измерения: [IMPLEMENTATION](../../development/IMPLEMENTATION.md), [DATA_AND_MODEL](../../development/DATA_AND_MODEL.md), [MOBILE_REPORT](../../development/MOBILE_REPORT.md). Offline и web не входят в текущий online MVP.
+
+## Матрица текущей приёмки и этапов
+
+**Статусы:** «проверено» — есть исполненная проверка указанной части; «частично» — полный критерий ещё не выполнен; «следующий этап» — не входит в online MVP. Приоритеты целевой системы сохранены: исключение из текущего этапа не превращает невыполненный Must в выполненный.
+
+Пути тестов ниже заданы от корня репозитория. [Запись проверки](../../development/VERIFICATION.md), [Android-проверка](../../development/MOBILE_REPORT.md), [измеренные кейсы](../../evaluation/MEASURED_CASES.md) отделяют исполненные сценарии от планов.
+
+| FR | Этап / состояние | Доказательство и остаточная приёмка |
+|---|---|---|
+| FR-01 | MVP: проверено | `tests/integration/test_security_and_contract.py::test_catalog_is_capabilities_not_pilot_names`, `tests/runtime/test_bundle.py::test_bundle_snapshot_and_capabilities`; wheat/potato/tomato, 9 исследовательских классов; не диагностический допуск. |
+| FR-02 | MVP: частично | Проверены signed development bearer и owner scope; `test_expired_or_untrusted_token_is_rejected`, `test_configured_oidc_can_be_used_in_development_without_accepting_wrong_audience`. PKCE/SecureStore реализованы в клиенте; реальный provider login/refresh/revocation ещё не проверен. |
+| FR-03 | MVP: проверено | `tests/integration/test_vertical.py`, `test_observation_replay_semantic_timezone_and_conflict`; native photo flow. |
+| FR-04 | MVP: проверено | `test_bad_decode_real_format_byte_and_pixel_limits`, `test_exif_rgb_private_content_normalization`, `test_elongated_image_cannot_bypass_preprocessing_memory_budget`; upload caps и нормализация. |
+| FR-05 | MVP: проверено | `test_simultaneous_submission_creates_one_effect`, `test_assessment_key_body_conflict_and_replay_before_model_availability`, owner-negative tests. |
+| FR-06 | MVP: проверено | `tests/integration/test_process_recovery.py`, `test_worker.py`: SIGKILL, lease reclaim/fencing, terminal failure; mobile queued/running/error flow. |
+| FR-07 | MVP: частично | Контракт всех outcomes и UI реализованы; `test_research_never_predicts_even_high_healthy_score` проверяет обязательный inconclusive. Валидированная диагностическая policy и надёжное обнаружение неподдержанного изображения ещё отсутствуют. |
+| FR-08 | MVP: частично | UI объясняет исследовательский результат и следующее действие; версионированный агрономический справочник состояний — следующий этап. |
+| FR-09 | MVP: проверено | `test_history_pagination_filters_and_no_duplicate_rows`, `test_all_personal_ids_are_owner_scoped`, native history/private photo reopen. |
+| FR-10 | Следующий этап | Farm/Field/FieldSeason CRUD не реализован; `field_season_id` пока должен быть null. |
+| FR-11 | Следующий этап | Нет persistent offline queue. Retry онлайн-запроса не является offline-сохранением; T-OFF ещё не исполнен. |
+| FR-12 | MVP: проверено | Отдельный feedback в `tests/integration/test_security_and_contract.py::test_ready_photo_and_terminal_assessment_are_db_immutable`, owner-negative tests и native feedback flow; не экспертная reference label. |
+| FR-13 | Следующий этап | Нет экспертного annotation workflow; пользовательский feedback не закрывает требование. |
+| FR-14 | MVP: частично | `tests/runtime/test_bundle.py`: hash/manifest/policy checks, rejected invalid bundles, immutable pinned bytes. Проверен исследовательский bundle; production diagnostic release и его операционный rollback ещё не допущены. |
+| FR-15 | MVP: проверено | `test_delete_blocks_read_download_replay_and_finalize`; cleanup/late-orphan regressions в `test_review_regressions.py`. Текущий private-files URL дополнительно требует bearer того же владельца. |
+| FR-16 | MVP: частично | Воспроизводимый historical replay и paired 88-image comparison: `ml/evaluation/evaluate_cases.py`, `tests/evaluation/test_evaluate_cases.py`, measured report. Новый ResNet18 source-held-out эксперимент и независимая локальная оценка — отдельный следующий этап. |
+
+| NFR | Этап / состояние | Доказательство и остаточная приёмка |
+|---|---|---|
+| NFR-01 | MVP: исследовательский режим проверен; диагностический допуск открыт | Provenance/model reports и обязательный inconclusive. Нет независимого Kazakhstan test или валидированных diagnostic thresholds. |
+| NFR-02 | Цель следующего измерения | p95 ≤5 s при двух запросах на 100 фото не измерен по указанному протоколу; отдельные latency числа его не заменяют. |
+| NFR-03 | MVP: проверено | Process recovery/SIGKILL + stale lease/last-attempt tests. |
+| NFR-04 | MVP: проверено для реализованных сущностей | Owner-negative matrix observations/photos/assessments/feedback; будущие fields/annotations потребуют расширения. |
+| NFR-05 | MVP: частично | Private local image adapter, bearer checks, SecureStore/config guards. LAN demo использует HTTP; production HTTPS/storage deployment и реальная provider integration ещё не приняты. |
+| NFR-06 | MVP: проверено для исследовательского bundle | Immutable DB rows/model snapshots; documented ONNX parity на 100 фото. Независимость biological proxy-groups не установлена. |
+| NFR-07 | Следующий этап | Формативная usability-проверка с 5 участниками не проведена; emulator QA не заменяет её. |
+| NFR-08 | MVP: частично | Собран ARM64 APK, выполнен Android30 emulator E2E. Физическая камера/устройство и полный OIDC путь ещё не проверены. |
+| NFR-09 | Следующий этап | Persistent offline storage/queue не реализованы. |
+| NFR-10 | MVP: проверено в указанном объёме CI | Locked dependencies, Python checks, generated-client drift, TypeScript, 14 mobile tests, Android JS export; native APK проверялся локально отдельно от hosted CI. |
+
+Для текущей демонстрации обязательны owner isolation, bounded upload, durable job, immutable result/model pin и явный research outcome. Полная целевая приёмка FR-02/07/14/16 и NFR-01/05/08 остаётся расширением текущей демонстрации; эта матрица не заявляет production readiness.
 
 ## 3. Границы и роли
 
@@ -16,7 +56,7 @@
 
 ## 4. Функциональные требования
 
-Обозначения тестов ниже описывают **запланированные проверки**, не существующие файлы и не пройденные тесты. Каждый критерий приемки относится к будущей реализации.
+Критерии ниже описывают полную целевую приёмку. Реализованная часть и ограничения текущего online MVP перечислены отдельно; Test ID обозначает метод проверки, а ссылки матрицы — существующие файлы проверок. Частичное выполнение не закрывает полный критерий.
 
 | ID / приоритет | Требование | Проверяемая приемка | Модули / проверки |
 |---|---|---|---|
@@ -99,19 +139,19 @@ NFR-07 — малая формативная проверка удобства, 
 
 Связи: FR-01/04/07/08; T-CAT/T-UPL/T-RES. Не предполагается, что threshold автоматически обнаруживает все чужие виды растений: это отдельная проверяемая ML-гипотеза.
 
-### SC-03. На участке нет сети
+### SC-03. На участке нет сети — следующий этап
 
 Пользователь делает фото в native-приложении и видит «сохранено на устройстве; ожидает отправки». После закрытия и открытия приложения draft остается. При связи он отправляется с тем же идентификатором. Если первый ответ сервера потерян, retry получает прежний assessment, не создает второй. Если пользователь сменил аккаунт, старый draft не отправляется от имени нового пользователя. До ответа сервера диагноз не показывается.
 
 Связи: FR-03/05/06/11; NFR-03/09; T-OFF/T-JOB/T-AUTH.
 
-### SC-04. Пользователь ведет историю по одному полю
+### SC-04. Пользователь ведет историю по одному полю — следующий этап
 
 Пользователь создает поле и сезон с выбранной культурой, прикрепляет несколько собственных наблюдений разных дат, фильтрует историю и открывает исходные фото/результаты. Следующий сезон может иметь другую культуру без изменения прошлых записей. История показывает наблюдения; из нескольких фотографий не выводится неподтвержденная статистика зараженности всей фермы или прогноз распространения.
 
 Связи: FR-09/10; T-OBS/T-AUTH.
 
-### SC-05. Эксперт проверяет исследовательский образец
+### SC-05. Эксперт проверяет исследовательский образец — следующий этап
 
 Эксперт открывает разрешенный образец и доступные исходные метаданные. Он указывает культуру/состояние или `uncertain`, метод и уровень подтверждения. Результат модели остается неизменным. В исследовательский экспорт попадают метка, provenance и group IDs. Если оснований недостаточно, образец не объявляется надежным референсом только для увеличения размера обучающего набора.
 
@@ -156,60 +196,20 @@ NFR-07 — малая формативная проверка удобства, 
 
 Допустимая необязательная связь: UC-08 `<<extend>>` UC-04 при желании пользователя дать отзыв после результата. Для UC-07 не рисовать обязательное немедленное `include` к сетевой отправке: offline-сохранение по смыслу должно завершаться без сети. UC-06 можно показывать отдельной целью пользователя или optional extension к сохранению наблюдения, указав условие.
 
-## 9. Контекстная и компонентная схемы: узлы и корректные границы
+## 9. Архитектурная трассировка
 
-### Контекстная схема
+Актуальные границы реализации и дальнейшего развития задают [SYSTEM_DESIGN](../architecture/SYSTEM_DESIGN.md) и [схемы](../architecture/diagrams/README.md). Текущий online путь: Android → FastAPI → PostgreSQL + private local files; отдельный worker вызывает `ml/runtime` локально и сохраняет результат с lease fencing. Training/evaluation отделены от serving. API client/types — зависимость сборки.
 
-Центральная граница: **AgroVision — система наблюдений и предварительной оценки фото растений**.
+| Сценарий | Требования | Компоненты | Проверки |
+|---|---|---|---|
+| UC-03 отправка фото | FR-03/04/05 | Android, observations, ImageStore, assessments | T-UPL/T-JOB, upload/idempotency integration tests |
+| UC-04 результат | FR-06/07 | API, worker, runtime, immutable results | T-JOB/T-RES, recovery/runtime tests |
+| UC-05 история | FR-09 | Android, owner-scoped API, PostgreSQL | T-OBS/T-AUTH, native history flow |
+| UC-08 feedback | FR-12 | Android, feedback API | T-ANN/T-AUTH, security_and_contract feedback + ownership tests |
+| UC-10/12 модель и оценка | FR-14/16 | offline ML tooling, bundle, worker model pin | T-MOD/T-EVAL/T-REPRO; research release only |
+| UC-06/07/09 | FR-10/11/13 | будущие fields, persistent drafts, annotation workflow | План: T-OBS/T-OFF/T-ANN; не текущая реализация |
 
-Внешние участники/источники:
-
-1. Растениевод — фото, выбранная культура, наблюдение/поле; обратно состояние, предварительная оценка, история.
-2. Эксперт — разрешенные фото/метаданные; обратно reference annotations с уровнем подтверждения.
-3. Технический оператор/ML-исследователь — конфигурации/релизы; обратно отчеты оценки/ошибки эксплуатации.
-4. Проверенные датасеты и локальные исследовательские образцы — источник для offline training/evaluation. Это данные с provenance, не предположение об автоматическом live API.
-
-PostgreSQL/S3/ONNX — внутренние компоненты, поэтому подробно показывать их на компонентной схеме, а не выдавать за бизнес-пользователей. Внешний identity provider рисовать только если такой вариант действительно выбран. Погода/GIS/ветровые API не входят в текущий утверждаемый объем.
-
-### Компонентная схема
-
-Проектируемые узлы:
-
-- React web UI.
-- React Native / Expo UI и local draft storage.
-- Shared TypeScript API client/types — зависимость при сборке, не отдельный сетевой сервис.
-- FastAPI HTTP process: identity, catalog, observations/farms, assessments, feedback.
-- Inference worker process **из того же server codebase**, использующий assessment service.
-- PostgreSQL: metadata, ownership, results, model-version metadata, `assessment_jobs`.
-- Private S3-compatible object storage: ready photos и versioned model bundles.
-- `ml/runtime` — локальная библиотека worker: preprocessing, ONNX session, postprocessing.
-- Offline training/evaluation tooling: datasets/manifests, training, baseline, evaluation, bundle export.
-
-Связи и подписи:
-
-| Откуда → куда | Смысл |
-|---|---|
-| Web / Mobile → FastAPI | HTTPS REST `/v1`, auth, uploads, polling, history |
-| API client/types → Web / Mobile | Build-time generated contract/code dependency; пунктирная связь |
-| FastAPI → PostgreSQL | Authorized reads и transaction: assessment + job |
-| FastAPI → Object storage | Private upload / authorized download URL |
-| Worker → PostgreSQL | Claim/lease/retry/fenced result commit |
-| Worker → Object storage | Load ready photo and pinned model bundle |
-| Worker → `ml/runtime` | Local library call, не HTTP |
-| Training/evaluation → bundle storage | Controlled export of immutable artifact + report |
-| Model metadata ↔ PostgreSQL | Active-version selection and exact pinned IDs; это таблицы/модуль, не новый registry-microservice |
-
-Для компактного рисунка сгруппировать API+worker как одно backend application с двумя процессами; внутри сохранить различимость. Training/evaluation показать отдельно от serving. Сеть, локальный вызов и перенос артефактов не обозначать одной нерасшифрованной стрелкой.
-
-### Минимальная трассировка схем
-
-`UC-03 → FR-03/04/05 → UI + observations + storage + assessments → T-UPL/T-JOB`.
-
-`UC-04 → FR-06/07 → API + worker + ml/runtime + results → T-JOB/T-RES`.
-
-`UC-09 → FR-13 → annotation data → T-ANN`.
-
-`UC-10/12 → FR-14/16 → offline ML + bundle + model metadata → T-MOD/T-EVAL`.
+Web, S3 deployment adapter, farms/seasons, persistent offline и экспертные аннотации относятся к следующему этапу. Их присутствие в целевой схеме не является доказательством реализации.
 
 ## Связанные материалы пакета
 
