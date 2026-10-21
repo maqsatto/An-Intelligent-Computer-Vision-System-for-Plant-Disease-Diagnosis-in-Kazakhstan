@@ -1,0 +1,17 @@
+{
+  "name": "agrovision",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "mobile": "pnpm --filter @agrovision/mobile start",
+    "typecheck": "pnpm -r typecheck",
+    "test:mobile": "pnpm --filter @agrovision/mobile test",
+    "generate:client": "openapi-typescript packages/api-client/openapi.json -o packages/api-client/src/schema.d.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "openapi-typescript": "^7.13.0",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.2"
+  }
+}
