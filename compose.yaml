@@ -2,6 +2,10 @@ name: agrovision
 services:
   db:
     image: postgres:17.6-alpine
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 128
+    restart: unless-stopped
     environment:
       POSTGRES_DB: agrovision
       POSTGRES_USER: agrovision
@@ -15,5 +19,55 @@ services:
       interval: 2s
       timeout: 3s
       retries: 20
+  api:
+    profiles: [backend]
+    build: .
+    image: agrovision-local:0.1
+    mem_limit: 768m
+    cpus: 1.0
+    pids_limit: 128
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment: &application_environment
+      AGRO_DATABASE_URL: postgresql+psycopg://agrovision:${POSTGRES_PASSWORD}@db:5432/agrovision
+      AGRO_ENVIRONMENT: ${AGRO_ENVIRONMENT:-production}
+      AGRO_DEV_PREDICTOR: ${AGRO_DEV_PREDICTOR:-false}
+      AGRO_DEV_TOKEN_SECRET: ${AGRO_DEV_TOKEN_SECRET:-}
+      AGRO_DOWNLOAD_SECRET: ${AGRO_DOWNLOAD_SECRET:?Generate local config or provide secret}
+      AGRO_STORAGE_DIR: /app/storage/photos
+      AGRO_BUNDLE_DIR: /app/artifacts/active
+      AGRO_RESEARCH_BUNDLE_DIR: ${AGRO_DOCKER_RESEARCH_BUNDLE_DIR:-}
+      AGRO_OIDC_ISSUER: ${AGRO_OIDC_ISSUER:-}
+      AGRO_OIDC_AUDIENCE: ${AGRO_OIDC_AUDIENCE:-agrovision-mobile}
+      AGRO_OIDC_JWKS_URL: ${AGRO_OIDC_JWKS_URL:-}
+    ports:
+      - "${AGRO_BIND_ADDRESS:-127.0.0.1}:8000:8000"
+    volumes:
+      - photo_data:/app/storage/photos
+      - ./artifacts:/app/artifacts:ro
+    command: ["sh", "-c", "alembic upgrade head && exec uvicorn agrovision.asgi:app --host 0.0.0.0 --port 8000 --no-access-log"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready',timeout=3)"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+  worker:
+    profiles: [backend]
+    image: agrovision-local:0.1
+    mem_limit: 1g
+    cpus: 2.0
+    pids_limit: 128
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    environment: *application_environment
+    volumes:
+      - photo_data:/app/storage/photos
+      - ./artifacts:/app/artifacts:ro
+    command: ["python", "-m", "agrovision.assessments.worker"]
 volumes:
   postgres_data:
+  photo_data:
