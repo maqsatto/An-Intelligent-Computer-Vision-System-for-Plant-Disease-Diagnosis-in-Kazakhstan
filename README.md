@@ -103,6 +103,5 @@ For an existing research artifact, explicitly set `AGRO_DOCKER_RESEARCH_BUNDLE_D
 
 - [Measured data/model report](docs/development/DATA_AND_MODEL.md), [mobile report](docs/development/MOBILE_REPORT.md), [verification](docs/development/VERIFICATION.md).
 - [Foundation](docs/foundation/README.md), [API contract](docs/foundation/contracts/API_CONTRACT.md), [implementation decisions](docs/development/IMPLEMENTATION.md).
-- [Git/SSH profiles](docs/development/GIT_PROFILES.md): commits split by the user-provided responsibility ownership. No invented YouTrack IDs.
 
 Next bounded increment: durable offline capture/upload queue (persistent app files + SQLite), restart/reconnect/account-switch tests. Then evaluated model/policy admission, independent external/local assessment, reviewed annotation/feedback workflow, localization, and only later the web client.

@@ -4,7 +4,7 @@ Date: 21 October 2026. This supplements the preserved Foundation; it does not tu
 
 ## Actual code and environment
 
-The initial working folder and linked GitHub repository had no code/history. We initialized `feat/online-mvp`, preserved Foundation, and built a functional monorepo; no existing queue, lock manager or application was migrated. Python3.12.13/uv and Expo55/RN0.83/React19.2/pnpm are locked. Node26.12.0 was the actual available and successfully built native toolchain; it supersedes the earlier proposed Node22 candidate.
+Python3.12.13/uv and Expo55/RN0.83/React19.2/pnpm dependencies are locked. Node26.12.0 is the verified native build toolchain.
 
 `server/agrovision` groups observation, photo, assessment, catalog and identity behavior by function. Shared relational models/schemas keep foreign keys and one DTO vocabulary consistent. API/worker share a codebase and DB but run as separate bounded processes. The only external ports are the private ImageStore and Predictor. Training is a separate uv project; runtime has no training/FastAPI/ORM imports. There is no web UI, Kafka, Kubernetes, generic repository framework or separate ML service.
 
@@ -36,11 +36,9 @@ Three modes are kept distinct:
 2. Explicit research development: real trained multi-crop ONNX candidates, global scores, always inconclusive with research_model_unvalidated; no percentages presented as diagnosis.
 3. Explicit synthetic development/test: infrastructure verification only, always inconclusive with no invented candidate.
 
-The later user request authorized actual dataset admission and a bounded research baseline beyond the original infrastructure-only first step. This does not waive scientific release requirements. The [measured report](DATA_AND_MODEL.md) documents the actual sources/splits/parity and limitations. The historic training run's dirty-code snapshot remains tied to the exact source content committed in73d25da; later input guards are separately recorded, without rewriting original measured provenance.
+The [measured report](DATA_AND_MODEL.md) documents sources, splits, parity and limitations. The historical training code snapshot is tied to source committed in73d25da; later input guards are recorded separately without rewriting measured provenance.
 
 ## Resource limits and operations
-
-User requested a responsive desktop and16GiB swap. The host now has4GiB zram plus a Btrfs-compatible disk swapfile, exact usable total17,179,869,184 bytes, persisted via fstab with its prior contents backed up. This is a host change, not a repository prerequisite.
 
 API memory cap768MiB; worker process tree1GiB; local DB512MiB. Heavy training and Android build/emulator tasks are serialized. Training completed under3GiB; Android native compiler children require a4GiB hard cap with no cgroup MemoryHigh reclaim threshold, no new swap, low CPU/I/O weights and ≥6GiB available-host admission. The earlier2.5GiB reclaim threshold caused avoidable I/O thrashing and was replaced; interactive resources recovered. Only this project's processes are controlled.
 
@@ -48,6 +46,6 @@ Local systemd scripts and the opt-in Docker backend profile are alternative runn
 
 ## Remaining bounded work
 
-Persistent offline files/SQLite queue; reviewed diagnostic policy and independent external/local assessment; source-aware annotation workflow; localization; web client. Android emulator QA does not replace a physical phone camera/accessibility test. The project does not claim field readiness in Kazakhstan or real interviews.
+Persistent offline files/SQLite queue; reviewed diagnostic policy and independent external/local assessment; source-aware annotation workflow; localization; web client. Android emulator QA does not replace a physical phone camera/accessibility test. The project does not claim field readiness in Kazakhstan.
 
 Official compatibility references rechecked: [ExpoSDK55](https://docs.expo.dev/versions/v55.0.0/) and [pnpm Node compatibility](https://pnpm.io/installation#compatibility). Node26 is supported by pnpm11; CI installs the pinned Node before pnpm rather than relying on the runner's older default Node. No latest package migration was performed.

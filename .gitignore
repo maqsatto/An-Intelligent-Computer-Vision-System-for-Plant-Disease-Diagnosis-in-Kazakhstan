@@ -35,3 +35,8 @@ coverage/
 *.aab
 *.jks
 *.keystore
+
+# Local contributor workspace notes
+/AGENTS.md
+/docs/superpowers/
+/docs/audit/
