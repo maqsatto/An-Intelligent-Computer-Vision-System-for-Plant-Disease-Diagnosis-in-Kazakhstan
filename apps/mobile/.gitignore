@@ -1,0 +1,5 @@
+# Native projects are generated reproducibly via Expo prebuild.
+/android/
+/ios/
+/dist/
+/.expo/

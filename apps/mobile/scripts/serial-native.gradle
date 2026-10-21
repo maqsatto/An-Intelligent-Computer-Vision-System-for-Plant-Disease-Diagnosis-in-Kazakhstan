@@ -1,0 +1,14 @@
+// Optional for cold native builds: Ninja pools limit native compiler concurrency.
+// Gradle --max-workers alone does not constrain Ninja's default job count.
+gradle.beforeProject { target ->
+    ['com.android.application', 'com.android.library'].each { pluginId ->
+        target.pluginManager.withPlugin(pluginId) {
+            def android = target.extensions.getByName('android')
+            android.defaultConfig.externalNativeBuild.cmake.arguments.addAll([
+                '-DCMAKE_JOB_POOLS=agrovision_compile=1;agrovision_link=1',
+                '-DCMAKE_JOB_POOL_COMPILE=agrovision_compile',
+                '-DCMAKE_JOB_POOL_LINK=agrovision_link'
+            ])
+        }
+    }
+}

@@ -29,3 +29,9 @@ __pycache__/
 .superpowers/
 coverage/
 .DS_Store
+
+# Native binaries/signing material
+*.apk
+*.aab
+*.jks
+*.keystore
