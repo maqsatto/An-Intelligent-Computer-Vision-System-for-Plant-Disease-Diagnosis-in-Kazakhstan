@@ -1,0 +1,946 @@
+{
+  "run": "pilot-joint-efficientnet-b0-seed17",
+  "status": "research_not_diagnostic_release",
+  "architecture": "torchvision.efficientnet_b0",
+  "code_commit": "af83d2bab2fe687ff5243fe226291c8fbfc365a2",
+  "code_dirty": true,
+  "code_snapshot_sha256": "d41bef67bb1ce8c222437e959ef19f38c74986b4b4cc1df5eb9310c321ff6f33",
+  "code_snapshot": {
+    "ml/runtime/agrovision_runtime/__init__.py": "fd54de2d7690e1b9a8610dd61fc962fc7fa4cb545ec4f58466ef5ec05b10fadd",
+    "ml/training/acquire.py": "52b873b6b8252292b5d9c78850bb72b4fc8901f5fdfc072e887e2fbc5870e14f",
+    "ml/training/extract_wheat.py": "26c60a3d497182dd3b77c2a12e8b8e757c4a527394bea2477a11da89055ae72f",
+    "ml/training/prepare.py": "091b4b6bf287a116d5bf7ee19817808f379b6d05321013e6475e5d9dec5eeb8e",
+    "ml/training/train.py": "410246bc4d3eb4037aa65223c552f5311fc53e79afcfa5f84b2113acccedc183"
+  },
+  "training_script_sha256": "410246bc4d3eb4037aa65223c552f5311fc53e79afcfa5f84b2113acccedc183",
+  "runtime_script_sha256": "fd54de2d7690e1b9a8610dd61fc962fc7fa4cb545ec4f58466ef5ec05b10fadd",
+  "training": "frozen pretrained ImageNet backbone; classification head AdamW, no image augmentation",
+  "pretrained_weights": "EfficientNet_B0_Weights.IMAGENET1K_V1",
+  "pretrained_weights_sha256": "7f5810bc96def8f7552d5b7e68d53c4786f81167d28291b21c0d90e1fca14934",
+  "dependencies": {
+    "torch": "2.6.0+cu124",
+    "torchvision": "0.21.0+cu124",
+    "numpy": "2.2.6",
+    "pillow": "11.3.0",
+    "onnx": "1.17.0",
+    "onnxruntime": "1.21.1",
+    "scikit-learn": "1.6.1"
+  },
+  "training_lockfile_sha256": "c556a0577a8713e1bac090658aa9e50054f69031295e2e8928068ff1d96a877b",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 2060",
+  "gpu_compute_capability": [
+    7,
+    5
+  ],
+  "gpu_total_vram_mib": 5744.9375,
+  "minimum_mem_available_gib": 7.9640655517578125,
+  "memory_guard_minimum_gib": 3.0,
+  "dataloader_workers": 0,
+  "physical_feature_batch": 8,
+  "head_batch": 32,
+  "optimizer_updates": 690,
+  "seed": 17,
+  "epochs": 30,
+  "peak_cuda_allocated_mib": 99.826171875,
+  "feature_extraction_seconds": 73.023039106,
+  "total_seconds": 82.64355300599999,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.343737060609071,
+      "validation_macro_f1": 0.7055603184962603
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6129874794379525,
+      "validation_macro_f1": 0.7975028142210805
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.4134123357741729,
+      "validation_macro_f1": 0.8660506550628637
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.3162943014632101,
+      "validation_macro_f1": 0.8835511009953202
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.26837403424408124,
+      "validation_macro_f1": 0.9159107847343143
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.22637128894743713,
+      "validation_macro_f1": 0.9170822859058154
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.19709976147050443,
+      "validation_macro_f1": 0.9317838006073301
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.1687249878178472,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.14820818862189417,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.13289507672838544,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.12684267953686093,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.1125105936890063,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.10022370565844618,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.09296894219258557,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.09109588064577269,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.08378777685372726,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.07798300359560095,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.07519925758242607,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.06494866449223913,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.06452792882919312,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.05580559680643289,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.05360349445887234,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.05039112755785818,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.0511143461841604,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.047375109856543335,
+      "validation_macro_f1": 0.9395733361746434
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.04452762299257776,
+      "validation_macro_f1": 0.9395733361746434
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.043310031375807266,
+      "validation_macro_f1": 0.9637607889335246
+    },
+    {
+      "epoch": 28,
+      "train_loss": 0.04024650909654472,
+      "validation_macro_f1": 0.9395733361746434
+    },
+    {
+      "epoch": 29,
+      "train_loss": 0.03825423024270846,
+      "validation_macro_f1": 0.9567691033704107
+    },
+    {
+      "epoch": 30,
+      "train_loss": 0.03673450932230638,
+      "validation_macro_f1": 0.9395733361746434
+    }
+  ],
+  "classification": {
+    "train": {
+      "images": 721,
+      "groups": 607,
+      "macro_f1": 0.9847699309909204,
+      "accuracy": 0.986130374479889,
+      "classification_report": {
+        "potato__early_blight": {
+          "precision": 0.9859154929577465,
+          "recall": 0.9859154929577465,
+          "f1-score": 0.9859154929577465,
+          "support": 71.0
+        },
+        "potato__healthy_appearance": {
+          "precision": 0.9777777777777777,
+          "recall": 0.9887640449438202,
+          "f1-score": 0.9832402234636871,
+          "support": 89.0
+        },
+        "potato__late_blight": {
+          "precision": 0.9666666666666667,
+          "recall": 0.9886363636363636,
+          "f1-score": 0.9775280898876404,
+          "support": 88.0
+        },
+        "tomato__early_blight": {
+          "precision": 0.9866666666666667,
+          "recall": 0.9367088607594937,
+          "f1-score": 0.961038961038961,
+          "support": 79.0
+        },
+        "tomato__healthy_appearance": {
+          "precision": 0.9516129032258065,
+          "recall": 1.0,
+          "f1-score": 0.9752066115702479,
+          "support": 59.0
+        },
+        "tomato__late_blight": {
+          "precision": 1.0,
+          "recall": 0.9607843137254902,
+          "f1-score": 0.98,
+          "support": 51.0
+        },
+        "wheat__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 68.0
+        },
+        "wheat__septoria_source_label": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 73.0
+        },
+        "wheat__stripe_rust": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 143.0
+        },
+        "accuracy": 0.986130374479889,
+        "macro avg": {
+          "precision": 0.9854043896994072,
+          "recall": 0.9845343417803237,
+          "f1-score": 0.9847699309909204,
+          "support": 721.0
+        },
+        "weighted avg": {
+          "precision": 0.9863810219776395,
+          "recall": 0.986130374479889,
+          "f1-score": 0.9860889317657462,
+          "support": 721.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          70,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          88,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          87,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          74,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          59,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          0,
+          49,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          68,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          73,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          143
+        ]
+      ]
+    },
+    "validation": {
+      "images": 115,
+      "groups": 97,
+      "macro_f1": 0.9637607889335246,
+      "accuracy": 0.9739130434782609,
+      "classification_report": {
+        "potato__early_blight": {
+          "precision": 1.0,
+          "recall": 0.9473684210526315,
+          "f1-score": 0.972972972972973,
+          "support": 19.0
+        },
+        "potato__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 15.0
+        },
+        "potato__late_blight": {
+          "precision": 0.9285714285714286,
+          "recall": 1.0,
+          "f1-score": 0.9629629629629629,
+          "support": 13.0
+        },
+        "tomato__early_blight": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 11.0
+        },
+        "tomato__healthy_appearance": {
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "f1-score": 0.9411764705882353,
+          "support": 8.0
+        },
+        "tomato__late_blight": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1-score": 0.8571428571428571,
+          "support": 4.0
+        },
+        "wheat__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.96,
+          "support": 13.0
+        },
+        "wheat__septoria_source_label": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8.0
+        },
+        "wheat__stripe_rust": {
+          "precision": 0.96,
+          "recall": 1.0,
+          "f1-score": 0.9795918367346939,
+          "support": 24.0
+        },
+        "accuracy": 0.9739130434782609,
+        "macro avg": {
+          "precision": 0.9752733686067019,
+          "recall": 0.9578272604588395,
+          "f1-score": 0.9637607889335246,
+          "support": 115.0
+        },
+        "weighted avg": {
+          "precision": 0.9758481711525191,
+          "recall": 0.9739130434782609,
+          "f1-score": 0.9735060198253475,
+          "support": 115.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          15,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          13,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          11,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          12,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          24
+        ]
+      ]
+    },
+    "calibration": {
+      "images": 34,
+      "groups": 32,
+      "macro_f1": 0.8581196581196582,
+      "accuracy": 0.9705882352941176,
+      "classification_report": {
+        "potato__early_blight": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8.0
+        },
+        "potato__healthy_appearance": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "potato__late_blight": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "tomato__early_blight": {
+          "precision": 1.0,
+          "recall": 0.8571428571428571,
+          "f1-score": 0.9230769230769231,
+          "support": 7.0
+        },
+        "tomato__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3.0
+        },
+        "tomato__late_blight": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1-score": 0.8,
+          "support": 2.0
+        },
+        "wheat__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "wheat__septoria_source_label": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2.0
+        },
+        "wheat__stripe_rust": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 6.0
+        },
+        "accuracy": 0.9705882352941176,
+        "macro avg": {
+          "precision": 0.8518518518518517,
+          "recall": 0.873015873015873,
+          "f1-score": 0.8581196581196582,
+          "support": 34.0
+        },
+        "weighted avg": {
+          "precision": 0.980392156862745,
+          "recall": 0.9705882352941176,
+          "f1-score": 0.9723981900452489,
+          "support": 34.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          8,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          6,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6
+        ]
+      ]
+    },
+    "test": {
+      "images": 153,
+      "groups": 132,
+      "macro_f1": 0.8955900531169347,
+      "accuracy": 0.9281045751633987,
+      "classification_report": {
+        "potato__early_blight": {
+          "precision": 0.9545454545454546,
+          "recall": 0.9545454545454546,
+          "f1-score": 0.9545454545454546,
+          "support": 22.0
+        },
+        "potato__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 0.9375,
+          "f1-score": 0.967741935483871,
+          "support": 16.0
+        },
+        "potato__late_blight": {
+          "precision": 0.8888888888888888,
+          "recall": 0.9411764705882353,
+          "f1-score": 0.9142857142857143,
+          "support": 17.0
+        },
+        "tomato__early_blight": {
+          "precision": 0.9047619047619048,
+          "recall": 0.8260869565217391,
+          "f1-score": 0.8636363636363636,
+          "support": 23.0
+        },
+        "tomato__healthy_appearance": {
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1-score": 0.9090909090909091,
+          "support": 5.0
+        },
+        "tomato__late_blight": {
+          "precision": 0.5,
+          "recall": 0.6,
+          "f1-score": 0.5454545454545454,
+          "support": 5.0
+        },
+        "wheat__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1-score": 0.9333333333333333,
+          "support": 16.0
+        },
+        "wheat__septoria_source_label": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 14.0
+        },
+        "wheat__stripe_rust": {
+          "precision": 0.9459459459459459,
+          "recall": 1.0,
+          "f1-score": 0.9722222222222222,
+          "support": 35.0
+        },
+        "accuracy": 0.9281045751633987,
+        "macro avg": {
+          "precision": 0.8919417252750586,
+          "recall": 0.9038120979617142,
+          "f1-score": 0.8955900531169347,
+          "support": 153.0
+        },
+        "weighted avg": {
+          "precision": 0.9326497365713052,
+          "recall": 0.9281045751633987,
+          "f1-score": 0.9289163585495022,
+          "support": 153.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          21,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          15,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          16,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          19,
+          1,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          0,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          14,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          35
+        ]
+      ]
+    }
+  },
+  "parity": {
+    "images": 100,
+    "max_absolute_logit_error": 1.5020370483398438e-05,
+    "top1_changes": 0,
+    "rtol": 0.001,
+    "atol": 0.0001,
+    "passed": true
+  },
+  "cpu_benchmark": {
+    "model_only_p50_ms": 6.291645000004564,
+    "model_only_p95_ms": 7.528806599978566,
+    "warmup_iterations": 20,
+    "measured_iterations": 200,
+    "intra_op_threads": 4,
+    "inter_op_threads": 1,
+    "cpu": "Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz",
+    "cold_start_ms": 64.08592500002896,
+    "end_to_end_p50_ms": 7.929968500036466,
+    "end_to_end_p95_ms": 9.261122800018029,
+    "peak_process_rss_mib": 2003.08984375,
+    "platform": "Linux-7.2.11-arch1-1-x86_64-with-glibc2.44",
+    "end_to_end_input": {
+      "width_px": 256,
+      "height_px": 256,
+      "bytes": 19289,
+      "source_dataset": "D01",
+      "sha256": "3fdce534a556378a718e002d842f785012d86b86bbd36a16fb1813cd1350b92c"
+    },
+    "artifact_bytes": 16066520
+  },
+  "limitations": [
+    "One seed only; no seed variation/confidence intervals",
+    "No local Kazakhstan, source-held-out or OOD evaluation",
+    "D05 biological independence unverified",
+    "No calibrated rejection thresholds; NEVER activate as diagnostic release",
+    "Legacy torch ONNX exporter used, opset17; validated parity is recorded",
+    "Frozen deterministic feature baseline, no partial finetuning or augmentations"
+  ]
+}
