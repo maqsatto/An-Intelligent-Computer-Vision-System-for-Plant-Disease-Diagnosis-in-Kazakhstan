@@ -1,8 +1,10 @@
-# AgroVision API v1 — проектный контракт
+# AgroVision API v1 — контракт и границы реализации
 
-**Статус:** согласуемый контракт для реализации, mobile-прототипа и будущих контрактных тестов. Работающий сервер, endpoint URL и результаты модели в этом пакете не заявляются. [examples.json](examples.json) содержит только синтетические fixtures: IDs, labels, scores, hash и даты в них иллюстративны.
+Работающий FastAPI API и Android-клиент используют [сгенерированный OpenAPI](../../../packages/api-client/openapi.json) и [TypeScript schema](../../../packages/api-client/src/schema.d.ts). Они определяют точные текущие endpoints, DTO и коды ответов. Этот текст описывает семантику и целевые расширения; при расхождении wire-format приоритет имеет сгенерированный контракт.
 
-Текущая UX-работа — только mobile. Будущий web использует тот же API. Названия и поля ниже являются основным согласованным словарем пакета; фактический OpenAPI будет генерироваться из FastAPI/Pydantic после реализации, а TypeScript types — из OpenAPI. Не выдавать вручную написанный документ за уже сгенерированную схему работающего сервера.
+[examples.json](examples.json) — синтетические проектные fixtures, а не ответы исследовательской модели. Текущие поведенческие уточнения и исполняемые проверки: [IMPLEMENTATION](../../development/IMPLEMENTATION.md), [VERIFICATION](../../development/VERIFICATION.md).
+
+Текущий scope: owner-scoped observations/photos/assessments/history/feedback, private local ImageStore и отдельный PostgreSQL worker. `field_season_id` принимает только null; farms/seasons и экспертные annotations не реализованы. Web и persistent offline queue — следующий этап. Реальный research bundle возвращает кандидатов с глобальными scores и всегда `inconclusive`; production diagnostic bundle пока не допущен. OIDC token validation и клиентский PKCE реализованы, но provider-backed end-to-end приёмка остаётся отдельной проверкой.
 
 ## 1. Правила
 

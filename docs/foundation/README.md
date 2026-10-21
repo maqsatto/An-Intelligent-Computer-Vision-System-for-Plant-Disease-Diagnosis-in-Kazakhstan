@@ -1,6 +1,6 @@
 # AgroVision: техническая основа
 
-Исторические проектные материалы от 21 октября 2026: архитектура, контракт, протокол данных и ML, исследования и мобильные макеты. Это исходные спецификации, а не отчет о текущей реализации. Примеры API и данные макетов синтетические.
+Технические материалы от 21 октября 2026: актуальные архитектура, решения, матрица приёмки, исследования и мобильные макеты. Исторические планы ML и каталог кандидатов явно отделены от текущего научного протокола и измеренного MVP. Примеры API и данные макетов синтетические.
 
 Текущее состояние: [реализация](../development/IMPLEMENTATION.md), [данные и модель](../development/DATA_AND_MODEL.md), [Android](../development/MOBILE_REPORT.md). Исполняемый OpenAPI генерируется из Pydantic; этот проектный контракт не заменяет актуальную схему.
 
@@ -10,7 +10,8 @@
 - [Технические требования и методы проверки](planning/REQUIREMENTS_AND_TRACEABILITY.md): FR/NFR, сценарии, трассировка компонентов.
 - [Проектный API-контракт](contracts/API_CONTRACT.md), [синтетические примеры](contracts/examples.json).
 - [Политика данных](data/DATA_POLICY.md), [каталог источников](data/DATASET_CATALOG.md), [реестр кандидатов](data/datasets.csv).
-- [План обучения и оценки](ml/TRAINING_AND_EVALUATION.md), [исходная конфигурация эксперимента](ml/baseline_config.yaml), [шаблон model card](templates/MODEL_CARD.md).
+- [Текущий научный протокол](../../ml/SCIENTIFIC_PROTOCOL.md), [конфигурация G0/C0/C1](../../ml/scientific_experiment_config.yaml), [допуск научных данных](../data/SCIENTIFIC_DATA_REQUIREMENTS.md).
+- [Исторический план обучения и оценки](ml/TRAINING_AND_EVALUATION.md), [исходная конфигурация эксперимента](ml/baseline_config.yaml), [шаблон model card](templates/MODEL_CARD.md).
 - [Обзор литературы](references/LITERATURE_REVIEW.md), [сравнение систем](references/EXISTING_SYSTEMS.md), [библиография](references/sources.bib).
 - [Мобильный прототип](ux/MOBILE_PROTOTYPE.md), [предпросмотр](ux/MOBILE_PREVIEW.png), [основные экраны](ux/MOBILE_SCREENS.png).
 

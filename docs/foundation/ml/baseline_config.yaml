@@ -1,11 +1,15 @@
 # AgroVision — проект спецификации ML-эксперимента, 2026-10-21.
-# НЕ готовая исполняемая программа и НЕ результат измерений.
+# Исторический общий дизайн; НЕ текущий runner config и НЕ результат измерений.
+# Реальный EfficientNet MVP: docs/development/DATA_AND_MODEL.md и docs/evaluation/MEASURED_CASES.md.
+# Текущий planned-only ResNet18 G0/C0/C1: ml/scientific_experiment_config.yaml.
+# Новый эксперимент NO-GO до docs/data/SCIENTIFIC_DATA_REQUIREMENTS.md; пшеница — условное расширение.
+# Null-политики этого дизайн-примера не допускаются production runtime.
 # Для запуска нужен training runner, который явно поддерживает эту схему.
 # null означает «решение/измерение ещё не получено», а не безопасное значение по умолчанию.
 
 spec_version: "0.1-proposed"
 project_title: "An Intelligent Computer Vision System for Plant Disease Diagnosis in Kazakhstan"
-status: proposed_unmeasured
+status: historical_design_unmeasured
 run_id: null
 code_commit: null
 diagnostic_release_enabled: false

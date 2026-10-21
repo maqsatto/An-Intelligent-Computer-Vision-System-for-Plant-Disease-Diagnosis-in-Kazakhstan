@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 actor "Растениевод" as Farmer
-actor "Эксперт по растениям" as Expert
+actor "Будущий эксперт по растениям" as Expert
 actor "Технический оператор\n/ ML-исследователь" as Operator
 
 rectangle "AgroVision" {
@@ -10,11 +10,11 @@ rectangle "AgroVision" {
   usecase "UC-03\nОтправить фото на оценку" as UC03
   usecase "UC-04\nПолучить результат и следующее действие" as UC04
   usecase "UC-05\nПросмотреть историю" as UC05
-  usecase "UC-06\nСвязать наблюдение с полем / сезоном" as UC06
-  usecase "UC-07\nСохранить offline-черновик" as UC07
+  usecase "UC-06\nСвязать с полем / сезоном (будущее)" as UC06
+  usecase "UC-07\nOffline-черновик (будущее)" as UC07
   usecase "UC-08\nОставить отзыв о результате" as UC08
-  usecase "UC-09\nАннотировать исследовательский образец" as UC09
-  usecase "UC-10\nПроверить и активировать модель" as UC10
+  usecase "UC-09\nАннотировать образец (будущее)" as UC09
+  usecase "UC-10\nПроверить bundle / выбрать dev mode" as UC10
   usecase "UC-11\nУдалить собственное наблюдение" as UC11
   usecase "UC-12\nВыполнить оценку и получить отчет" as UC12
   usecase "Проверить доступ\nи пригодность фото" as PhotoCheck
@@ -38,4 +38,9 @@ Operator -- UC12
 UC03 ..> PhotoCheck : <<include>>
 UC10 ..> BundleCheck : <<include>>
 UC08 ..> UC04 : <<extend>>\nпо желанию пользователя
+note bottom
+UC-06, UC-07, UC-09: не реализованы.
+UC-10/12: локальные операторские CLI.
+Research всегда inconclusive.
+end note
 @enduml

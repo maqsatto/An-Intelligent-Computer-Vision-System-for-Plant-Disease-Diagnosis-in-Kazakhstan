@@ -1,14 +1,14 @@
 flowchart TB
     Farmer["Растениевод"]
-    Expert["Эксперт по растениям"]
+    Expert["Будущий эксперт: annotation отложена"]
     Operator["Технический оператор / ML-исследователь"]
     System["AgroVision: наблюдения и предварительная оценка фото"]
-    Data["Проверенные датасеты и локальные исследовательские образцы"]
+    Data["Допущенные PlantVillage и Wheat Leaf Dataset"]
 
     Farmer -->|"Фото, культура, наблюдение"| System
-    System -->|"Предварительная оценка, история"| Farmer
-    Expert -->|"Референсные метки и уровень подтверждения"| System
-    System -->|"Разрешенная исследовательская выборка"| Expert
+    System -->|"Research candidates, inconclusive; история"| Farmer
+    Expert -.->|"Референсные метки и уровень подтверждения"| System
+    System -.->|"Будущая разрешенная исследовательская выборка"| Expert
     Operator -->|"Конфигурации и model release"| System
     System -->|"Отчеты, версии и ошибки"| Operator
     Data -->|"Данные с provenance для offline исследования"| System
