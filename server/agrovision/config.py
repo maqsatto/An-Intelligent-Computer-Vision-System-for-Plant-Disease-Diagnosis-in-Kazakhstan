@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field, model_validator
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -27,6 +27,11 @@ class Settings(BaseSettings):
     inference_timeout_seconds: float = Field(default=30, gt=0, le=1800)
     retry_base_seconds: float = 2
     download_ttl_seconds: int = Field(default=120, ge=1, le=600)
+
+    @field_validator("research_bundle_dir", mode="before")
+    @classmethod
+    def empty_research_path(cls, value):
+        return None if value == "" else value
 
     @model_validator(mode="after")
     def validate_environment(self):
