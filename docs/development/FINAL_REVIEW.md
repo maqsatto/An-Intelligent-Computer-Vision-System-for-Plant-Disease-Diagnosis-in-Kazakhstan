@@ -31,3 +31,10 @@ The reported P1 is addressed: source geometry is checked before decode/copy, pro
 The regressions prohibit load, EXIF copying and resize on rejected runtime input, cover the source/projected/dimension boundaries, and exercise HTTP rejection. No new material finding in the affected code or call sites.
 
 **Verdict:** No unresolved material finding in this scoped implementation review. Native/device QA, scientific diagnostic-release evaluation and provider-specific production integration remain separate documented acceptance conditions.
+
+
+## Final configuration/client commit review
+
+Scoped read-only review of `21e7eb1` and `packages/api-client/src/index.ts` in `bf69a26`; no tests rerun. No new material regression/security finding. Empty-string research configuration now becomes None before Path parsing and production validation, matching Compose’s disabled optional default; a nonempty research path still reaches the unchanged production refusal. Both boundary regressions are present. The committed transport matches the previously reviewed implementation: bearer header, stable supplied idempotency UUID, multipart without a forced JSON content type, abort-signal propagation and same-origin validation before attaching bearer image headers.
+
+Main reports the current full Python suite at 63 passed, mobile at 14 passed and TypeScript passing; these remain attributed execution evidence.
