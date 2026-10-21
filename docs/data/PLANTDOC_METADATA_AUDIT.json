@@ -1,0 +1,120 @@
+{
+  "status": "metadata_only_not_image_admission",
+  "checked_on": "2026-10-21",
+  "images_downloaded": 0,
+  "training_performed": false,
+  "repositories": {
+    "PlantDoc-Dataset": {
+      "commit": "5467f6012d78d1c446145d5f582da6096f852ae8",
+      "declared_license": "CC-BY-4.0",
+      "license_sha256": "95df2e9564862e51d69683a899b6dcc8218d577057bdf67322880769ff85f29e",
+      "primary_url": "https://github.com/pratikkayal/PlantDoc-Dataset",
+      "tree_truncated": false
+    },
+    "PlantDoc-Object-Detection-Dataset": {
+      "commit": "4730a233a555b30ee98e0879c63ad25d82407455",
+      "declared_license": "CC-BY-4.0",
+      "license_sha256": "95df2e9564862e51d69683a899b6dcc8218d577057bdf67322880769ff85f29e",
+      "primary_url": "https://github.com/pratikkayal/PlantDoc-Object-Detection-Dataset",
+      "tree_truncated": false
+    }
+  },
+  "core_classes": {
+    "potato.early_blight": {
+      "raw_label": "Potato leaf early blight",
+      "classification_repository_image_entries": {
+        "train": 109,
+        "test": 8
+      },
+      "annotation_rows_by_provider_split": {
+        "train": 316,
+        "test": 17
+      },
+      "raw_annotation_rows": 333,
+      "invalid_geometry_rows": 0,
+      "distinct_valid_box_rows": 333,
+      "distinct_parent_filename_proxies": 120,
+      "parent_proxy_is_verified_independent_plant": false
+    },
+    "potato.late_blight": {
+      "raw_label": "Potato leaf late blight",
+      "classification_repository_image_entries": {
+        "train": 97,
+        "test": 8
+      },
+      "annotation_rows_by_provider_split": {
+        "train": 240,
+        "test": 10
+      },
+      "raw_annotation_rows": 250,
+      "invalid_geometry_rows": 0,
+      "distinct_valid_box_rows": 250,
+      "distinct_parent_filename_proxies": 106,
+      "parent_proxy_is_verified_independent_plant": false
+    },
+    "tomato.early_blight": {
+      "raw_label": "Tomato Early blight leaf",
+      "classification_repository_image_entries": {
+        "train": 79,
+        "test": 9
+      },
+      "annotation_rows_by_provider_split": {
+        "train": 195,
+        "test": 19
+      },
+      "raw_annotation_rows": 214,
+      "invalid_geometry_rows": 0,
+      "distinct_valid_box_rows": 214,
+      "distinct_parent_filename_proxies": 90,
+      "parent_proxy_is_verified_independent_plant": false
+    },
+    "tomato.late_blight": {
+      "raw_label": "Tomato leaf late blight",
+      "classification_repository_image_entries": {
+        "train": 101,
+        "test": 10
+      },
+      "annotation_rows_by_provider_split": {
+        "train": 207,
+        "test": 14
+      },
+      "raw_annotation_rows": 221,
+      "invalid_geometry_rows": 0,
+      "distinct_valid_box_rows": 221,
+      "distinct_parent_filename_proxies": 112,
+      "parent_proxy_is_verified_independent_plant": false
+    }
+  },
+  "all_four_raw_labels_present": true,
+  "detection_csv_total_rows": {
+    "train": 8469,
+    "test": 452
+  },
+  "paper_reported_boxes": 9216,
+  "discrepancy": "Current author CSV row totals and classification tree are version-specific metadata, not the paper count and not decoded crop counts.",
+  "evidence_sha256": {
+    "Lee2021-crossref.json": "4067314e855ece8a56ee7b834a761231135d37fb296e64f0f72981b201f17bda",
+    "PlantDoc-Dataset-LICENSE.txt": "95df2e9564862e51d69683a899b6dcc8218d577057bdf67322880769ff85f29e",
+    "PlantDoc-Dataset-README.md": "e7853bccf8dffc20e7f10def12aa6adfe23358ee351a285a4ccb776db7456abd",
+    "PlantDoc-Dataset-commit.json": "bf9cf6380a109d24f098655c83c934fa030c744c8eb82ff5f79f2841197385ae",
+    "PlantDoc-Dataset-tree.json": "ac1994b80232dad6c5ee9c32545bb89fa5bb323b1573e0304cb708ba6b5cb2c6",
+    "PlantDoc-Object-Detection-Dataset-LICENSE.txt": "95df2e9564862e51d69683a899b6dcc8218d577057bdf67322880769ff85f29e",
+    "PlantDoc-Object-Detection-Dataset-README.md": "14b54f21e303c2bc106c09ff6c36e6e2efeb7889423196a6dcc4f98b98171d17",
+    "PlantDoc-Object-Detection-Dataset-commit.json": "1d884791a9619cd3cdfcd50a0456900639d210ef4914b0255297570c2dc6bb17",
+    "PlantDoc-Object-Detection-Dataset-test_labels.csv": "f0e455117f042f708c4a8125efda977880a34fbb26440cab5fbbd6b067b4ddb8",
+    "PlantDoc-Object-Detection-Dataset-train_labels.csv": "87f50acc53fd47a3abdd68c2b9546de263a48d99b45d09ec4c6cc070f5e0506c",
+    "PlantDoc-Object-Detection-Dataset-tree.json": "2ec999ce34064b354a69e799568fa66b504c4f43e95acb849f823e7cc4d7bf66"
+  },
+  "experiment_go_no_go": "NO_GO_PENDING_IMAGE_RIGHTS_PARENT_DEDUP_AUDIT",
+  "remaining_gates": [
+    "image decoding and bbox-to-original resolution validation",
+    "source label and rights acceptance review",
+    "original-parent/leaf/session linkage and cross-source exact/near duplicate audit",
+    "all four eligible class group counts, frozen splits and manifest hashes"
+  ],
+  "limitations": [
+    "Repository CC-BY declaration does not by itself resolve third-party web-image rights.",
+    "Distinct filenames and boxes are not independent plants or verified dedup groups.",
+    "No held-out image predictions or target-based tuning were generated."
+  ]
+}
