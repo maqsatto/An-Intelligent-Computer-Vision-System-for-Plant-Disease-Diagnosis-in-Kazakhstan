@@ -8,6 +8,8 @@ The current local research bundle was actually trained on admitted PlantVillage 
 
 ## Show the MVP
 
+[Краткая инструкция для демонстрации на русском](docs/development/DEMO_RU.md).
+
 1. Start API, PostgreSQL and worker with the commands below.
 2. Use the local Android APK in `artifacts/android/` (build/verification status in [mobile report](docs/development/MOBILE_REPORT.md)), or `pnpm mobile` and a compatible development client.
 3. Sign in with an operator-issued development bearer, select a culture, choose/take one leaf photo, preview and send. Upload, queued/running and completed/failed are separate states.
