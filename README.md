@@ -4,6 +4,17 @@ Android MVP for **An Intelligent Computer Vision System for Plant Disease Diagno
 
 Expo / React Native mobile, FastAPI API, PostgreSQL durable worker and an independent ONNX runtime. **No web UI.**
 
+The system helps farmers, field workers and agronomists record visible leaf symptoms and revisit observations with the original photograph and model version. The project investigates how crop information affects recognition when the source of photographs changes. Expected outcomes are a reproducible evaluation, documented limits and an Android observation workflow; a confirmed agronomic diagnosis is outside the current release.
+
+| Team member | Responsibility | Account |
+|---|---|---|
+| Сыртбай Мақсат Берікұлы | Android client, API, worker, storage, integration and infrastructure | [maqsatto](https://github.com/maqsatto) |
+| Матығұл Қайсар Алмасұлы | Data audit, label mapping, models, experiments, evaluation and export | [v2207function](https://github.com/v2207function) |
+
+Scientific supervisor named in the supplied project materials: **Кутпанова Зарина Алмабековна**. A substantive review of the current materials is still pending.
+
+[YouTrack project](https://maqsatto-qaisar.youtrack.cloud/projects/AIC/issues) · [Figma prototype](https://www.figma.com/design/07cVYgjO4tZw4IaR7kUxEz) · [Project scope](docs/PROJECT_OVERVIEW.md).
+
 The current local research bundle was actually trained on admitted PlantVillage and Wheat Leaf Dataset images: **3 crops, 9 source-label classes**. It returns exploratory candidates and always abstains (`inconclusive`). It is **not a validated diagnostic release** and does not establish accuracy in Kazakhstan. Production refuses research/synthetic models; absent validated models return `503 model_unavailable` without creating a job.
 
 ## Show the MVP
