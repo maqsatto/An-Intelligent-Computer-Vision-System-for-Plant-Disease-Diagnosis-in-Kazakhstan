@@ -34,4 +34,4 @@ There is no persistent offline queue, web client, validated diagnostic policy or
 - [Architecture and editable diagrams](foundation/architecture/SYSTEM_DESIGN.md).
 - [API contract](foundation/contracts/API_CONTRACT.md).
 
-The team and links are maintained in the root README. Research/configuration changes and application changes are committed under their respective responsibility owners. Actual review and acceptance evidence must be recorded as it occurs.
+The team and links are maintained in the root README. Research/configuration changes and application changes are committed under their respective responsibility owners.
