@@ -1,0 +1,667 @@
+{
+  "fixture_kind": "synthetic_contract_examples",
+  "api_version": "v1-proposed",
+  "warning_ru": "Все данные искусственные. Это примеры проектного контракта и прототипа, не ответы работающего API, не доказательство поддержки культур, не реальные фото/интервью и не измеренные ML-результаты.",
+  "cases": [
+    {
+      "name": "catalog_demo",
+      "description_ru": "Иллюстрация будущего каталога. Не свидетельствует о фактической экспериментальной или валидированной модели.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "catalog_version": "demo-catalog-v1",
+          "crops": [
+            {
+              "id": "wheat",
+              "name_ru": "Пшеница",
+              "support_status": "experimental",
+              "can_assess": true,
+              "supported_organs": [
+                "leaf"
+              ],
+              "model_version": "demo-pilot-v1",
+              "classes": [
+                {
+                  "class_id": "wheat.leaf_rust",
+                  "condition_id": "wheat_leaf_rust"
+                },
+                {
+                  "class_id": "wheat.stripe_rust",
+                  "condition_id": "wheat_stripe_rust"
+                },
+                {
+                  "class_id": "wheat.healthy_appearance",
+                  "condition_id": "healthy_appearance"
+                }
+              ]
+            },
+            {
+              "id": "potato",
+              "name_ru": "Картофель",
+              "support_status": "experimental",
+              "can_assess": true,
+              "supported_organs": [
+                "leaf"
+              ],
+              "model_version": "demo-pilot-v1",
+              "classes": [
+                {
+                  "class_id": "potato.early_blight",
+                  "condition_id": "potato_early_blight"
+                },
+                {
+                  "class_id": "potato.healthy_appearance",
+                  "condition_id": "healthy_appearance"
+                }
+              ]
+            },
+            {
+              "id": "tomato",
+              "name_ru": "Томат",
+              "support_status": "experimental",
+              "can_assess": true,
+              "supported_organs": [
+                "leaf"
+              ],
+              "model_version": "demo-pilot-v1",
+              "classes": [
+                {
+                  "class_id": "tomato.early_blight",
+                  "condition_id": "tomato_early_blight"
+                },
+                {
+                  "class_id": "tomato.healthy_appearance",
+                  "condition_id": "healthy_appearance"
+                }
+              ]
+            },
+            {
+              "id": "maize",
+              "name_ru": "Кукуруза",
+              "support_status": "planned",
+              "can_assess": false,
+              "supported_organs": [],
+              "model_version": null,
+              "classes": []
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v1/catalog"
+      }
+    },
+    {
+      "name": "observation_created",
+      "description_ru": "Создание наблюдения без обязательной фермы/поля.",
+      "response": {
+        "status_code": 201,
+        "body": {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "client_observation_id": "55555555-5555-4555-8555-555555555555",
+          "crop_id": "potato",
+          "organ": "leaf",
+          "captured_at": "2026-10-21T12:00:00Z",
+          "field_season_id": null,
+          "notes": "Демонстрационный пример листа; реальная съемка не проводилась.",
+          "created_at": "2026-10-21T12:00:00Z"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/observations",
+        "body": {
+          "client_observation_id": "55555555-5555-4555-8555-555555555555",
+          "crop_id": "potato",
+          "organ": "leaf",
+          "captured_at": "2026-10-21T17:00:00+05:00",
+          "field_season_id": null,
+          "notes": "Демонстрационный пример листа; реальная съемка не проводилась."
+        }
+      }
+    },
+    {
+      "name": "photo_ready",
+      "description_ru": "Готовое нормализованное основное фото. Bytes, размеры и hash здесь синтетические.",
+      "response": {
+        "status_code": 201,
+        "body": {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "purpose": "primary",
+          "status": "ready",
+          "media_type": "image/jpeg",
+          "width": 1024,
+          "height": 1024,
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/observations/11111111-1111-4111-8111-111111111111/photos",
+        "content_type": "multipart/form-data",
+        "fields": {
+          "client_photo_id": "66666666-6666-4666-8666-666666666666",
+          "purpose": "primary"
+        },
+        "file_description": "synthetic fixture; binary photo is not included"
+      }
+    },
+    {
+      "name": "assessment_queued",
+      "description_ru": "После атомарного создания assessment и job.",
+      "response": {
+        "status_code": 202,
+        "body": {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "queued",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": null,
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": null,
+          "finished_at": null
+        }
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/assessments",
+        "headers": {
+          "Idempotency-Key": "33333333-3333-4333-8333-333333333333"
+        },
+        "body": {
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222"
+        }
+      }
+    },
+    {
+      "name": "assessment_running",
+      "description_ru": "Polling выполняющегося assessment.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "running",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": null,
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": null
+        }
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v1/assessments/44444444-4444-4444-8444-444444444444"
+      }
+    },
+    {
+      "name": "assessment_predicted",
+      "description_ru": "Числа вымышлены и не являются точностью или вероятностью правильного диагноза; один основной видимый класс.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "completed",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": {
+            "outcome": "predicted",
+            "reason_codes": [],
+            "prediction": {
+              "class_id": "potato.early_blight",
+              "crop_id": "potato",
+              "condition_id": "potato_early_blight",
+              "score": 0.82,
+              "score_kind": "model_score",
+              "score_space": "global_joint"
+            },
+            "candidates": [
+              {
+                "class_id": "potato.early_blight",
+                "crop_id": "potato",
+                "condition_id": "potato_early_blight",
+                "score": 0.82,
+                "score_kind": "model_score",
+                "score_space": "global_joint"
+              },
+              {
+                "class_id": "potato.healthy_appearance",
+                "crop_id": "potato",
+                "condition_id": "healthy_appearance",
+                "score": 0.11,
+                "score_kind": "model_score",
+                "score_space": "global_joint"
+              }
+            ],
+            "quality": {
+              "status": "passed",
+              "flags": []
+            },
+            "next_action": "view_guidance"
+          },
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": "2026-10-21T12:00:03Z"
+        }
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v1/assessments/44444444-4444-4444-8444-444444444444"
+      }
+    },
+    {
+      "name": "idempotency_replay",
+      "description_ru": "Потерянный ответ повторен прежним ключом; возвращается тот же ID и текущий result, новый job не создан.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "completed",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": {
+            "outcome": "predicted",
+            "reason_codes": [],
+            "prediction": {
+              "class_id": "potato.early_blight",
+              "crop_id": "potato",
+              "condition_id": "potato_early_blight",
+              "score": 0.82,
+              "score_kind": "model_score",
+              "score_space": "global_joint"
+            },
+            "candidates": [
+              {
+                "class_id": "potato.early_blight",
+                "crop_id": "potato",
+                "condition_id": "potato_early_blight",
+                "score": 0.82,
+                "score_kind": "model_score",
+                "score_space": "global_joint"
+              },
+              {
+                "class_id": "potato.healthy_appearance",
+                "crop_id": "potato",
+                "condition_id": "healthy_appearance",
+                "score": 0.11,
+                "score_kind": "model_score",
+                "score_space": "global_joint"
+              }
+            ],
+            "quality": {
+              "status": "passed",
+              "flags": []
+            },
+            "next_action": "view_guidance"
+          },
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": "2026-10-21T12:00:03Z"
+        },
+        "headers": {
+          "Idempotency-Replayed": "true"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/assessments",
+        "headers": {
+          "Idempotency-Key": "33333333-3333-4333-8333-333333333333"
+        },
+        "body": {
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222"
+        }
+      }
+    },
+    {
+      "name": "assessment_healthy_class",
+      "description_ru": "Поддержанный healthy_appearance на одном фото, не гарантия здоровья всего растения.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "77777777-7777-4777-8777-777777777777",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "completed",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": {
+            "outcome": "predicted",
+            "reason_codes": [],
+            "prediction": {
+              "class_id": "potato.healthy_appearance",
+              "crop_id": "potato",
+              "condition_id": "healthy_appearance",
+              "score": 0.76,
+              "score_kind": "model_score",
+              "score_space": "global_joint"
+            },
+            "candidates": [
+              {
+                "class_id": "potato.healthy_appearance",
+                "crop_id": "potato",
+                "condition_id": "healthy_appearance",
+                "score": 0.76,
+                "score_kind": "model_score",
+                "score_space": "global_joint"
+              }
+            ],
+            "quality": {
+              "status": "passed",
+              "flags": []
+            },
+            "next_action": "view_guidance"
+          },
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": "2026-10-21T12:00:03Z"
+        }
+      }
+    },
+    {
+      "name": "assessment_inconclusive",
+      "description_ru": "Модель не дает принятого уверенного вывода; перечисленные candidates остаются гипотезами.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "88888888-8888-4888-8888-888888888888",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "completed",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": {
+            "outcome": "inconclusive",
+            "reason_codes": [
+              "ambiguous_candidates"
+            ],
+            "prediction": null,
+            "candidates": [
+              {
+                "class_id": "potato.early_blight",
+                "crop_id": "potato",
+                "condition_id": "potato_early_blight",
+                "score": 0.46,
+                "score_kind": "model_score",
+                "score_space": "global_joint"
+              },
+              {
+                "class_id": "potato.healthy_appearance",
+                "crop_id": "potato",
+                "condition_id": "healthy_appearance",
+                "score": 0.43,
+                "score_kind": "model_score",
+                "score_space": "global_joint"
+              }
+            ],
+            "quality": {
+              "status": "warning",
+              "flags": [
+                "insufficient_evidence"
+              ]
+            },
+            "next_action": "consult_expert"
+          },
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": "2026-10-21T12:00:03Z"
+        }
+      }
+    },
+    {
+      "name": "assessment_unsupported_input",
+      "description_ru": "Контракт для обоснованно выявленного неподдержанного органа. Наличие такого детектора еще нужно реализовать/проверить.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "99999999-9999-4999-8999-999999999999",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "completed",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": {
+            "outcome": "unsupported_input",
+            "reason_codes": [
+              "unsupported_organ"
+            ],
+            "prediction": null,
+            "candidates": [],
+            "quality": {
+              "status": "not_assessed",
+              "flags": []
+            },
+            "next_action": "retake_photo"
+          },
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": "2026-10-21T12:00:03Z"
+        }
+      }
+    },
+    {
+      "name": "assessment_retake_photo",
+      "description_ru": "Пример результата проверенного quality gate; не отчет о реализованном blur detector.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "completed",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": {
+            "outcome": "retake_photo",
+            "reason_codes": [
+              "too_blurry"
+            ],
+            "prediction": null,
+            "candidates": [],
+            "quality": {
+              "status": "unusable",
+              "flags": [
+                "blur"
+              ]
+            },
+            "next_action": "retake_photo"
+          },
+          "error": null,
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": "2026-10-21T12:00:03Z"
+        }
+      }
+    },
+    {
+      "name": "assessment_failed",
+      "description_ru": "Системная ошибка после исчерпания retries; это не unknown disease result.",
+      "response": {
+        "status_code": 200,
+        "body": {
+          "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "22222222-2222-4222-8222-222222222222",
+          "crop_id": "potato",
+          "status": "failed",
+          "model": {
+            "version": "demo-pilot-v1",
+            "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "preprocessing_version": "demo-preprocess-v1",
+            "decision_policy_version": "demo-policy-v1"
+          },
+          "result": null,
+          "error": {
+            "code": "storage_unavailable",
+            "message": "Не удалось завершить обработку после ограниченного числа попыток. Повторите позднее.",
+            "retryable": true
+          },
+          "created_at": "2026-10-21T12:00:00Z",
+          "started_at": "2026-10-21T12:00:01Z",
+          "finished_at": "2026-10-21T12:00:03Z"
+        }
+      }
+    },
+    {
+      "name": "idempotency_conflict",
+      "description_ru": "Тот же ключ использован с другим основным фото.",
+      "response": {
+        "status_code": 409,
+        "body": {
+          "code": "idempotency_conflict",
+          "message": "Этот ключ уже связан с другим запросом.",
+          "details": {},
+          "request_id": "demo-request-conflict"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/assessments",
+        "headers": {
+          "Idempotency-Key": "33333333-3333-4333-8333-333333333333"
+        },
+        "body": {
+          "observation_id": "11111111-1111-4111-8111-111111111111",
+          "primary_photo_id": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+        }
+      }
+    },
+    {
+      "name": "photo_decode_failed",
+      "description_ru": "Невалидный файл отвергнут; ready photo и assessment не созданы.",
+      "response": {
+        "status_code": 422,
+        "body": {
+          "code": "image_decode_failed",
+          "message": "Не удалось прочитать изображение. Выберите JPEG или PNG.",
+          "details": {
+            "field": "file"
+          },
+          "request_id": "demo-request-decode"
+        }
+      }
+    },
+    {
+      "name": "crop_not_supported",
+      "description_ru": "Известная планируемая maize может быть сохранена как observation/photo без оценки. Этот POST assessment отклоняется до создания assessment/job; названные UUID — условные ранее сохраненные maize-объекты.",
+      "response": {
+        "status_code": 422,
+        "body": {
+          "code": "unsupported_crop",
+          "message": "Для выбранной культуры пока нет доступной оцененной модели.",
+          "details": {
+            "crop_id": "maize"
+          },
+          "request_id": "demo-request-crop"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/assessments",
+        "headers": {
+          "Idempotency-Key": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+        },
+        "body": {
+          "observation_id": "abababab-abab-4bab-8bab-abababababab",
+          "primary_photo_id": "bcbcbcbc-bcbc-4cbc-8cbc-bcbcbcbcbcbc"
+        }
+      }
+    },
+    {
+      "name": "object_not_available",
+      "description_ru": "Чужой либо отсутствующий object ID не раскрывает личные данные.",
+      "response": {
+        "status_code": 404,
+        "body": {
+          "code": "not_found",
+          "message": "Объект не найден или недоступен.",
+          "details": {},
+          "request_id": "demo-request-object"
+        }
+      }
+    },
+    {
+      "name": "feedback_created",
+      "description_ru": "Отзыв не меняет prediction и не является expert label.",
+      "response": {
+        "status_code": 201,
+        "body": {
+          "id": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+          "assessment_id": "44444444-4444-4444-8444-444444444444",
+          "usefulness": "not_helpful",
+          "suggested_condition_id": null,
+          "note": "Демонстрационный отзыв, не реальное интервью.",
+          "created_at": "2026-10-21T12:10:00Z"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/assessments/44444444-4444-4444-8444-444444444444/feedback",
+        "body": {
+          "usefulness": "not_helpful",
+          "suggested_condition_id": null,
+          "note": "Демонстрационный отзыв, не реальное интервью."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+# AgroVision — проект спецификации ML-эксперимента, 2026-10-21.
+# НЕ готовая исполняемая программа и НЕ результат измерений.
+# Для запуска нужен training runner, который явно поддерживает эту схему.
+# null означает «решение/измерение ещё не получено», а не безопасное значение по умолчанию.
+
+spec_version: "0.1-proposed"
+project_title: "An Intelligent Computer Vision System for Plant Disease Diagnosis in Kazakhstan"
+status: proposed_unmeasured
+run_id: null
+code_commit: null
+diagnostic_release_enabled: false
+
+inputs:
+  approved_manifest_path: null
+  class_map_path: null
+  coverage_registry_path: null
+  split_manifest_path: null
+  # Эти файлы должны появиться после аудита источников и онтологии.
+  require_approved_provenance_and_license: true
+  require_immutable_class_order: true
+  require_group_overlap_check: true
+  require_duplicate_audit_before_split: true
+
+task:
+  type: single_primary_condition_classification
+  label_space: joint_crop_condition
+  crop_hint: required_user_selected_in_api_v1
+  allow_no_crop_hint_in_research_ablation: true
+  automatic_crop_identification_required: false
+  class_count: null
+  supported_crop_ids: []  # Заполняется из проверенного registry, не из списка желаний.
+  condition_types:
+    - disease
+    - pest_damage
+    - abiotic
+    - healthy_appearance
+    - symptom
+    - unresolved
+  # Наличие типа в онтологии не создаёт обучаемый класс автоматически.
+  require_real_healthy_examples_for_healthy_label: true
+  reject_single_class_crop_as_disease_classifier: true
+  multi_label_training: false
+  severity_estimation: false
+  detector_required: false
+  segmentation_required: false
+
+model:
+  selected_candidate: efficientnet_b0
+  pretrained: true
+  replace_classifier: true
+  input_shape_chw: [3, 224, 224]
+  candidates:
+    efficientnet_b0:
+      provider: torchvision
+      weights: EfficientNet_B0_Weights.IMAGENET1K_V1
+      classifier_module: classifier
+      partial_trainable_prefixes: [features.6, features.7, features.8, classifier]
+    mobilenet_v3_large:
+      provider: torchvision
+      weights: MobileNet_V3_Large_Weights.IMAGENET1K_V2
+      classifier_module: classifier
+      partial_trainable_prefixes: [features.14, features.15, features.16, classifier]
+    resnet18:
+      provider: torchvision
+      weights: ResNet18_Weights.IMAGENET1K_V1
+      classifier_module: fc
+      partial_trainable_prefixes: [layer4, fc]
+  # Имена модулей проверить на фактической установленной версии TorchVision.
+  crop_conditioning:
+    mode: compatible_class_ranking
+    output_score_space: global_joint
+    renormalize_after_crop_filter_for_api_score: false
+    preserve_global_logits: true
+    preserve_global_probabilities: true
+    preserve_selected_crop_probability_mass: true
+    conditional_probability_is_not_global_confidence: true
+    report_oracle_crop_separately: true
+
+preprocessing:
+  version: proposed_common_224_v1
+  apply_exif_orientation: true
+  color_mode: RGB
+  resize_shorter_side: 256
+  interpolation: bilinear
+  antialias: true
+  center_crop_size: [224, 224]
+  scale_pixels_to_0_1: true
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+  # До запуска вручную проверить, что crop сохраняет лист и симптомы.
+  # При переходе на aspect-preserving padding пересоздать версию и повторить всю серию.
+  require_visual_symptom_preservation_check: true
+
+augmentation:
+  train_only: true
+  horizontal_flip_probability: 0.5
+  vertical_flip_probability: 0.5
+  rotation_degrees: 15
+  brightness_jitter: 0.1
+  contrast_jitter: 0.1
+  hue_jitter: 0.0
+  saturation_jitter: 0.0
+  random_erasing: false
+  grayscale: false
+  mixup: false
+  cutmix: false
+  require_batch_grid_review: true
+
+hardware:
+  selected_profile: rtx2060_6gb
+  profiles:
+    rtx2060_6gb:
+      architecture_expected: Turing
+      device: cuda
+      physical_microbatch: 8
+      gradient_accumulation_steps: 4
+      effective_batch_target: 32
+      dataloader_workers_initial: 2
+    rtx3050_laptop_4gb:
+      architecture_expected: Ampere
+      device: cuda
+      physical_microbatch: 4
+      gradient_accumulation_steps: 8
+      effective_batch_target: 32
+      dataloader_workers_initial: 2
+  actual_gpu_name: null
+  actual_compute_capability: null
+  actual_vram_total_mib: null
+  memory_pooling_across_devices: false
+  distributed_data_parallel: false
+  use_devices_for_independent_runs: true
+  oom_action: halve_microbatch_and_recompute_accumulation
+
+precision:
+  training: fp16_amp
+  grad_scaler: true
+  baseline_bf16: false
+  require_native_bf16_check_for_optional_bf16_experiment: true
+  export_baseline: fp32
+
+training:
+  initial_seed: 17
+  finalist_seeds: [17, 41, 73]
+  optimizer: AdamW
+  weight_decay: 0.0001
+  loss: cross_entropy
+  label_smoothing: 0.0
+  class_weighting: none
+  sampling: standard_shuffle
+  class_weights_from_train_only: true
+  scheduler: cosine_per_stage
+  max_total_epochs_initial: 30
+  batchnorm:
+    freeze_running_statistics: true
+    freeze_affine_parameters: true
+    reapply_bn_eval_after_model_train: true
+    # Accumulation не увеличивает физический batch для BatchNorm.
+  stages:
+    - name: head_warmup
+      epochs: 3
+      freeze_backbone: true
+      learning_rate_head: 0.001
+      learning_rate_backbone: 0.0
+    - name: partial_finetune
+      epochs: 20
+      freeze_backbone: false
+      trainable_prefixes_from: model.candidates.selected_candidate.partial_trainable_prefixes
+      learning_rate_head: 0.001
+      learning_rate_backbone: 0.0001
+    # Полное размораживание не включено автоматически: это отдельный опыт.
+  early_stopping:
+    metric: validation_macro_f1_joint
+    mode: max
+    patience_epochs: 5
+    restore_best_checkpoint: true
+  accumulation:
+    normalize_loss_by_actual_window_size: true
+    handle_partial_final_window: true
+    optimizer_step_at_window_boundary: true
+    grad_scaler_update_at_window_boundary: true
+  gradient_clipping_norm: null
+  log_trainable_parameter_names: true
+  log_actual_optimizer_steps: true
+
+splits:
+  unit: independent_group
+  final_group_key: split_group_id
+  preferred_group_keys: [plant_id, leaf_id, capture_session_id, plot_id, parent_image_id, dedup_cluster_id]
+  # Канонические имена из DATA_POLICY.md; отсутствующие связи не выдумываются.
+  # Итоговый split выполняется по split_group_id, объединяющему связанные исходники.
+  development_pool_proposed_fractions:
+    train: 0.70
+    model_selection_validation: 0.10
+    calibration_validation: 0.05
+    internal_test: 0.15
+  preserve_groups_over_exact_fraction: true
+  source_held_out_ids: []
+  local_kazakhstan_test_manifest: null
+  unknown_ood_test_manifest: null
+  use_final_test_for_training_or_model_selection: false
+  use_final_test_for_calibration_or_thresholds: false
+  external_unknown_labels_remapped_to_known: false
+  require_cross_source_duplicate_audit: true
+
+evaluation:
+  primary_metric: macro_f1_joint
+  classification_reports:
+    - macro_f1_joint
+    - macro_f1_per_crop
+    - precision_recall_support_per_class
+    - balanced_accuracy
+    - confusion_matrix
+    - accuracy_secondary
+    - disease_to_healthy_and_reverse_errors
+  partitions: [internal, source_held_out, local_kazakhstan]
+  report_sample_and_independent_group_counts: true
+  confidence_interval_unit: plant_or_session_group
+  paired_finalist_comparison: true
+  report_seed_variation: true
+  report_oracle_crop_and_end_to_end_separately: true
+  report_wrong_crop_hint_cases: true
+  measure_full_classification_before_abstention: true
+
+uncertainty:
+  temperature_scaling:
+    fit_on: calibration_validation
+    temperature: null
+    fit_test_labels: false
+  rejection:
+    status: pending_validation
+    selection_method: risk_coverage_on_validation
+    joint_score_threshold: null
+    selected_crop_mass_threshold: null
+    target_max_selective_risk: null
+    target_min_coverage: null
+    crop_specific_policy_requires_sufficient_validation: true
+    never_accept_on_renormalized_score_alone: true
+  reports:
+    - risk_coverage_curve
+    - selective_risk_at_fixed_policy
+    - coverage_per_crop
+    - ood_false_acceptance_per_group
+    - ood_auroc_aupr_secondary
+    - nll
+    - brier_score
+    - reliability_diagram
+    - ece_with_documented_binning
+  negative_groups_to_curate:
+    - nonplant_images
+    - unsupported_crops
+    - unseen_conditions
+    - pest_or_abiotic_lookalikes
+    - mixed_conditions
+    - poor_image_quality
+  other_class_is_universal_unknown_detector: false
+
+result_contract:
+  outcomes: [predicted, inconclusive, unsupported_input, retake_photo]
+  crop_mismatch_outcome: inconclusive
+  unseen_condition_without_definite_scope_evidence: inconclusive
+  known_unsupported_crop_preflight:
+    http_status: 422
+    error_code: unsupported_crop
+    creates_assessment_job: false
+  unsupported_input_requires_postprocessing_scope_evidence: true
+  unusable_photo_outcome: retake_photo
+  prediction_requires_validated_policy: true
+  explanation_may_override_outcome: false
+  explanation_may_increase_confidence: false
+  diagnosis_claim: probable_visible_condition
+
+export:
+  baseline_format: onnx
+  dtype: fp32
+  eval_mode: true
+  torch_onnx_dynamo: true
+  batch_size: 1
+  fixed_spatial_shape: [224, 224]
+  opset: null  # Закрепить после проверки конкретных PyTorch/ONNX Runtime.
+  parity:
+    real_image_count_min: 32
+    real_image_count_target: 100
+    rtol_initial: 0.001
+    atol_initial: 0.0001
+    investigate_near_tie_top1_changes: true
+    require_same_preprocessing_and_class_order: true
+  int8:
+    enabled_initially: false
+    proposed_method_for_cnn: static_quantization
+    calibration_examples_from: train
+    require_validation_quality_and_policy_recheck: true
+
+cpu_benchmark:
+  actual_cpu: null
+  actual_os: null
+  runtime_provider: CPUExecutionProvider
+  intra_op_threads: null
+  inter_op_threads: null
+  batch_size: 1
+  warmup_iterations: 20
+  measured_iterations: 200
+  report_model_only_and_end_to_end: true
+  report_cold_start: true
+  report_percentiles: [50, 95]
+  report_peak_rss_and_artifact_size: true
+  p95_budget_ms: null  # Уточнить по пользовательскому сценарию до финального испытания.
+
+feasibility_experiment:
+  timebox_minutes: [30, 60]
+  preconditions: prepared_environment_weights_and_approved_small_dataset
+  warmup_microsteps: 20
+  measured_training_microsteps: 100
+  require_real_optimizer_updates: true
+  measure_memory_after_optimizer_step: true
+  require_memory_headroom_record: true
+  tiny_fit_examples: [32, 64]
+  tiny_fit_augmentation: false
+  tiny_fit_train_accuracy_sanity_target: 0.95
+  # Это sanity check обучаемости маленького train set, не диагностический порог.
+  short_run_train_examples: [512, 1024]
+  require_checkpoint_restore: true
+  require_fp32_onnx_parity: true
+  require_measured_cpu_inference: true
+  stop_on:
+    - split_group_leakage
+    - contradictory_label_mapping
+    - repeated_nonfinite_loss
+    - failure_to_fit_clean_tiny_set
+    - class_order_or_preprocessing_mismatch
+
+release_acceptance:
+  status: unvalidated
+  local_macro_f1_min: null
+  important_class_recall_min: null
+  max_selective_risk: null
+  min_coverage: null
+  min_coverage_per_supported_crop: null
+  cpu_p95_budget_ms: null
+  thresholds_agreed_before_final_test: false
+  independent_local_evaluation_complete: false
+  validated_coverage_registry_complete: false
+  # Ни один null-критерий не считается выполненным автоматически.
+
+bundle:
+  model_version: null
+  required_artifacts:
+    - pytorch_checkpoint
+    - fp32_onnx
+    - artifact_sha256
+    - versioned_class_map
+    - versioned_coverage_registry
+    - preprocessing_config
+    - validated_calibration_and_rejection_policy
+    - training_config_and_code_commit
+    - dependency_versions_and_hardware
+    - manifest_and_split_hashes
+    - data_provenance_and_licenses
+    - quality_uncertainty_performance_reports
+    - model_card
+  atomic_version_consistency_required: true
+
+reproducibility:
+  python_version: null
+  pytorch_version: null
+  torchvision_version: null
+  cuda_version: null
+  onnx_version: null
+  onnxruntime_version: null
+  record_resolved_weight_enum_and_hash: true
+  record_environment_lockfile: true
+  record_actual_seeds_and_nondeterminism_limits: true

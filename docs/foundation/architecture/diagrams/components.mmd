@@ -1,0 +1,25 @@
+flowchart TB
+    Mobile["React Native mobile: UI и offline drafts"]
+    Web["Будущий React web: только архитектурный план"]
+    Shared["Shared TS API client и generated types"]
+
+    subgraph Backend["Одно backend application / общий Python codebase"]
+        API["FastAPI API: identity, catalog, farms, observations, assessments, feedback"]
+        Worker["Inference worker: claim, lease, retry, result"]
+        Runtime["ml/runtime: preprocessing, ONNX, postprocessing"]
+        Worker -->|"Локальный Python вызов"| Runtime
+    end
+
+    DB[("PostgreSQL: metadata, jobs, results, model versions")]
+    Storage[("Private S3-compatible: photos и model bundles")]
+    Training["Offline ML: данные, splits, train, evaluate, export"]
+
+    Shared -.->|"Build-time contract"| Mobile
+    Shared -.->|"Будущая build-time dependency"| Web
+    Mobile -->|"HTTPS /v1"| API
+    Web -.->|"Будущий HTTPS /v1"| API
+    API -->|"Metadata и assessment + job transaction"| DB
+    API -->|"Private upload / authorized URL"| Storage
+    Worker -->|"Claim, lease, fenced result commit"| DB
+    Worker -->|"Ready photo и pinned bundle"| Storage
+    Training -.->|"Проверенный immutable bundle + отчет"| Storage

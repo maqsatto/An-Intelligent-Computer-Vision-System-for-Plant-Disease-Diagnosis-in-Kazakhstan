@@ -1,0 +1,1288 @@
+{
+  "fileKey": "07cVYgjO4tZw4IaR7kUxEz",
+  "pageId": "0:1",
+  "screenCount": 22,
+  "screens": [
+    {
+      "id": "4:49",
+      "name": "01 · Главная",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:50",
+      "name": "02 · Выбор культуры",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:51",
+      "name": "03 · Съёмка",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:52",
+      "name": "04 · Проверка фото",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:53",
+      "name": "05 · Анализ",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:54",
+      "name": "06 · Гипотеза",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:55",
+      "name": "07 · Недостаточно данных",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:56",
+      "name": "08 · Пересъёмка",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:57",
+      "name": "09 · Без связи",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:58",
+      "name": "10 · История",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:59",
+      "name": "11 · Нет поддержки",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "4:60",
+      "name": "12 · Обратная связь",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:482",
+      "name": "Картофель · Съёмка",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:518",
+      "name": "Картофель · Проверка фото",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:558",
+      "name": "Картофель · Анализ",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:634",
+      "name": "Картофель · Гипотеза",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:733",
+      "name": "Томат · Съёмка",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:769",
+      "name": "Томат · Проверка фото",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:809",
+      "name": "Томат · Анализ",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "8:885",
+      "name": "Томат · Гипотеза",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "13:632",
+      "name": "21 · Техническая ошибка",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "13:705",
+      "name": "22 · Неподдержанное изображение",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "transitionCount": 115,
+  "transitions": [
+    {
+      "nodeId": "10:735",
+      "nodeName": "Action / Новое наблюдение",
+      "from": "4:49",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:362",
+      "nodeName": "Entry / Пшеница · лист",
+      "from": "4:49",
+      "to": "4:54",
+      "destinationId": "4:54",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:365",
+      "nodeName": "Entry / Картофель · лист",
+      "from": "4:49",
+      "to": "4:57",
+      "destinationId": "4:57",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:277;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:49",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:277;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:49",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:373",
+      "nodeName": "Icon/arrow",
+      "from": "4:50",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:439",
+      "nodeName": "Entry / Пшеница",
+      "from": "4:50",
+      "to": "4:51",
+      "destinationId": "4:51",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:442",
+      "nodeName": "Entry / Картофель",
+      "from": "4:50",
+      "to": "8:482",
+      "destinationId": "8:482",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:445",
+      "nodeName": "Entry / Томат",
+      "from": "4:50",
+      "to": "8:733",
+      "destinationId": "8:733",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:448",
+      "nodeName": "Entry / Другая культура",
+      "from": "4:50",
+      "to": "4:59",
+      "destinationId": "4:59",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:378;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:50",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:378;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:50",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:459",
+      "nodeName": "Icon/arrow",
+      "from": "4:51",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:738",
+      "nodeName": "Action / Сделать снимок",
+      "from": "4:51",
+      "to": "4:52",
+      "destinationId": "4:52",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:741",
+      "nodeName": "Action / Выбрать из галереи",
+      "from": "4:51",
+      "to": "4:52",
+      "destinationId": "4:52",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:496",
+      "nodeName": "Icon/arrow",
+      "from": "4:52",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:513",
+      "nodeName": "Entry / Пшеница · лист",
+      "from": "4:52",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:744",
+      "nodeName": "Action / Отправить на анализ",
+      "from": "4:52",
+      "to": "4:53",
+      "destinationId": "4:53",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:747",
+      "nodeName": "Action / Переснять фото",
+      "from": "4:52",
+      "to": "4:51",
+      "destinationId": "4:51",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "4:53",
+      "nodeName": "05 · Анализ",
+      "from": "4:53",
+      "to": "4:54",
+      "destinationId": "4:54",
+      "trigger": "AFTER_TIMEOUT",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:537",
+      "nodeName": "Icon/arrow",
+      "from": "4:53",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:750",
+      "nodeName": "Action / Открыть историю",
+      "from": "4:53",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:542;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:53",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:542;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:53",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:542;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:53",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:633",
+      "nodeName": "Icon/arrow",
+      "from": "4:54",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:753",
+      "nodeName": "Action / Добавить новое наблюдение",
+      "from": "4:54",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:756",
+      "nodeName": "Action / Сообщить об ошибке",
+      "from": "4:54",
+      "to": "4:60",
+      "destinationId": "4:60",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:638;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:54",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:638;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:54",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:638;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:54",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:733",
+      "nodeName": "Icon/arrow",
+      "from": "4:55",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:759",
+      "nodeName": "Action / Сделать новое фото",
+      "from": "4:55",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:762",
+      "nodeName": "Action / Открыть историю",
+      "from": "4:55",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:738;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:55",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:738;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:55",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:738;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:55",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:832",
+      "nodeName": "Icon/arrow",
+      "from": "4:56",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:765",
+      "nodeName": "Action / Переснять",
+      "from": "4:56",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:768",
+      "nodeName": "Action / Выбрать другое фото",
+      "from": "4:56",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:872",
+      "nodeName": "Icon/arrow",
+      "from": "4:57",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:771",
+      "nodeName": "Action / Попробовать отправить",
+      "from": "4:57",
+      "to": "8:558",
+      "destinationId": "8:558",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:774",
+      "nodeName": "Action / Новое наблюдение",
+      "from": "4:57",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:877;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:57",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:877;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:57",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:877;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:57",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:966",
+      "nodeName": "Icon/arrow",
+      "from": "4:58",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1033",
+      "nodeName": "Entry / Пшеница · лист",
+      "from": "4:58",
+      "to": "4:54",
+      "destinationId": "4:54",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1036",
+      "nodeName": "Entry / Томат · лист",
+      "from": "4:58",
+      "to": "4:55",
+      "destinationId": "4:55",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1039",
+      "nodeName": "Entry / Картофель · лист",
+      "from": "4:58",
+      "to": "4:56",
+      "destinationId": "4:56",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1042",
+      "nodeName": "Entry / 2 фото без связи",
+      "from": "4:58",
+      "to": "4:57",
+      "destinationId": "4:57",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:777",
+      "nodeName": "Action / Добавить наблюдение",
+      "from": "4:58",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:971;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:58",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:971;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:58",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1057",
+      "nodeName": "Icon/arrow",
+      "from": "4:59",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1128",
+      "nodeName": "Entry / Пшеница",
+      "from": "4:59",
+      "to": "4:51",
+      "destinationId": "4:51",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1131",
+      "nodeName": "Entry / Картофель и томат",
+      "from": "4:59",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:780",
+      "nodeName": "Action / Выбрать другую культуру",
+      "from": "4:59",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:783",
+      "nodeName": "Action / Сохранить без анализа",
+      "from": "4:59",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:1062;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:59",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:1062;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:59",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I6:1062;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:59",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "6:1151",
+      "nodeName": "Icon/arrow",
+      "from": "4:60",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:786",
+      "nodeName": "Action / Сохранить комментарий",
+      "from": "4:60",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:789",
+      "nodeName": "Action / Открыть историю",
+      "from": "4:60",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:488",
+      "nodeName": "Icon/arrow",
+      "from": "8:482",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:792",
+      "nodeName": "Action / Сделать снимок",
+      "from": "8:482",
+      "to": "8:518",
+      "destinationId": "8:518",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:795",
+      "nodeName": "Action / Выбрать из галереи",
+      "from": "8:482",
+      "to": "8:518",
+      "destinationId": "8:518",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:524",
+      "nodeName": "Icon/arrow",
+      "from": "8:518",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:538",
+      "nodeName": "Entry / Пшеница · лист",
+      "from": "8:518",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:798",
+      "nodeName": "Action / Отправить на анализ",
+      "from": "8:518",
+      "to": "8:558",
+      "destinationId": "8:558",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:801",
+      "nodeName": "Action / Переснять фото",
+      "from": "8:518",
+      "to": "8:482",
+      "destinationId": "8:482",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:558",
+      "nodeName": "Картофель · Анализ",
+      "from": "8:558",
+      "to": "8:634",
+      "destinationId": "8:634",
+      "trigger": "AFTER_TIMEOUT",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:564",
+      "nodeName": "Icon/arrow",
+      "from": "8:558",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:804",
+      "nodeName": "Action / Открыть историю",
+      "from": "8:558",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:583;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "8:558",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:583;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "8:558",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:583;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "8:558",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:640",
+      "nodeName": "Icon/arrow",
+      "from": "8:634",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:807",
+      "nodeName": "Action / Добавить новое наблюдение",
+      "from": "8:634",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:810",
+      "nodeName": "Action / Сообщить об ошибке",
+      "from": "8:634",
+      "to": "4:60",
+      "destinationId": "4:60",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:662;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "8:634",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:662;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "8:634",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:662;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "8:634",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:739",
+      "nodeName": "Icon/arrow",
+      "from": "8:733",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:813",
+      "nodeName": "Action / Сделать снимок",
+      "from": "8:733",
+      "to": "8:769",
+      "destinationId": "8:769",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:816",
+      "nodeName": "Action / Выбрать из галереи",
+      "from": "8:733",
+      "to": "8:769",
+      "destinationId": "8:769",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:775",
+      "nodeName": "Icon/arrow",
+      "from": "8:769",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:789",
+      "nodeName": "Entry / Пшеница · лист",
+      "from": "8:769",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:819",
+      "nodeName": "Action / Отправить на анализ",
+      "from": "8:769",
+      "to": "8:809",
+      "destinationId": "8:809",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:822",
+      "nodeName": "Action / Переснять фото",
+      "from": "8:769",
+      "to": "8:733",
+      "destinationId": "8:733",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:809",
+      "nodeName": "Томат · Анализ",
+      "from": "8:809",
+      "to": "8:885",
+      "destinationId": "8:885",
+      "trigger": "AFTER_TIMEOUT",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:815",
+      "nodeName": "Icon/arrow",
+      "from": "8:809",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:825",
+      "nodeName": "Action / Открыть историю",
+      "from": "8:809",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:834;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "8:809",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:834;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "8:809",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:834;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "8:809",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "8:891",
+      "nodeName": "Icon/arrow",
+      "from": "8:885",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:828",
+      "nodeName": "Action / Добавить новое наблюдение",
+      "from": "8:885",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "10:831",
+      "nodeName": "Action / Сообщить об ошибке",
+      "from": "8:885",
+      "to": "4:60",
+      "destinationId": "4:60",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:913;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "8:885",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:913;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "8:885",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I8:913;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "8:885",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "13:638",
+      "nodeName": "Icon/arrow",
+      "from": "13:632",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "13:657",
+      "nodeName": "Action / Повторить анализ",
+      "from": "13:632",
+      "to": "4:53",
+      "destinationId": "4:53",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "13:658",
+      "nodeName": "Action / Открыть историю",
+      "from": "13:632",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I13:659;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "13:632",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I13:659;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "13:632",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I13:659;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "13:632",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "13:711",
+      "nodeName": "Icon/arrow",
+      "from": "13:705",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "13:730",
+      "nodeName": "Action / Снять лист",
+      "from": "13:705",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "13:731",
+      "nodeName": "Action / Открыть историю",
+      "from": "13:705",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I13:732;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "13:705",
+      "to": "4:49",
+      "destinationId": "4:49",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I13:732;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "13:705",
+      "to": "4:50",
+      "destinationId": "4:50",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    },
+    {
+      "nodeId": "I13:732;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "13:705",
+      "to": "4:58",
+      "destinationId": "4:58",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE"
+    }
+  ],
+  "flowStartingPoints": [
+    {
+      "nodeId": "4:49",
+      "name": "Основной сценарий"
+    },
+    {
+      "nodeId": "4:57",
+      "name": "Без связи"
+    },
+    {
+      "nodeId": "4:55",
+      "name": "Недостаточно данных"
+    },
+    {
+      "nodeId": "13:632",
+      "name": "Технический сбой"
+    },
+    {
+      "nodeId": "13:705",
+      "name": "Неподдержанное изображение"
+    }
+  ],
+  "fonts": [
+    "Roboto Bold",
+    "Roboto Regular",
+    "Roboto Medium"
+  ],
+  "nodeCounts": {
+    "SECTION": 3,
+    "TEXT": 317,
+    "FRAME": 335,
+    "INSTANCE": 241,
+    "GROUP": 129,
+    "VECTOR": 257,
+    "COMPONENT": 12
+  },
+  "problems": [],
+  "verification": "Structural audit of stored prototype links; not a manual click-through or application test.",
+  "componentInteractionCount": 7,
+  "componentInteractions": [
+    {
+      "nodeId": "I6:277;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:49",
+      "to": null,
+      "destinationId": "6:64",
+      "trigger": "ON_HOVER",
+      "navigation": "CHANGE_TO"
+    },
+    {
+      "nodeId": "I6:277;58016:37261",
+      "nodeName": "Nav item 01",
+      "from": "4:49",
+      "to": null,
+      "destinationId": "6:62",
+      "trigger": "ON_PRESS",
+      "navigation": "CHANGE_TO"
+    },
+    {
+      "nodeId": "I6:378;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:50",
+      "to": null,
+      "destinationId": "6:64",
+      "trigger": "ON_HOVER",
+      "navigation": "CHANGE_TO"
+    },
+    {
+      "nodeId": "I6:378;58016:37262",
+      "nodeName": "Nav item 02",
+      "from": "4:50",
+      "to": null,
+      "destinationId": "6:62",
+      "trigger": "ON_PRESS",
+      "navigation": "CHANGE_TO"
+    },
+    {
+      "nodeId": "I6:971;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:58",
+      "to": null,
+      "destinationId": "6:64",
+      "trigger": "ON_HOVER",
+      "navigation": "CHANGE_TO"
+    },
+    {
+      "nodeId": "I6:971;58016:37263",
+      "nodeName": "Nav item 03",
+      "from": "4:58",
+      "to": null,
+      "destinationId": "6:62",
+      "trigger": "ON_PRESS",
+      "navigation": "CHANGE_TO"
+    },
+    {
+      "nodeId": "4:380",
+      "nodeName": "Button",
+      "from": null,
+      "to": null,
+      "destinationId": "4:121",
+      "trigger": "ON_HOVER",
+      "navigation": "CHANGE_TO"
+    }
+  ],
+  "notes": [
+    "Component CHANGE_TO interactions resolve component variants rather than mobile screens; they are counted separately.",
+    "Navigation targets were checked for existence and against the 22 screen IDs.",
+    "Screenshots of both screen boards were inspected after the latest layout and copy changes. No manual click-through, real camera or inference was executed.",
+    "Final targeted navigation adjustment: generic inconclusive/retake actions return to crop selection; the offline example resumes the first queued potato item. Existing target screens were validated by the mutation response."
+  ],
+  "auditedAt": "2026-10-21"
+}

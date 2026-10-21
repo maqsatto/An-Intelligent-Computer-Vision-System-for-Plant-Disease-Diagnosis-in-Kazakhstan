@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1140" viewBox="0 0 1700 1140">
+<rect width="100%" height="100%" fill="#f6f9f7"/>
+<text x="58" y="63.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="42" font-weight="bold" text-anchor="start" dominant-baseline="middle">AgroVision · Контекст системы</text>
+<text x="60" y="118.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="start" dominant-baseline="middle">Проектная схема: наблюдения, предварительная оценка фото и исследовательские данные</text>
+<polyline points="440,230 620,230 620,390" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="620,390 626.0,375.0 614.0,375.0" fill="#76948a"/>
+<polyline points="550,490 490,490 490,300 440,300" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="440,300 455.0,306.0 455.0,294.0" fill="#76948a"/>
+<polyline points="1260,230 1080,230 1080,390" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1080,390 1086.0,375.0 1074.0,375.0" fill="#76948a"/>
+<polyline points="1150,490 1210,490 1210,300 1260,300" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1260,300 1245.0,294.0 1245.0,306.0" fill="#76948a"/>
+<polyline points="1260,815 1080,815 1080,640" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1080,640 1074.0,655.0 1086.0,655.0" fill="#76948a"/>
+<polyline points="1150,570 1210,570 1210,880 1260,880" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1260,880 1245.0,874.0 1245.0,886.0" fill="#76948a"/>
+<polyline points="440,815 620,815 620,640" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="620,640 614.0,655.0 626.0,655.0" fill="#76948a"/>
+<rect x="60" y="180" width="380" height="170" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="250.0" y="222.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Растениевод</text>
+<text x="250.0" y="280.42" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Фото и наблюдения</text>
+<text x="250.0" y="310.78000000000003" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">поддержанных культур</text>
+<rect x="1260" y="180" width="380" height="170" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1450.0" y="222.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Эксперт по растениям</text>
+<text x="1450.0" y="280.42" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Референсная разметка</text>
+<text x="1450.0" y="310.78000000000003" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">разрешенных образцов</text>
+<rect x="1260" y="760" width="380" height="170" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1450.0" y="802.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Технический оператор</text>
+<text x="1450.0" y="860.4200000000001" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">ML-исследователь</text>
+<text x="1450.0" y="890.7800000000001" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и выпуск моделей</text>
+<rect x="60" y="760" width="380" height="170" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="250.0" y="802.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Источники данных</text>
+<text x="250.0" y="860.4200000000001" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверенные датасеты</text>
+<text x="250.0" y="890.7800000000001" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и локальные образцы</text>
+<rect x="550" y="390" width="600" height="250" rx="16" fill="#153f34" stroke="#153f34" stroke-width="2"/>
+<text x="850" y="454.0" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="42" font-weight="bold" text-anchor="middle" dominant-baseline="middle">AgroVision</text>
+<text x="850" y="520.99" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="29" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Наблюдения и предварительная</text>
+<text x="850" y="561.01" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="29" font-weight="normal" text-anchor="middle" dominant-baseline="middle">оценка фото растений</text>
+<rect x="500.0" y="153.02" width="330" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="665" y="176.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Фото, культура,</text>
+<text x="665" y="205.48999999999998" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">наблюдение</text>
+<rect x="185.0" y="397.02" width="300" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="335" y="420.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Предварительная</text>
+<text x="335" y="449.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">оценка, история</text>
+<rect x="867.5" y="152.02" width="355" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1045" y="175.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Референсные метки</text>
+<text x="1045" y="204.48999999999998" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и уровень подтверждения</text>
+<rect x="1215.0" y="397.02" width="360" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1395" y="420.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Разрешенная</text>
+<text x="1395" y="449.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">исследовательская выборка</text>
+<rect x="900.0" y="828.02" width="320" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1060" y="851.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Конфигурации</text>
+<text x="1060" y="880.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и model release</text>
+<rect x="1220.0" y="642.02" width="300" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1370" y="665.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Отчеты, версии</text>
+<text x="1370" y="694.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и ошибки</text>
+<rect x="465.0" y="828.02" width="360" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="645" y="851.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Данные с provenance</text>
+<text x="645" y="880.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">для offline исследования</text>
+<text x="850" y="1005.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Внутренние API, worker, PostgreSQL и storage показаны на компонентной схеме.</text>
+<text x="850" y="1034.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Данные для исследования не означают готовую локальную валидацию. Роли эксперта и оператора — проектные.</text>
+</svg>

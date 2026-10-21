@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1960" height="1840" viewBox="0 0 1960 1840">
+<rect width="100%" height="100%" fill="#f6f9f7"/>
+<text x="58" y="63.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="42" font-weight="bold" text-anchor="start" dominant-baseline="middle">AgroVision · UML Use Case</text>
+<text x="60" y="118.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="start" dominant-baseline="middle">Проектные актеры и цели; include/extend показывают смысловую связь, а не очередность HTTP-запросов</text>
+<rect x="280" y="190" width="1400" height="1510" rx="8" fill="#ffffff" stroke="#a9c4b6" stroke-width="2"/>
+<text x="980" y="222.0" fill="#286e56" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" dominant-baseline="middle">ГРАНИЦА СИСТЕМЫ AGROVISION</text>
+<polyline points="168,870 370,300" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,450" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,600" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,750" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,900" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,1050" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,1200" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,1350" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="168,870 370,1500" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1772,850 1600,850" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1810,790 1730,790 1730,450 930,450" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1772,1390 1600,1200" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1772,1390 1600,1500" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1848,1390 1900,1390 1900,385 930,385 930,450" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="930,600 1040,600" fill="none" stroke="#286e56" stroke-width="2" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polyline points="1025.0,594.0 1040,600 1025.0,606.0" fill="none" stroke="#286e56" stroke-width="2"/>
+<polyline points="1320,1250 1320,1305" fill="none" stroke="#286e56" stroke-width="2" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polyline points="1326.0,1290.0 1320,1305 1314.0,1290.0" fill="none" stroke="#286e56" stroke-width="2"/>
+<polyline points="930,1350 985,1350 985,750 930,750" fill="none" stroke="#286e56" stroke-width="2" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polyline points="945.0,756.0 930,750 945.0,744.0" fill="none" stroke="#286e56" stroke-width="2"/>
+<ellipse cx="650.0" cy="300.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="268.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-01</text>
+<text x="650" y="300.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Просмотреть поддерживаемые</text>
+<text x="650" y="331.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">культуры</text>
+<ellipse cx="650.0" cy="450.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="434.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-02</text>
+<text x="650" y="465.87" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Войти / завершить сессию</text>
+<ellipse cx="650.0" cy="600.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="584.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-03</text>
+<text x="650" y="615.87" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Отправить фото на оценку</text>
+<ellipse cx="650.0" cy="750.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="718.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-04</text>
+<text x="650" y="750.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Получить результат</text>
+<text x="650" y="781.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и следующее действие</text>
+<ellipse cx="650.0" cy="900.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="884.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-05</text>
+<text x="650" y="915.87" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Просмотреть историю</text>
+<ellipse cx="650.0" cy="1050.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="1018.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-06</text>
+<text x="650" y="1050.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Связать наблюдение</text>
+<text x="650" y="1081.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">с полем / сезоном</text>
+<ellipse cx="650.0" cy="1200.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="1184.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-07</text>
+<text x="650" y="1215.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Сохранить offline-черновик</text>
+<ellipse cx="650.0" cy="1350.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="1334.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-08</text>
+<text x="650" y="1365.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Оставить отзыв о результате</text>
+<ellipse cx="650.0" cy="1500.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="650" y="1468.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-11</text>
+<text x="650" y="1500.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Удалить собственное</text>
+<text x="650" y="1531.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">наблюдение</text>
+<ellipse cx="1320.0" cy="600.0" rx="280.0" ry="56.0" fill="#e8f2ec" stroke="#286e56" stroke-width="2"/>
+<text x="1320" y="584.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверить доступ</text>
+<text x="1320" y="615.87" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и пригодность фото</text>
+<ellipse cx="1320.0" cy="850.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1320" y="818.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-09</text>
+<text x="1320" y="850.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Аннотировать</text>
+<text x="1320" y="881.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">исследовательский образец</text>
+<ellipse cx="1320.0" cy="1200.0" rx="280.0" ry="50.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1320" y="1184.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-10</text>
+<text x="1320" y="1215.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверить и активировать модель</text>
+<ellipse cx="1320.0" cy="1360.0" rx="280.0" ry="55.0" fill="#e8f2ec" stroke="#286e56" stroke-width="2"/>
+<text x="1320" y="1360.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверить модельный bundle</text>
+<ellipse cx="1320.0" cy="1500.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1320" y="1468.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-12</text>
+<text x="1320" y="1500.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Выполнить оценку</text>
+<text x="1320" y="1531.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и получить отчет</text>
+<ellipse cx="130.0" cy="830.0" rx="18.0" ry="18.0" fill="#f6f9f7" stroke="#153f34" stroke-width="3"/>
+<polyline points="130,848 130,912" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="92,870 168,870" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="130,912 96,952" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="130,912 164,952" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<text x="130" y="990.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Растениевод</text>
+<ellipse cx="1810.0" cy="810.0" rx="18.0" ry="18.0" fill="#f6f9f7" stroke="#153f34" stroke-width="3"/>
+<polyline points="1810,828 1810,892" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1772,850 1848,850" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1810,892 1776,932" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1810,892 1844,932" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<text x="1810" y="954.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Эксперт</text>
+<text x="1810" y="985.87" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">по растениям</text>
+<ellipse cx="1810.0" cy="1350.0" rx="18.0" ry="18.0" fill="#f6f9f7" stroke="#153f34" stroke-width="3"/>
+<polyline points="1810,1368 1810,1432" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1772,1390 1848,1390" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1810,1432 1776,1472" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1810,1432 1844,1472" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
+<text x="1810" y="1478.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Технический</text>
+<text x="1810" y="1510.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">оператор /</text>
+<text x="1810" y="1541.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">ML-исследователь</text>
+<rect x="931.0" y="543.58" width="108" height="42.839999999999996" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="985" y="565.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="normal" text-anchor="middle" dominant-baseline="middle">«include»</text>
+<rect x="1365.0" y="1258.58" width="150" height="42.839999999999996" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1440" y="1280.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="normal" text-anchor="middle" dominant-baseline="middle">«include»</text>
+<rect x="929.0" y="997.54" width="112" height="64.91999999999999" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="985" y="1018.27" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="normal" text-anchor="middle" dominant-baseline="middle">«extend»</text>
+<text x="985" y="1041.73" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="normal" text-anchor="middle" dominant-baseline="middle">по желанию</text>
+<text x="980" y="1737.82" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Сплошная линия — участие актера. Пунктирная стрелка — UML include или extend.</text>
+<text x="980" y="1768.1799999999998" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Offline-черновик может завершиться без сети. Наличие реальных экспертных участников еще требуется подтвердить.</text>
+</svg>

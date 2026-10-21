@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1550" viewBox="0 0 1800 1550">
+<rect width="100%" height="100%" fill="#f6f9f7"/>
+<text x="58" y="63.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="42" font-weight="bold" text-anchor="start" dominant-baseline="middle">AgroVision · Компоненты</text>
+<text x="60" y="118.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="start" dominant-baseline="middle">Один Python codebase, два процесса; mobile — текущий клиент, web — будущая фаза</text>
+<rect x="60" y="425" width="1680" height="440" rx="22" fill="#e8f2ec" stroke="#bfd5c8" stroke-width="2"/>
+<text x="90" y="455.0" fill="#286e56" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" text-anchor="start" dominant-baseline="middle">BACKEND APPLICATION · ОБЩИЕ МОДУЛИ И МИГРАЦИИ</text>
+<polyline points="645,252 575,252" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="575,252 590.0,258.0 590.0,246.0" fill="#76948a"/>
+<polyline points="1155,252 1225,252" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="1225,252 1210.0,246.0 1210.0,258.0" fill="#76948a"/>
+<polyline points="320,315 320,495" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="320,495 326.0,480.0 314.0,480.0" fill="#76948a"/>
+<polyline points="1480,315 1480,370 435,370 435,495" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="435,495 441.0,480.0 429.0,480.0" fill="#76948a"/>
+<polyline points="1290,595 1290,700" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1290,700 1296.0,685.0 1284.0,685.0" fill="#76948a"/>
+<polyline points="350,725 350,1040" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="350,1040 356.0,1025.0 344.0,1025.0" fill="#76948a"/>
+<polyline points="950,550 835,550 835,930 500,930 500,1040" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="500,1040 506.0,1025.0 494.0,1025.0" fill="#76948a"/>
+<polyline points="750,650 875,650 875,990 1150,990 1150,1040" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1150,1040 1156.0,1025.0 1144.0,1025.0" fill="#76948a"/>
+<polyline points="1630,550 1695,550 1695,950 1450,950 1450,1040" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1450,1040 1456.0,1025.0 1444.0,1025.0" fill="#76948a"/>
+<polyline points="750,1380 1290,1380 1290,1200" fill="none" stroke="#76948a" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="1290,1200 1284.0,1215.0 1296.0,1215.0" fill="#76948a"/>
+<rect x="65" y="190" width="510" height="125" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="320.0" y="232.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">React Native mobile</text>
+<text x="320.0" y="275.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UI, camera, persistent drafts</text>
+<rect x="645" y="190" width="510" height="125" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="900.0" y="232.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Shared TypeScript</text>
+<text x="900.0" y="275.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">API client и generated types</text>
+<rect x="1225" y="190" width="510" height="125" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2" stroke-dasharray="10 7"/>
+<text x="1480.0" y="232.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Будущий React web</text>
+<text x="1480.0" y="275.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Только архитектурный план</text>
+<rect x="120" y="495" width="630" height="230" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="435.0" y="537.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">FastAPI API</text>
+<text x="435.0" y="636.22" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">identity · catalog · farms</text>
+<text x="435.0" y="666.58" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">observations · assessments · feedback</text>
+<rect x="950" y="495" width="680" height="100" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1290.0" y="537.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Inference worker</text>
+<text x="1290.0" y="563.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">claim · lease · retry · result</text>
+<rect x="950" y="700" width="680" height="100" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1290.0" y="742.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">ml/runtime</text>
+<text x="1290.0" y="768.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">preprocessing · ONNX · postprocessing</text>
+<rect x="120" y="1040" width="630" height="160" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="435.0" y="1082.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">PostgreSQL</text>
+<text x="435.0" y="1133.62" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">metadata · assessment_jobs · results</text>
+<text x="435.0" y="1163.9799999999998" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">model-version metadata</text>
+<rect x="950" y="1040" width="680" height="160" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="1290.0" y="1082.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Private S3-compatible storage</text>
+<text x="1290.0" y="1148.8" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">ready photos · immutable model bundles</text>
+<rect x="120" y="1320" width="630" height="130" rx="16" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
+<text x="435.0" y="1362.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Offline training / evaluation</text>
+<text x="435.0" y="1408.4" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">данные · splits · train · evaluate · export</text>
+<rect x="125.0" y="373.51" width="200" height="46.98" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="225" y="397.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">HTTPS /v1</text>
+<rect x="880.0" y="347.51" width="300" height="46.98" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1030" y="371.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Будущий HTTPS /v1</text>
+<rect x="1090.0" y="624.51" width="400" height="46.98" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1290" y="648.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Локальный Python вызов</text>
+<rect x="75.0" y="843.02" width="410" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="280" y="866.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Metadata; assessment + job</text>
+<text x="280" y="895.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">одной транзакцией</text>
+<rect x="500.0" y="892.02" width="310" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="655" y="915.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Claim, lease,</text>
+<text x="655" y="944.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">fenced result commit</text>
+<rect x="978.0" y="951.02" width="280" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1118" y="974.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Private upload /</text>
+<text x="1118" y="1003.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">authorized URL</text>
+<rect x="1410.0" y="877.02" width="290" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1555" y="900.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Ready photo</text>
+<text x="1555" y="929.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">и pinned bundle</text>
+<rect x="845.0" y="1294.02" width="400" height="75.96" rx="8" fill="#f6f9f7" stroke="#f6f9f7" stroke-width="0"/>
+<text x="1045" y="1317.51" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверенный immutable</text>
+<text x="1045" y="1346.49" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">bundle + отчет</text>
+<text x="900" y="1498.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Пунктир: build-time зависимости, будущий web или перенос модельного артефакта; смысл указан рядом.</text>
+</svg>

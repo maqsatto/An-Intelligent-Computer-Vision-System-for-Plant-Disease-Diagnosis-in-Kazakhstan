@@ -1,0 +1,24 @@
+# Пример для адаптации к фактическому монорепозиторию
+.env
+.env.*
+!.env.example
+node_modules/
+.expo/
+dist/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+htmlcov/
+ml/training/data/raw/
+ml/training/data/processed/
+ml/training/runs/
+ml/training/checkpoints/
+uploads/
+*.pt
+*.pth
+*.onnx
+# Не игнорировать manifests, configs, lock-файлы и исходники диаграмм

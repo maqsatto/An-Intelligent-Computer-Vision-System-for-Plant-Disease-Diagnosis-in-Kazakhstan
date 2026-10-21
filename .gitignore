@@ -1,0 +1,31 @@
+# Credentials and private/large artifacts
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+/data/
+/artifacts/
+/storage/
+/runs/
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.safetensors
+*.zip
+# Dependencies and generated build output
+.venv/
+**/.venv/
+node_modules/
+.expo/
+dist/
+build/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.superpowers/
+coverage/
+.DS_Store
