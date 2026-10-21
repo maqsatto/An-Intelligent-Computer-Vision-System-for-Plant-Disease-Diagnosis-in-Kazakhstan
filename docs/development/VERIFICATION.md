@@ -31,13 +31,13 @@ Date:21 October2026, Asia/Aqtau. This is an execution record, not an inferred ch
 - Measured ML results, source licenses/provenance, quarantines, proxy-group limits and parity: [DATA_AND_MODEL](DATA_AND_MODEL.md) and model_reports JSON.
 - Live run reports are private/local at runs/e2e-wheat.json, e2e-potato.json, e2e-tomato.json. These use public research samples, not agronomic diagnoses or independent national validation.
 - [Backend review](BACKEND_REVIEW.md) and [final review](FINAL_REVIEW.md) record actual findings and their fixes. Reviewers did not rerun already reported tests.
-- Provider-backed OIDC login/refresh/revocation, a physical Android camera, field usability/interviews, independent Kazakhstan/source-held-out evaluation and hosted CI execution are not claimed.
+- Provider-backed OIDC login/refresh/revocation, a physical Android camera, field usability/interviews, independent Kazakhstan/source-held-out evaluation are not claimed.
 - Tests run on a separate disposable agrovision_test database; local demo/history remains in agrovision.
 - One dependency deprecation warning remains in Starlette's test client/AnyIO compatibility alias; it does not fail verification. No accuracy/latency claim is made from unit test success.
 
 ## Final integration rerun
 
-Integrated source checks completed:63 Python tests passed,14 mobile tests passed, both TypeScript projects passed and Ruff passed. Native emulator E2E passed and final signed ARM64 artifact built. Docker smoke passed as recorded below. Clean Git/push outcomes are recorded separately before handoff.
+Integrated source checks completed:63 Python tests passed,14 mobile tests passed, both TypeScript projects passed and Ruff passed. Native emulator E2E passed and final signed ARM64 artifact built. Docker smoke passed as recorded below. Main branch pushed successfully; source/packaging commit4951c34 passed hosted CI. Final evidence-only documentation commit follows without changing executable source.
 
 ### Executed Docker smoke
 
@@ -46,3 +46,9 @@ Built `agrovision-local:0.1` from the digest-pinned Python3.12.13 base with `uv 
 The isolated override used localhost8001, a separate `agrovision_docker_smoke` database and the Docker photo volume, so the existing local worker could not claim container jobs. API ran as nonroot `agrovision` with768MiB cap; separate worker with1GiB cap. Both started successfully after migrations. Catalog exposed wheat/potato/tomato with3 classes each and refused maize assessment capability. `scripts/e2e.py` using an admitted wheat photo observed queued→running→completed,3 real research candidates, mandatory inconclusive outcome, exact replay and denial of another owner. Private evidence: `runs/docker-build.log`, `runs/docker-smoke-start.log`, `runs/e2e-docker-wheat.json`.
 
 After verification, only the smoke API/worker and dedicated builder were stopped. The local API/worker remained active, PostgreSQL remained available, and unrelated containers were untouched. Host available RAM after cleanup was9.49GiB. This is local Docker execution evidence, not a hosted CI/deployment claim.
+
+## Remote handoff
+
+Repository main: https://github.com/maqsatto/An-Intelligent-Computer-Vision-System-for-Plant-Disease-Diagnosis-in-Kazakhstan . Normal initial push, no force/history rewrite; own global identity preserved and ML commits retain the requested separate owner. Hosted [Verify MVP run39624323613](https://github.com/maqsatto/An-Intelligent-Computer-Vision-System-for-Plant-Disease-Diagnosis-in-Kazakhstan/actions/runs/39624323613) completed successfully for4951c34834a5276fe3d597a0c27e88d7cbfec22d: Python lint/tests, locked dependency installation, generated-client drift, both TypeScript projects, mobile tests and Android JS export. This is hosted source verification, not a hosted native APK build.
+
+Final ARM64 APK is local at artifacts/android/agrovision-demo-arm64.apk; SHA2564195ad54c0777035727ab1d161d61c847811da951a91a772f5d6d88e03a6c2a1. It embeds the current LAN API192.168.8.61:8000. Local API/worker and PostgreSQL remain running. Emulator, Gradle, smoke API/worker and bounded builder are stopped. Swap remains16GiB.
