@@ -286,5 +286,39 @@ def test_configured_oidc_can_be_used_in_development_without_accepting_wrong_audi
     assert read.status_code == 200, read.text
     changed = jwt.encode({**payload, "aud": "another-app"}, private, algorithm="RS256")
     assert client.get("/v1/me", headers={"Authorization": "Bearer " + changed}).status_code == 401
-    forged = jwt.encode(payload, "wrong-signing-secret", algorithm="HS256")
+    forged = jwt.encode(payload, "untrusted-signing-secret-at-least-32-bytes", algorithm="HS256")
     assert client.get("/v1/me", headers={"Authorization": "Bearer " + forged}).status_code == 401
+
+
+def test_upload_capacity_has_bounded_memory_and_clear_retry(client, headers):
+    from agrovision.photos import service
+
+    obs = observation(client, headers).json()
+    service.upload_slots.acquire()
+    service.upload_slots.acquire()
+    try:
+        response = upload(client, headers, obs["id"])
+        assert response.status_code == 429
+        assert response.json()["code"] == "rate_limited"
+        assert response.headers["Retry-After"] == "3"
+    finally:
+        service.upload_slots.release()
+        service.upload_slots.release()
+
+
+def test_elongated_image_cannot_bypass_preprocessing_memory_budget(client, headers):
+    obs = observation(client, headers).json()
+    buf = BytesIO()
+    # Only 0.6MP source / a small JPEG, but naive shorter-side resize would allocate ~393MP.
+    Image.new("RGB", (10, 60000), "green").save(buf, format="JPEG")
+    response = upload(client, headers, obs["id"], payload=buf.getvalue())
+    assert response.status_code == 413
+    assert response.json()["code"] == "image_too_large"
+
+
+def test_upload_and_runtime_allocation_caps_match():
+    import agrovision_runtime as runtime
+    from agrovision.photos import service
+
+    assert service.MAX_PREPROCESS_PIXELS == runtime.MAX_PREPROCESS_PIXELS == 4_000_000
+    assert service.MAX_PREPROCESS_DIMENSION == runtime.MAX_PREPROCESS_DIMENSION == 16_384

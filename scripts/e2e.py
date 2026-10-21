@@ -23,6 +23,17 @@ def main():
     token = create_dev_token(settings, "e2e-demo")
     other = create_dev_token(settings, "e2e-other-user")
     with httpx.Client(base_url=args.url, headers={"Authorization": "Bearer " + token}, timeout=30) as client:
+        ready_deadline = time.monotonic() + 20
+        while True:
+            try:
+                health = client.get('/health/ready')
+                if health.status_code == 200:
+                    break
+            except httpx.ConnectError:
+                pass
+            if time.monotonic() >= ready_deadline:
+                raise RuntimeError('API readiness check failed; start API and apply migrations first')
+            time.sleep(0.25)
         me = client.get("/v1/me")
         me.raise_for_status()
         catalog = client.get("/v1/catalog")

@@ -63,6 +63,8 @@ def create_app(settings: Settings | None = None):
             response = await call_next(request)
         except APIError as exc:
             response = error_response(request, exc.status, exc.code, exc.message, exc.details)
+        if response.status_code == 429:
+            response.headers["Retry-After"] = "3"
         response.headers["X-Request-ID"] = request.state.request_id
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
@@ -107,7 +109,7 @@ def create_app(settings: Settings | None = None):
             else "production",
         }
 
-    errors = {s: {"model": S.ErrorRead} for s in [401, 404, 409, 413, 415, 422, 503]}
+    errors = {s: {"model": S.ErrorRead} for s in [401, 404, 409, 413, 415, 422, 429, 503]}
 
     @app.get("/v1/catalog", response_model=S.CatalogRead, tags=["catalog"])
     def catalog():

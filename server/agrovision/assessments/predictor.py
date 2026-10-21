@@ -76,8 +76,11 @@ def _serve(connection, settings):
             connection.send(("ok", result))
         except FileNotFoundError:
             connection.send(("error", "storage_unavailable", True))
-        except ValueError:
-            connection.send(("error", "bundle_mismatch", False))
+        except ValueError as exc:
+            from agrovision_runtime import InputImageError
+
+            code = "invalid_input" if isinstance(exc, InputImageError) else "bundle_mismatch"
+            connection.send(("error", code, False))
         except Exception:
             connection.send(("error", "model_execution_failed", True))
     connection.close()

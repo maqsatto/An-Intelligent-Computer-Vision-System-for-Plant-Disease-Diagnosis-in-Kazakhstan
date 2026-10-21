@@ -1,5 +1,6 @@
 import hashlib
 from pathlib import Path
+from threading import Lock
 
 from agrovision.errors import APIError
 
@@ -13,7 +14,16 @@ DEV_MODEL = {
 }
 
 
+_validation_lock = Lock()
+
+
 def active_bundle(settings):
+    # Manifest/ORT validation is serialized to bound transient native session memory.
+    with _validation_lock:
+        return _load_active_bundle(settings)
+
+
+def _load_active_bundle(settings):
     # Validation is fail-closed. No filename/manifest may silently activate a research artifact.
     from agrovision_runtime import BundleValidationError, validate_bundle, validate_research_bundle
 

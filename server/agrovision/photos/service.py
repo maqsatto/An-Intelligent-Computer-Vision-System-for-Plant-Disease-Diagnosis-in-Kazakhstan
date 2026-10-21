@@ -4,6 +4,7 @@ import time
 import warnings
 from datetime import UTC, datetime, timedelta
 from io import BytesIO
+from threading import BoundedSemaphore
 from uuid import uuid4
 
 from agrovision.errors import APIError
@@ -13,6 +14,10 @@ from agrovision.photos.storage import LocalImageStore
 from PIL import Image, ImageOps, UnidentifiedImageError
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
+
+# Must match the admitted runtime's allocation guards; limits do not change accepted pixel transforms.
+MAX_PREPROCESS_PIXELS = 4_000_000
+MAX_PREPROCESS_DIMENSION = 16_384
 
 
 def normalize_image(content, max_pixels):
@@ -24,6 +29,15 @@ def normalize_image(content, max_pixels):
                     raise APIError(415, "unsupported_media_type", "Поддерживаются JPEG и PNG.")
                 if image.width * image.height > max_pixels:
                     raise APIError(413, "image_too_large", "Фотография превышает допустимое число пикселей.")
+                scale = 256 / min(image.width, image.height)
+                projected = (int(image.width * scale), int(image.height * scale))
+                if (
+                    projected[0] * projected[1] > MAX_PREPROCESS_PIXELS
+                    or max(projected) > MAX_PREPROCESS_DIMENSION
+                ):
+                    raise APIError(
+                        413, "image_too_large", "Слишком вытянутый кадр. Измените кадрирование листа."
+                    )
                 if getattr(image, "n_frames", 1) != 1:
                     raise APIError(415, "unsupported_media_type", "Выберите одно неподвижное изображение.")
                 image.load()
@@ -39,7 +53,22 @@ def normalize_image(content, max_pixels):
         ) from None
 
 
+upload_slots = BoundedSemaphore(2)
+
+
 def upload_photo(db, settings, owner_id, observation_id, client_photo_id, purpose, stream):
+    # Bound the whole decoding/upload lifetime, not only decoder calls with retained byte buffers.
+    if not upload_slots.acquire(blocking=False):
+        raise APIError(
+            429, "rate_limited", "Сервер обрабатывает другие фотографии. Повторите через несколько секунд."
+        )
+    try:
+        return _upload_photo(db, settings, owner_id, observation_id, client_photo_id, purpose, stream)
+    finally:
+        upload_slots.release()
+
+
+def _upload_photo(db, settings, owner_id, observation_id, client_photo_id, purpose, stream):
     owned(db, observation_id, owner_id)
     db.commit()
     content = stream.read(settings.max_image_bytes + 1)

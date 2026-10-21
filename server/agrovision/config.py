@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     oidc_audience: str = "agrovision-mobile"
     oidc_jwks_url: str = ""
     max_image_bytes: int = Field(default=10 * 1024 * 1024, ge=1, le=50 * 1024 * 1024)
-    max_image_pixels: int = Field(default=20_000_000, ge=1, le=50_000_000)
+    max_image_pixels: int = Field(default=20_000_000, ge=1, le=20_000_000)
     max_attempts: int = Field(default=3, ge=1, le=10)
     lease_seconds: float = Field(default=60, gt=0, le=3600)
     inference_timeout_seconds: float = Field(default=30, gt=0, le=1800)
