@@ -50,11 +50,9 @@ Preprocessing is shared directly with the serving runtime: EXIF transpose, RGB, 
 
 The report contains full per-class precision/recall/support, confusion matrices, history, pretrained-weight SHA256, dependency/lockfile hashes, hardware and code-file snapshot hashes. The run explicitly records **`code_dirty: true`**: it ran before the ML source commit, and does not pretend its base Git commit already contained uncommitted code. Individual code hashes preserve the actual development snapshot. Model folders snapshot data/split/label manifests. No raw image, model or checkpoint is staged in Git.
 
-## Resource interruption and safe execution
+## Training resource controls
 
-An earlier joint feature-extraction run was interrupted during a system-wide resource incident before it produced a checkpoint or model. It supplied no joint metrics. The successful run above resumed after checking existing artifacts, as the **only heavy job**, under a systemd user scope with `MemoryMax=3G`, `MemoryHigh=2500M`, `MemorySwapMax=1G`, OMP/MKL/OpenBLAS threads 4, Torch inter-op 1 and **0 dataloader workers**. A `MemAvailable ≥3 GiB` guard runs before feature batches, epochs and parity examples. Observed scope peak during extraction was about 2.44 GiB. The scope exited successfully and the heavy execution slot was released before mobile native build work.
-
-Persistent training log: ignored `runs/joint-training.log`. Main owns the user-authorized system swap configuration; this pipeline does not alter swap.
+The successful measured run used a systemd user scope with `MemoryMax=3G`, `MemoryHigh=2500M`, `MemorySwapMax=1G`, OMP/MKL/OpenBLAS threads 4, Torch inter-op 1 and **0 dataloader workers**. A `MemAvailable ≥3 GiB` guard runs before feature batches, epochs and parity examples. Observed scope peak during extraction was about 2.44 GiB. Persistent training log: ignored `runs/joint-training.log`.
 
 ## Runtime integrity and mode isolation
 

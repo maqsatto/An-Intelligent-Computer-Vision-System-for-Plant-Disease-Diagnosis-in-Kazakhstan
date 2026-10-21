@@ -1,0 +1,870 @@
+{
+  "status": "measured_research_cases_not_diagnostic_release",
+  "joint": {
+    "images": 153,
+    "groups": 132,
+    "accuracy": 0.9281045751633987,
+    "macro_f1": 0.8955900531169347,
+    "macro_f1_class_ids": [
+      "potato__early_blight",
+      "potato__healthy_appearance",
+      "potato__late_blight",
+      "tomato__early_blight",
+      "tomato__healthy_appearance",
+      "tomato__late_blight",
+      "wheat__healthy_appearance",
+      "wheat__septoria_source_label",
+      "wheat__stripe_rust"
+    ],
+    "class_order": [
+      "potato__early_blight",
+      "potato__healthy_appearance",
+      "potato__late_blight",
+      "tomato__early_blight",
+      "tomato__healthy_appearance",
+      "tomato__late_blight",
+      "wheat__healthy_appearance",
+      "wheat__septoria_source_label",
+      "wheat__stripe_rust"
+    ],
+    "per_class": {
+      "potato__early_blight": {
+        "precision": 0.9545454545454546,
+        "recall": 0.9545454545454546,
+        "f1": 0.9545454545454546,
+        "support": 22
+      },
+      "potato__healthy_appearance": {
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1": 0.967741935483871,
+        "support": 16
+      },
+      "potato__late_blight": {
+        "precision": 0.8888888888888888,
+        "recall": 0.9411764705882353,
+        "f1": 0.9142857142857143,
+        "support": 17
+      },
+      "tomato__early_blight": {
+        "precision": 0.9047619047619048,
+        "recall": 0.8260869565217391,
+        "f1": 0.8636363636363636,
+        "support": 23
+      },
+      "tomato__healthy_appearance": {
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "f1": 0.9090909090909091,
+        "support": 5
+      },
+      "tomato__late_blight": {
+        "precision": 0.5,
+        "recall": 0.6,
+        "f1": 0.5454545454545454,
+        "support": 5
+      },
+      "wheat__healthy_appearance": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1": 0.9333333333333333,
+        "support": 16
+      },
+      "wheat__septoria_source_label": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 14
+      },
+      "wheat__stripe_rust": {
+        "precision": 0.9459459459459459,
+        "recall": 1.0,
+        "f1": 0.9722222222222222,
+        "support": 35
+      }
+    },
+    "confusion_matrix": [
+      [
+        21,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        15,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        16,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        19,
+        1,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        35
+      ]
+    ]
+  },
+  "pv": {
+    "images": 88,
+    "groups": 68,
+    "accuracy": 0.8977272727272727,
+    "macro_f1": 0.8604500151011779,
+    "macro_f1_class_ids": [
+      "potato__early_blight",
+      "potato__healthy_appearance",
+      "potato__late_blight",
+      "tomato__early_blight",
+      "tomato__healthy_appearance",
+      "tomato__late_blight"
+    ],
+    "class_order": [
+      "potato__early_blight",
+      "potato__healthy_appearance",
+      "potato__late_blight",
+      "tomato__early_blight",
+      "tomato__healthy_appearance",
+      "tomato__late_blight"
+    ],
+    "per_class": {
+      "potato__early_blight": {
+        "precision": 0.9523809523809523,
+        "recall": 0.9090909090909091,
+        "f1": 0.9302325581395349,
+        "support": 22
+      },
+      "potato__healthy_appearance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "potato__late_blight": {
+        "precision": 0.8888888888888888,
+        "recall": 0.9411764705882353,
+        "f1": 0.9142857142857143,
+        "support": 17
+      },
+      "tomato__early_blight": {
+        "precision": 0.9047619047619048,
+        "recall": 0.8260869565217391,
+        "f1": 0.8636363636363636,
+        "support": 23
+      },
+      "tomato__healthy_appearance": {
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "f1": 0.9090909090909091,
+        "support": 5
+      },
+      "tomato__late_blight": {
+        "precision": 0.5,
+        "recall": 0.6,
+        "f1": 0.5454545454545454,
+        "support": 5
+      }
+    },
+    "confusion_matrix": [
+      [
+        20,
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        16,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        16,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        19,
+        1,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        3
+      ]
+    ]
+  },
+  "paired": {
+    "images": 88,
+    "groups": 68,
+    "selection_sha256": "9f73df50a2ca2418b1a80d5ef2f65f49836ea5d7dfcdfe10708dc91104b1540d",
+    "joint": {
+      "images": 88,
+      "groups": 68,
+      "accuracy": 0.8977272727272727,
+      "macro_f1": 0.859125820416143,
+      "macro_f1_class_ids": [
+        "potato__early_blight",
+        "potato__healthy_appearance",
+        "potato__late_blight",
+        "tomato__early_blight",
+        "tomato__healthy_appearance",
+        "tomato__late_blight"
+      ],
+      "class_order": [
+        "potato__early_blight",
+        "potato__healthy_appearance",
+        "potato__late_blight",
+        "tomato__early_blight",
+        "tomato__healthy_appearance",
+        "tomato__late_blight",
+        "wheat__healthy_appearance",
+        "wheat__septoria_source_label",
+        "wheat__stripe_rust"
+      ],
+      "per_class": {
+        "potato__early_blight": {
+          "precision": 0.9545454545454546,
+          "recall": 0.9545454545454546,
+          "f1": 0.9545454545454546,
+          "support": 22
+        },
+        "potato__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 0.9375,
+          "f1": 0.967741935483871,
+          "support": 16
+        },
+        "potato__late_blight": {
+          "precision": 0.8888888888888888,
+          "recall": 0.9411764705882353,
+          "f1": 0.9142857142857143,
+          "support": 17
+        },
+        "tomato__early_blight": {
+          "precision": 0.9047619047619048,
+          "recall": 0.8260869565217391,
+          "f1": 0.8636363636363636,
+          "support": 23
+        },
+        "tomato__healthy_appearance": {
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1": 0.9090909090909091,
+          "support": 5
+        },
+        "tomato__late_blight": {
+          "precision": 0.5,
+          "recall": 0.6,
+          "f1": 0.5454545454545454,
+          "support": 5
+        },
+        "wheat__healthy_appearance": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "wheat__septoria_source_label": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "wheat__stripe_rust": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "confusion_matrix": [
+        [
+          21,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          15,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          16,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          19,
+          1,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          0,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "pv": {
+      "images": 88,
+      "groups": 68,
+      "accuracy": 0.8977272727272727,
+      "macro_f1": 0.8604500151011779,
+      "macro_f1_class_ids": [
+        "potato__early_blight",
+        "potato__healthy_appearance",
+        "potato__late_blight",
+        "tomato__early_blight",
+        "tomato__healthy_appearance",
+        "tomato__late_blight"
+      ],
+      "class_order": [
+        "potato__early_blight",
+        "potato__healthy_appearance",
+        "potato__late_blight",
+        "tomato__early_blight",
+        "tomato__healthy_appearance",
+        "tomato__late_blight"
+      ],
+      "per_class": {
+        "potato__early_blight": {
+          "precision": 0.9523809523809523,
+          "recall": 0.9090909090909091,
+          "f1": 0.9302325581395349,
+          "support": 22
+        },
+        "potato__healthy_appearance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        },
+        "potato__late_blight": {
+          "precision": 0.8888888888888888,
+          "recall": 0.9411764705882353,
+          "f1": 0.9142857142857143,
+          "support": 17
+        },
+        "tomato__early_blight": {
+          "precision": 0.9047619047619048,
+          "recall": 0.8260869565217391,
+          "f1": 0.8636363636363636,
+          "support": 23
+        },
+        "tomato__healthy_appearance": {
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1": 0.9090909090909091,
+          "support": 5
+        },
+        "tomato__late_blight": {
+          "precision": 0.5,
+          "recall": 0.6,
+          "f1": 0.5454545454545454,
+          "support": 5
+        }
+      },
+      "confusion_matrix": [
+        [
+          20,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          16,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          16,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          19,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          0,
+          3
+        ]
+      ]
+    },
+    "both_correct": 78,
+    "joint_only_correct": 1,
+    "pv_only_correct": 1,
+    "both_wrong": 8,
+    "caveat": "Same heldout bytes, but joint has9 output classes and PV6; global softmax scales are not calibrated or directly comparable. Images within author leaf groups are correlated; no image-independent significance claim."
+  },
+  "variants_summary": {
+    "clean": {
+      "images": 9,
+      "correct": 8
+    },
+    "blur_radius4": {
+      "images": 9,
+      "correct": 7
+    },
+    "rotate90": {
+      "images": 9,
+      "correct": 9
+    },
+    "dark_0.15": {
+      "images": 9,
+      "correct": 4
+    },
+    "jpeg_quality5": {
+      "images": 9,
+      "correct": 5
+    }
+  },
+  "synthetic_control_count": 12,
+  "synthetic_max_global_score": 0.32292710842811045,
+  "raw_joint_serving_geometry_rejected": 35,
+  "provenance": {
+    "joint": {
+      "version": "pilot-joint-efficientnet-b0-seed17",
+      "artifact_sha256": "4bb8d994f8b395224597d32d2f3de795766cbc695ccb8b543d0698991547b6d7",
+      "manifest_sha256": "bacba60608b041fe739d92bebcd8bda86e28e1276ed1bc203628b9660ba7d36b",
+      "data_manifest_sha256": "019295e325dcc127c0d55cb3c52e32cb8553ab6a5375105814bfe473f21238b6",
+      "split_manifest_sha256": "333089099a82590530615a3c95de82597e05f01c01ba1bfee59cf7831e919a9f",
+      "historical_evaluation_sha256": "7784375cb224f6d0f1ae4c020c7b47668d77c77e4d815def25598eb5af49fe70",
+      "preprocessing": {
+        "version": "common-rgb224-v1",
+        "resize_shorter_side": 256,
+        "center_crop": 224,
+        "interpolation": "bilinear",
+        "color_mode": "RGB",
+        "apply_exif_orientation": true,
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "labels": [
+        {
+          "class_id": "potato__early_blight",
+          "crop_id": "potato",
+          "condition_id": "early_blight",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "potato__healthy_appearance",
+          "crop_id": "potato",
+          "condition_id": "healthy_appearance",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "potato__late_blight",
+          "crop_id": "potato",
+          "condition_id": "late_blight",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "tomato__early_blight",
+          "crop_id": "tomato",
+          "condition_id": "early_blight",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "tomato__healthy_appearance",
+          "crop_id": "tomato",
+          "condition_id": "healthy_appearance",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "tomato__late_blight",
+          "crop_id": "tomato",
+          "condition_id": "late_blight",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "wheat__healthy_appearance",
+          "crop_id": "wheat",
+          "condition_id": "healthy_appearance",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "wheat__septoria_source_label",
+          "crop_id": "wheat",
+          "condition_id": "septoria_source_label",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "wheat__stripe_rust",
+          "crop_id": "wheat",
+          "condition_id": "stripe_rust",
+          "organ": "leaf"
+        }
+      ]
+    },
+    "pv": {
+      "version": "pilot-pv-efficientnet-b0-seed17",
+      "artifact_sha256": "501fa0497837e29f8550640b4d649aa629ce4ac00f88d1778f74997522c20829",
+      "manifest_sha256": "d8f8e7976c2c4f993a4a7c817b159eb40e700cc8f16769804b0b268cb39cfebb",
+      "data_manifest_sha256": "a8303156e18439f8945d36787674bf6978979bf8843f828ef3ab60641a8976f7",
+      "split_manifest_sha256": "e6b21e5c76b896689e40ad578fc72e2c141c923d3565981afb757b4aee7772d8",
+      "historical_evaluation_sha256": "9f924185dfe61aad9028d8021ceb5d2141e5e844e4f102d717c2e9a861fd5053",
+      "preprocessing": {
+        "version": "common-rgb224-v1",
+        "resize_shorter_side": 256,
+        "center_crop": 224,
+        "interpolation": "bilinear",
+        "color_mode": "RGB",
+        "apply_exif_orientation": true,
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "labels": [
+        {
+          "class_id": "potato__early_blight",
+          "crop_id": "potato",
+          "condition_id": "early_blight",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "potato__healthy_appearance",
+          "crop_id": "potato",
+          "condition_id": "healthy_appearance",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "potato__late_blight",
+          "crop_id": "potato",
+          "condition_id": "late_blight",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "tomato__early_blight",
+          "crop_id": "tomato",
+          "condition_id": "early_blight",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "tomato__healthy_appearance",
+          "crop_id": "tomato",
+          "condition_id": "healthy_appearance",
+          "organ": "leaf"
+        },
+        {
+          "class_id": "tomato__late_blight",
+          "crop_id": "tomato",
+          "condition_id": "late_blight",
+          "organ": "leaf"
+        }
+      ]
+    },
+    "script_sha256": "3fda30a67790bc41ac8500ea5fd176f3f3b91c98118be09ffd2d9de6fee16dbd",
+    "runtime_sha256": "9015f08820fc8f4b5f6daf1a3029976acef7627fac00474761b3cd73536982eb",
+    "api_normalizer_sha256": "2f267cd259a6f628bc752a2a9b51a5497a02f73a8ba2b208b312eebda208db72",
+    "git_commit": "a8dd36d789e164b03dc618a6dd5653dc70694a31",
+    "code_dirty": true,
+    "joint_test_selection_sha256": "16dc629e7c08805525990e412e3232672587bcc8a45a86c14e38bf6730a08488",
+    "pv_test_selection_sha256": "9f73df50a2ca2418b1a80d5ef2f65f49836ea5d7dfcdfe10708dc91104b1540d"
+  },
+  "environment": {
+    "python": "3.12.13 (main, Jul 23 2026, 14:43:28) [Clang 22.1.3 ]",
+    "onnxruntime": "1.21.1",
+    "numpy": "2.2.6",
+    "platform": "Linux-7.2.11-arch1-1-x86_64-with-glibc2.44",
+    "threads": 2,
+    "provider": "CPUExecutionProvider",
+    "offline_source_pixel_limit": 50000000,
+    "serving_source_pixel_limit": 20000000,
+    "minimum_mem_available_gib": 7.079444885253906,
+    "peak_process_rss_mib": 551.3125,
+    "elapsed_seconds": 24.068740014000014
+  },
+  "limitations": [
+    "Wheat groups are dedup proxies, not verified independent biological plants/sessions.",
+    "No Kazakhstan/source-heldout/real OOD/unknown-condition/quality-policy validation.",
+    "Always abstains by research-mode design, not measured unknown detection.",
+    "Degraded cohort is predeclared minimumSHA one per class (n9), not robust accuracy estimate.",
+    "Posthoc success/error examples are labeled illustrative and not used for metrics.",
+    "Mobile surrogate uses PIL2048/JPEG90 plus actual API normalization; not Expo device-codec parity."
+  ],
+  "case_selection": [
+    {
+      "sha256": "0f75d32a0e46b48326cc2943c965e7f71c95f7962e883108338f66b7b664c3a2",
+      "class_id": "potato__early_blight",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "0dc8fc470e342c10413faa7eaf671c189b4734123153d5c8bf658123810c5cc0",
+      "class_id": "potato__healthy_appearance",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "13698183cffe4aeb4499acc26b5e58633b1c2dfc6a5b9567fb2741e79c97a695",
+      "class_id": "potato__late_blight",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "1bf509dca207b4573c33e3ae139db6cb4fd24c7dac0518a808fa93bfdb8a3801",
+      "class_id": "tomato__early_blight",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "1b8ede8477a59290fa50eabfa6c135eb675c7a1bd1b9732406199544d23f4b85",
+      "class_id": "tomato__healthy_appearance",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "83e1acf2eeff8de7b137fa93685f7431d97b6d9d2e86d4b2b284436a1815de0b",
+      "class_id": "tomato__late_blight",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "2c9536143be581eb9edf0396c3359187dc35d8ec2dac5f0923bc3468fb68f4f1",
+      "class_id": "wheat__healthy_appearance",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "0c25fa3b2435af1806b49ad3fde1346bbee3362bc3671255dd2d8de6f99482fd",
+      "class_id": "wheat__septoria_source_label",
+      "selection": "predeclared_min_sha_per_class"
+    },
+    {
+      "sha256": "19b42871c85d50e269ef09b339db0864416149fd481d5063482245dc517d43b4",
+      "class_id": "wheat__stripe_rust",
+      "selection": "predeclared_min_sha_per_class"
+    }
+  ],
+  "invalid_inputs": [
+    {
+      "name": "invalid_bytes",
+      "rejected": true,
+      "error_type": "UnidentifiedImageError"
+    },
+    {
+      "name": "skinny_jpeg",
+      "rejected": true,
+      "error_type": "InputImageError"
+    }
+  ],
+  "always_abstains_checked": true,
+  "raw_predictions_sha256": "7e328d6854a51ee025dd110ea23fa161f56752b25def379779ba1cd202ffad7d",
+  "report_sha256": "8203d69b0c5942419e068d12294a4890c81f0232098173c6fba372c70eea0a79",
+  "plot_sha256": {
+    "degraded_cases.png": "940d28675c4ace301c4d952a91dc0859374ad0fcacea835bf4d53091a81bc4ea",
+    "joint_confusion.png": "484fb9d6c8493a36c0b72f46a6ff16e772465e2824344574a5c064311f5eb4e1",
+    "pv_confusion.png": "1f0112a00ee184ee7dd14d4ad55bc80d376211209320aa1d6862e61958299e5e",
+    "successes_and_errors.png": "a3a9e0a0930b6b6ebd0a79c6379370973aa431df4c0f04e98e0f3241df63a140",
+    "synthetic_controls.png": "a571ccb64a2d98ac3fdf0237d8193706cda5258f9ef0bca6fbc0951291d629f3"
+  }
+}

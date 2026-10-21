@@ -101,6 +101,7 @@ For an existing research artifact, explicitly set `AGRO_DOCKER_RESEARCH_BUNDLE_D
 
 ## Documents and next increment
 
+- [Measured model cases and paired comparison](docs/evaluation/MEASURED_CASES.md).
 - [Measured data/model report](docs/development/DATA_AND_MODEL.md), [mobile report](docs/development/MOBILE_REPORT.md), [verification](docs/development/VERIFICATION.md).
 - [Foundation](docs/foundation/README.md), [API contract](docs/foundation/contracts/API_CONTRACT.md), [implementation decisions](docs/development/IMPLEMENTATION.md).
 

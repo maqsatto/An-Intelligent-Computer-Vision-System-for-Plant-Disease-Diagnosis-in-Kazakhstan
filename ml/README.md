@@ -34,3 +34,17 @@ This recipe is a short frozen ImageNet-backbone research baseline, not the full 
 uv run pytest tests/runtime -q
 uv run ruff check ml tests/runtime
 ```
+
+## Measured cases and paired model comparison
+
+[Evaluation report](../docs/evaluation/MEASURED_CASES.md): replay all 153 joint and 88 PV held-out photos; compare models only on their 88 identical test SHA256s; include errors, fixed perturbations and clearly synthetic controls. Full local HTML and photos stay in ignored `artifacts/evaluation/model-cases-v1/`.
+
+```bash
+systemd-run --user --scope -p MemoryMax=2G -p MemoryHigh=1800M -p MemorySwapMax=512M \
+  env OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 \
+  uv run python ml/evaluation/evaluate_cases.py --publish
+uv run python ml/evaluation/render_report.py --publish
+uv run pytest tests/evaluation -q
+```
+
+Evaluation uses the existing admitted data/bundles, CPU only, no training. Its tiny unit tests need no ignored data, weights or GPU. Rendering reads the measured report and records a separate renderer checksum without changing inference provenance.
