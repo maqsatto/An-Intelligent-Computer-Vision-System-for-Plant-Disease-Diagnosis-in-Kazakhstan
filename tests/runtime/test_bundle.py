@@ -275,3 +275,90 @@ def test_mutation_of_validated_bundle_manifest_is_rejected(tmp_path):
     bundle.manifest["policy"]["joint_score_threshold"] = 0.01
     with pytest.raises(BundleValidationError, match="manifest changed"):
         OnnxPredictor(bundle)
+
+
+def test_elongated_compressed_image_is_rejected_before_allocation(monkeypatch):
+    import io
+
+    import agrovision_runtime as runtime
+    from PIL import Image
+
+    stream = io.BytesIO()
+    Image.new("RGB", (10, 60000), "green").save(stream, format="JPEG")
+    config = dict(
+        resize_shorter_side=256, center_crop=224, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+    )
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Image allocation reached before geometry admission")
+
+    monkeypatch.setattr(runtime.ImageOps, "exif_transpose", forbidden)
+    monkeypatch.setattr(Image.Image, "resize", forbidden)
+    monkeypatch.setattr(Image.Image, "load", forbidden)
+    with pytest.raises(runtime.InputImageError, match="preprocessing"):
+        runtime.preprocess(stream.getvalue(), config)
+
+
+def test_source_pixel_budget_checked_before_decode(monkeypatch):
+    import io
+
+    import agrovision_runtime as runtime
+    from PIL import Image
+
+    stream = io.BytesIO()
+    Image.new("RGB", (5000, 4001), "green").save(stream, format="JPEG")
+    monkeypatch.setattr(Image.Image, "load", lambda *a, **k: pytest.fail("decoded rejected source"))
+    config = dict(resize_shorter_side=256, center_crop=224, mean=[0.0, 0.0, 0.0], std=[1.0, 1.0, 1.0])
+    with pytest.raises(runtime.InputImageError, match="source"):
+        runtime.preprocess(stream.getvalue(), config)
+
+
+def test_research_source_override_never_relaxes_intermediate_budget():
+    from agrovision_runtime import InputImageError, validate_image_geometry
+
+    with pytest.raises(InputImageError, match="source"):
+        validate_image_geometry(6000, 4000)
+    assert validate_image_geometry(6000, 4000, max_source_pixels=50_000_000) == (384, 256)
+    with pytest.raises(InputImageError, match="preprocessing"):
+        validate_image_geometry(10, 60000, max_source_pixels=50_000_000)
+
+
+@pytest.mark.parametrize("size", [(300, 500), (601, 320), (224, 224)])
+def test_guard_preserves_legacy_normal_image_pixels(size):
+    import io
+
+    import numpy as np
+    from agrovision_runtime import preprocess
+    from PIL import Image, ImageOps
+
+    raw = np.random.default_rng(17).integers(0, 256, size=(size[1], size[0], 3), dtype=np.uint8)
+    stream = io.BytesIO()
+    Image.fromarray(raw).save(stream, format="PNG")
+    image_bytes = stream.getvalue()
+    config = dict(
+        resize_shorter_side=256, center_crop=224, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+    )
+    # Frozen pre-guard transform: exact pixel compatibility, no model loading.
+    with Image.open(io.BytesIO(image_bytes)) as source:
+        image = ImageOps.exif_transpose(source).convert("RGB")
+        width, height = image.size
+        scale = 256 / min(width, height)
+        image = image.resize((int(width * scale), int(height * scale)), Image.Resampling.BILINEAR)
+        left, top = round((image.width - 224) / 2), round((image.height - 224) / 2)
+        image = image.crop((left, top, left + 224, top + 224))
+        expected = np.asarray(image, dtype=np.float32) / 255.0
+    expected = (expected - np.asarray(config["mean"], dtype=np.float32)) / np.asarray(
+        config["std"], dtype=np.float32
+    )
+    expected = expected.transpose(2, 0, 1)[None].astype(np.float32)
+    np.testing.assert_array_equal(preprocess(image_bytes, config), expected)
+
+
+def test_projected_area_boundary_and_dimension_limits():
+    from agrovision_runtime import InputImageError, validate_image_geometry
+
+    assert validate_image_geometry(256, 15625) == (256, 15625)
+    with pytest.raises(InputImageError, match="preprocessing"):
+        validate_image_geometry(256, 15626)
+    with pytest.raises(InputImageError, match="preprocessing"):
+        validate_image_geometry(1, 16385, resize_shorter_side=1)

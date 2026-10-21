@@ -12,6 +12,17 @@ import numpy as np
 import onnxruntime as ort
 from PIL import Image, ImageOps
 
+# Admission guards added after the measured pilot run. Accepted-image pixel
+# operations and preprocessing version remain unchanged; these are allocation
+# budgets, not a new learned preprocessing transform.
+MAX_SOURCE_PIXELS = 20_000_000
+MAX_PREPROCESS_PIXELS = 4_000_000
+MAX_PREPROCESS_DIMENSION = 16_384
+
+
+class InputImageError(ValueError):
+    """An image cannot be processed within the serving allocation budget."""
+
 
 class BundleValidationError(ValueError):
     pass
@@ -188,12 +199,42 @@ def validate_research_bundle(directory: Path) -> Bundle:
     return _validate_bundle(directory, research=True)
 
 
-def preprocess(image_bytes: bytes, config: dict) -> np.ndarray:
+def validate_image_geometry(
+    width: int, height: int, resize_shorter_side: int = 256, *, max_source_pixels: int = MAX_SOURCE_PIXELS
+) -> tuple[int, int]:
+    """Check source and projected resize geometry before any image allocation.
+
+    EXIF orientation only swaps dimensions, preserving both budget predicates.
+    An explicit research caller may raise the source cap for historical 24 MP
+    fixtures; the intermediate budget always remains fixed at 4 MP.
+    """
+    if width <= 0 or height <= 0 or type(max_source_pixels) is not int or max_source_pixels <= 0:
+        raise InputImageError("invalid source image geometry")
+    if width * height > max_source_pixels:
+        raise InputImageError("source image pixel budget exceeded")
+    if type(resize_shorter_side) is not int or resize_shorter_side <= 0:
+        raise InputImageError("invalid preprocessing resize geometry")
+    scale = resize_shorter_side / min(width, height)
+    projected = (int(width * scale), int(height * scale))
+    if (
+        min(projected) <= 0
+        or max(projected) > MAX_PREPROCESS_DIMENSION
+        or projected[0] * projected[1] > MAX_PREPROCESS_PIXELS
+    ):
+        raise InputImageError("preprocessing image allocation budget exceeded")
+    return projected
+
+
+def preprocess(image_bytes: bytes, config: dict, *, max_source_pixels: int = MAX_SOURCE_PIXELS) -> np.ndarray:
     with Image.open(io.BytesIO(image_bytes)) as original:
+        validate_image_geometry(
+            *original.size, config["resize_shorter_side"], max_source_pixels=max_source_pixels
+        )
         image = ImageOps.exif_transpose(original).convert("RGB")
-        width, height = image.size
-        scale = config["resize_shorter_side"] / min(width, height)
-        image = image.resize((int(width * scale), int(height * scale)), Image.Resampling.BILINEAR)
+        projected = validate_image_geometry(
+            *image.size, config["resize_shorter_side"], max_source_pixels=max_source_pixels
+        )
+        image = image.resize(projected, Image.Resampling.BILINEAR)
         size = config["center_crop"]
         left, top = (round((image.width - size) / 2), round((image.height - size) / 2))
         image = image.crop((left, top, left + size, top + size))

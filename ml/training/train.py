@@ -31,6 +31,10 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "ml/runtime"))
 from agrovision_runtime import preprocess  # noqa: E402
 
+# Offline research originals include 24 MP D05 files. Serving keeps its 20 MP
+# default; this explicit source-only override never relaxes the 4 MP resize cap.
+RESEARCH_MAX_SOURCE_PIXELS = 50_000_000
+
 PREPROCESSING = dict(
     version="common-rgb224-v1",
     resize_shorter_side=256,
@@ -108,7 +112,14 @@ def main(args):
         minimum_available = min(minimum_available, guard_memory(args.min_available_gib))
         batch = rows[start : start + batch_size]
         batch_np = np.concatenate(
-            [preprocess((ROOT / r["relative_path"]).read_bytes(), PREPROCESSING) for r in batch]
+            [
+                preprocess(
+                    (ROOT / r["relative_path"]).read_bytes(),
+                    PREPROCESSING,
+                    max_source_pixels=RESEARCH_MAX_SOURCE_PIXELS,
+                )
+                for r in batch
+            ]
         )
         tensor = torch.from_numpy(batch_np)
         with torch.no_grad():
@@ -268,7 +279,7 @@ def main(args):
     end_to_end = []
     for _ in range(200):
         t = time.perf_counter()
-        values = preprocess(image_bytes, PREPROCESSING)
+        values = preprocess(image_bytes, PREPROCESSING, max_source_pixels=RESEARCH_MAX_SOURCE_PIXELS)
         session.run(["scores"], {"images": values})
         end_to_end.append((time.perf_counter() - t) * 1000)
     cpu_name = next(
