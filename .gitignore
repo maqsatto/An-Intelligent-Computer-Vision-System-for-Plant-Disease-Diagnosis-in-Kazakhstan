@@ -26,7 +26,6 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
-.superpowers/
 coverage/
 .DS_Store
 
@@ -35,8 +34,3 @@ coverage/
 *.aab
 *.jks
 *.keystore
-
-# Local contributor workspace notes
-/AGENTS.md
-/docs/superpowers/
-/docs/audit/
