@@ -1,0 +1,106 @@
+{
+  "protocol_version": "crop-conditioning-source-shift-v1-planned",
+  "status": "planned_not_measured",
+  "training_runner_implemented": false,
+  "experiment_admission": "no_go_pending_data_audit",
+  "historical_application_baseline": "b65ec30",
+  "core_classes": ["potato.early_blight", "potato.late_blight", "tomato.early_blight", "tomato.late_blight"],
+  "extension_classes": [],
+  "known_crop_supplied_to_all_arms": true,
+  "architecture": {
+    "backbone": "torchvision.resnet18",
+    "weights": "ResNet18_Weights.IMAGENET1K_V1",
+    "shared_initial_state_per_seed": true,
+    "film_position": "after_layer3_before_layer4",
+    "feature_shape": [256, 14, 14],
+    "token_vocabulary": ["constant", "potato", "tomato"],
+    "embedding_dimension": 16,
+    "film_mlp_dimensions": [16, 64, 512],
+    "film_transform": "(1 + delta_gamma) * features + beta",
+    "film_final_linear_zero_initialized": true,
+    "same_parameter_shapes_all_arms": true,
+    "nonlinear_block_after_film": "layer4",
+    "head_outputs": 4
+  },
+  "arms": {
+    "G0": {"film_input": "constant", "loss": "global_cross_entropy", "score_space": "global_joint", "primary_decoder": "known_crop_masked_argmax"},
+    "C0": {"film_input": "constant", "loss": "within_crop_cross_entropy", "score_space": "crop_conditional", "primary_decoder": "known_crop_masked_argmax"},
+    "C1": {"film_input": "true_crop", "loss": "within_crop_cross_entropy", "score_space": "crop_conditional", "primary_decoder": "known_crop_masked_argmax"}
+  },
+  "preprocessing": {
+    "version": "scientific_common_leaf224_v1_planned",
+    "exif_transpose": true, "color": "RGB", "resize_shorter_side": 256,
+    "center_crop": 224, "interpolation": "bilinear",
+    "mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225],
+    "train_augmentation": {"horizontal_flip_probability": 0.5, "rotation_degrees": 15, "brightness_jitter": 0.1, "contrast_jitter": 0.1},
+    "paired_augmentation_key": ["seed", "epoch", "image_id"],
+    "symptom_retention_review_required": true
+  },
+  "training": {
+    "paired_seeds": [17, 41, 73], "optimizer": "AdamW", "weight_decay": 0.0001,
+    "physical_batch": 8, "gradient_accumulation": 4, "effective_batch": 32,
+    "precision": "fp16_amp", "bn_running_statistics_frozen": true, "bn_affine_frozen": true,
+    "stages": [
+      {"epochs": 3, "trainable": ["film", "fc"], "lr_film_head": 0.001, "lr_layer4": 0.0},
+      {"epochs": 17, "trainable": ["film", "layer4", "fc"], "lr_film_head": 0.001, "lr_layer4": 0.0001}
+    ],
+    "scheduler": "cosine_per_stage", "early_stopping": false,
+    "checkpoint_selection": "source_selection_validation_crop_balanced_macro_f1",
+    "checkpoint_tie_rule": "earliest_epoch", "hyperparameter_trials_per_arm": 1,
+    "target_source_used_for_tuning_or_adaptation": false,
+    "oom_rule": "revise_shared_batch_for_all_arms_before_final_test_not_one_arm_only"
+  },
+  "data": {
+    "development_source": "PlantVillage",
+    "fully_held_out_source": "PlantDoc",
+    "split_seed": 20261021,
+    "development_group_fractions": {"train": 0.70, "selection_validation": 0.15, "calibration_validation": 0.05, "internal_test": 0.10},
+    "split_group": "connected_parent_leaf_session_dedup_component",
+    "historical_pilot_images_are_not_fresh_internal_test": true,
+    "cross_source_duplicate_component_rule": "quarantine_entire_component_before_split",
+    "plantdoc_view": "all_eligible_leaf_boxes_from_companion_detection_annotations",
+    "plantvillage_view": "original_color_single_leaf_no_fabricated_bbox",
+    "min_development_train_groups_per_class": 50,
+    "min_development_selection_groups_per_class": 10,
+    "min_external_parent_dedup_groups_per_class": 20,
+    "minimum_is_feasibility_not_power_guarantee": true,
+    "core_gate_requirements": ["all_four_classes_in_both_sources", "source_label_mapping_reviewed", "research_rights_approved", "parent_and_leaf_links_audited", "cross_source_exact_near_dedup_done", "all_group_overlaps_zero", "counts_and_manifest_hashes_frozen"],
+    "gate_results": {},
+    "local_pilot_cases_per_class": [10, 20], "local_final_new_cases_per_class": [50, 100],
+    "local_pilot_and_final_disjoint": true,
+    "wheat_extension_requires_separate_source_coverage_and_protocol_revision": true
+  },
+  "evaluation": {
+    "primary_contrast": "C1-C0",
+    "secondary_contrast": "C0-G0",
+    "primary_partition": "fully_held_out_source",
+    "primary_metric": "crop_balanced_macro_f1",
+    "primary_decoder": "known_crop_masked_argmax",
+    "primary_abstention": false,
+    "extra_G0_decoder": "global_unmasked_argmax_no_retraining",
+    "practical_effect_threshold_absolute": 0.02,
+    "threshold_fixed_before_final_test": true,
+    "point_estimate": "mean_of_paired_seed_deltas",
+    "bootstrap": {
+      "paired": true, "replicates": 10000, "seed": 20261021, "confidence": 0.95,
+      "unit": "whole_parent_leaf_dedup_group",
+      "strata": "crop_composition_of_group",
+      "reuse_same_group_draw_all_arms_and_seeds": true,
+      "resample_training_seeds": false,
+      "interval": "percentile_2.5_97.5",
+      "redraw_missing_class_replicates": true, "max_invalid_fraction": 0.05
+    },
+    "seed_spread_separate_from_group_ci": true,
+    "report_each_seed": true,
+    "negative_or_inconclusive_result_is_valid": true,
+    "secondary_only": ["per_class_precision_recall_f1", "confusion_matrix", "source_internal_gap", "wrong_crop", "calibration", "selective_risk", "ood", "cpu_export_cost"]
+  },
+  "application_boundary": {
+    "change_existing_runtime": false,
+    "existing_score_space": "global_joint",
+    "new_conditional_adapter_requires_explicit_version_and_validation": true,
+    "research_checkpoint_is_diagnostic_release": false
+  },
+  "resources": {"heavy_jobs_serialized": true, "host_mem_available_min_gib": 3, "training_memory_scope_max_gib": 3, "metadata_audit_memory_max_gib": 2},
+  "required_run_outputs": ["code_commit_and_dirty_snapshot", "source_and_split_hashes", "ordered_class_map", "initial_state_hash", "config_and_seed", "augmentation_and_sampler_trace", "per_image_logits_labels_crop_group_ids", "per_arm_seed_metrics", "paired_group_ci", "separate_seed_spread", "exclusions_and_failures"]
+}
