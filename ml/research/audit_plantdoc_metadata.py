@@ -2,6 +2,9 @@
 
 Default reads previously fetched metadata. --fetch obtains only allowlisted
 GitHub JSON, README/LICENSE and annotation CSV files from the author repositories.
+The fetch resolves the current master commit for each repository and pins each
+file to that commit; it does not reproduce a previously retained snapshot.
+checked_on records the audit run date, not the original acquisition date.
 """
 
 import argparse
@@ -11,6 +14,7 @@ import json
 import math
 import urllib.request
 from collections import Counter, defaultdict
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -90,7 +94,7 @@ def audit(evidence):
         validate_tree_binding(commit_metadata, tree)
         repositories[repo] = dict(
             commit=commit,
-            declared_license="CC-BY-4.0",
+            declared_license=None,
             license_sha256=digest(evidence / f"{repo}-LICENSE.txt"),
             primary_url=f"https://github.com/pratikkayal/{repo}",
             tree_truncated=False,
@@ -110,9 +114,10 @@ def audit(evidence):
     annotations = defaultdict(list)
     total_rows = {}
     for split in ("train", "test"):
-        rows = list(
-            csv.DictReader((evidence / f"PlantDoc-Object-Detection-Dataset-{split}_labels.csv").open())
-        )
+        with (evidence / f"PlantDoc-Object-Detection-Dataset-{split}_labels.csv").open(
+            encoding="utf-8", newline=""
+        ) as csv_file:
+            rows = list(csv.DictReader(csv_file))
         total_rows[split] = len(rows)
         for row in rows:
             if row["class"] in CORE_MAPPING:
@@ -149,7 +154,7 @@ def audit(evidence):
         )
     report = dict(
         status="metadata_only_not_image_admission",
-        checked_on="2026-10-21",
+        checked_on=date.today().isoformat(),
         images_downloaded=0,
         training_performed=False,
         repositories=repositories,
@@ -167,7 +172,7 @@ def audit(evidence):
             "all four eligible class group counts, frozen splits and manifest hashes",
         ],
         limitations=[
-            "Repository CC-BY declaration does not by itself resolve third-party web-image rights.",
+            "License file and third-party web-image rights require independent review.",
             "Distinct filenames and boxes are not independent plants or verified dedup groups.",
             "No held-out image predictions or target-based tuning were generated.",
         ],
