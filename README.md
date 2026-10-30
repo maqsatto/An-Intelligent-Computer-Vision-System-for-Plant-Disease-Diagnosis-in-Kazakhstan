@@ -11,7 +11,7 @@ The system helps farmers, field workers and agronomists record visible leaf symp
 | Сыртбай Мақсат Берікұлы | Android client, API, worker, storage, integration and infrastructure | [maqsatto](https://github.com/maqsatto) |
 | Матығұл Қайсар Алмасұлы | Data audit, label mapping, models, experiments, evaluation and export | [v2207function](https://github.com/v2207function) |
 
-Scientific supervisor named in the supplied project materials: **Кутпанова Зарина Алмабековна**. A substantive review of the current materials is still pending.
+Scientific supervisor: **Кутпанова Зарина Алмабековна**.
 
 [YouTrack project](https://maqsatto-qaisar.youtrack.cloud/projects/AIC/issues) · [Figma prototype](https://www.figma.com/design/07cVYgjO4tZw4IaR7kUxEz) · [Project scope](docs/PROJECT_OVERVIEW.md).
 

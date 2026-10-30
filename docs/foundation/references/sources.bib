@@ -1,6 +1,6 @@
 % AgroVision bibliography. Verified 2026-10-21.
-% R1--R16 correspond to LITERATURE_REVIEW.md.
-% R1--R14: peer-reviewed scientific publications; R15: preprint; R16: documentation.
+% R1--R20 correspond to LITERATURE_REVIEW.md.
+% R1--R14 and R17--R20: peer-reviewed scientific publications; R15: preprint; R16: documentation.
 % Additional entries support technical claims in TRAINING_AND_EVALUATION.md.
 % Dataset/article licenses must be checked separately from bibliographic metadata.
 
@@ -198,7 +198,7 @@
   urldate = {2026-10-21}
 }
 
-% Supporting technical references; not included in the 16-source core review count.
+% Supporting technical references; not included in the 20-source core review count.
 
 @inproceedings{hendrycks2017oodbaseline,
   author = {Hendrycks, Dan and Gimpel, Kevin},
@@ -346,5 +346,49 @@
   title = {{StratifiedGroupKFold}},
   url = {https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html},
   note = {Official API documentation, accessed 2026-10-21},
+  urldate = {2026-10-21}
+}
+
+@article{picon2019cropconditional,
+  author = {Picon, Artzai and Seitz, Maximiliam and Alvarez-Gila, Aitor and Mohnke, Patrick and Ortiz-Barredo, Amaia and Echazarra, Jone},
+  title = {Crop conditional Convolutional Neural Networks for massive multi-crop plant disease classification over cell phone acquired images taken on real field conditions},
+  journal = {Computers and Electronics in Agriculture},
+  year = {2019},
+  doi = {10.1016/j.compag.2019.105093},
+  url = {https://doi.org/10.1016/j.compag.2019.105093},
+  note = {R17. Metadata and abstract checked in author institutional repository; not a reproduction.},
+  urldate = {2026-10-21}
+}
+
+@inproceedings{lee2021conditional,
+  author = {Lee, Sue Han and Goeau, Herve and Bonnet, Pierre and Joly, Alexis},
+  title = {Conditional Multi-Task learning for Plant Disease Identification},
+  booktitle = {2020 25th International Conference on Pattern Recognition (ICPR)},
+  year = {2021},
+  doi = {10.1109/ICPR48806.2021.9412643},
+  url = {https://doi.org/10.1109/ICPR48806.2021.9412643},
+  note = {R18. Published January 2021. Official poster includes FiLM; author name verified in DOI registry and university bibliography.},
+  urldate = {2026-10-21}
+}
+
+@article{xiang2026reliability,
+  author = {Xiang, Kun and Shi, Danxi and Zhu, Xiangbo},
+  title = {Quantifying the reliability gap in cross-domain plant disease classification: benchmarking the limited efficacy of standard mitigation techniques under controlled-to-field shift},
+  journal = {Frontiers in Plant Science},
+  year = {2026},
+  doi = {10.3389/fpls.2026.1826962},
+  url = {https://doi.org/10.3389/fpls.2026.1826962},
+  note = {R19. Controlled-to-field reliability study; not an AgroVision result.},
+  urldate = {2026-10-21}
+}
+
+@inproceedings{perez2018film,
+  author = {Perez, Ethan and Strub, Florian and De Vries, Harm and Dumoulin, Vincent and Courville, Aaron},
+  title = {FiLM: Visual Reasoning with a General Conditioning Layer},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year = {2018},
+  doi = {10.1609/aaai.v32i1.11671},
+  url = {https://doi.org/10.1609/aaai.v32i1.11671},
+  note = {R20. AAAI 2018 publication; original arXiv preprint 2017. General conditioning mechanism, not plant-specific evidence.},
   urldate = {2026-10-21}
 }

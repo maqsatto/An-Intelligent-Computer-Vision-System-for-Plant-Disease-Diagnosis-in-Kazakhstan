@@ -35,7 +35,7 @@ Current decision: **NO-GO pending image-level audit**. The metadata-only PlantDo
 
 PlantVillage is the candidate development source: group splits train/selection-validation/calibration-validation/internal-test = 70/15/5/10, preserving groups over exact proportions. Historical pilot images already examined are development-history data, not fresh internal final tests. PlantDoc is entirely held out, including its provider TRAIN and TEST folders; both can supply eligible external boxes, neither can supply training or adaptation in this protocol. No automatic target calibration or feature-statistic fitting is permitted.
 
-For Kazakhstan, plan 10–20 independent cases per core class in a pilot, then 50–100 **new** cases per class for local final assessment. Case/plant/session/farm clusters, capture conditions, consent, reviewer/evidence levels and disagreement rules must be explicit. Pilot and final groups are disjoint. Revisit sample planning after pilot variability and clustering, before final collection; ranges do not establish statistical sufficiency. If local reference data are unavailable, report public-source transfer only and record the scope decision with the supervisor.
+For Kazakhstan, plan 10–20 independent cases per core class in a pilot, then 50–100 **new** cases per class for local final assessment. Case/plant/session/farm clusters, capture conditions, consent, reviewer/evidence levels and disagreement rules must be explicit. Pilot and final groups are disjoint. Revisit sample planning after pilot variability and clustering, before final collection; ranges do not establish statistical sufficiency. If local reference data are unavailable, limit the evaluation scope and conclusions to public-source transfer.
 
 ## Conditional extensions
 

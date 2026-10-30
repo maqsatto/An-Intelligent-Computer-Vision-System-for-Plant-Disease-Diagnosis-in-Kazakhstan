@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1960" height="1840" viewBox="0 0 1960 1840">
 <rect width="100%" height="100%" fill="#f6f9f7"/>
 <text x="58" y="63.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="42" font-weight="bold" text-anchor="start" dominant-baseline="middle">AgroVision · UML Use Case</text>
-<text x="60" y="118.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="start" dominant-baseline="middle">Проектные актеры и цели; include/extend показывают смысловую связь, а не очередность HTTP-запросов</text>
+<text x="60" y="118.0" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="normal" text-anchor="start" dominant-baseline="middle">Текущие online цели; пометка «будущее» отделяет не реализованные возможности</text>
 <rect x="280" y="190" width="1400" height="1510" rx="8" fill="#ffffff" stroke="#a9c4b6" stroke-width="2"/>
 <text x="980" y="222.0" fill="#286e56" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" dominant-baseline="middle">ГРАНИЦА СИСТЕМЫ AGROVISION</text>
 <polyline points="168,870 370,300" fill="none" stroke="#92aaa0" stroke-width="2" stroke-linejoin="round"/>
@@ -44,10 +44,10 @@
 <ellipse cx="650.0" cy="1050.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
 <text x="650" y="1018.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-06</text>
 <text x="650" y="1050.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Связать наблюдение</text>
-<text x="650" y="1081.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">с полем / сезоном</text>
+<text x="650" y="1081.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">с полем / сезоном (будущее)</text>
 <ellipse cx="650.0" cy="1200.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
 <text x="650" y="1184.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-07</text>
-<text x="650" y="1215.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Сохранить offline-черновик</text>
+<text x="650" y="1215.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Offline-черновик (будущее)</text>
 <ellipse cx="650.0" cy="1350.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
 <text x="650" y="1334.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-08</text>
 <text x="650" y="1365.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Оставить отзыв о результате</text>
@@ -61,10 +61,10 @@
 <ellipse cx="1320.0" cy="850.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
 <text x="1320" y="818.26" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-09</text>
 <text x="1320" y="850.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Аннотировать</text>
-<text x="1320" y="881.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">исследовательский образец</text>
+<text x="1320" y="881.74" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">образец (будущее)</text>
 <ellipse cx="1320.0" cy="1200.0" rx="280.0" ry="50.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
 <text x="1320" y="1184.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-10</text>
-<text x="1320" y="1215.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверить и активировать модель</text>
+<text x="1320" y="1215.8700000000001" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверить bundle / выбрать dev mode</text>
 <ellipse cx="1320.0" cy="1360.0" rx="280.0" ry="55.0" fill="#e8f2ec" stroke="#286e56" stroke-width="2"/>
 <text x="1320" y="1360.0" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Проверить модельный bundle</text>
 <ellipse cx="1320.0" cy="1500.0" rx="280.0" ry="56.0" fill="#ffffff" stroke="#286e56" stroke-width="2"/>
@@ -82,7 +82,7 @@
 <polyline points="1772,850 1848,850" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
 <polyline points="1810,892 1776,932" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
 <polyline points="1810,892 1844,932" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
-<text x="1810" y="954.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Эксперт</text>
+<text x="1810" y="954.13" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">Будущий эксперт</text>
 <text x="1810" y="985.87" fill="#153f34" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" text-anchor="middle" dominant-baseline="middle">по растениям</text>
 <ellipse cx="1810.0" cy="1350.0" rx="18.0" ry="18.0" fill="#f6f9f7" stroke="#153f34" stroke-width="3"/>
 <polyline points="1810,1368 1810,1432" fill="none" stroke="#153f34" stroke-width="3" stroke-linejoin="round"/>
@@ -100,5 +100,5 @@
 <text x="985" y="1018.27" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="normal" text-anchor="middle" dominant-baseline="middle">«extend»</text>
 <text x="985" y="1041.73" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="normal" text-anchor="middle" dominant-baseline="middle">по желанию</text>
 <text x="980" y="1737.82" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Сплошная линия — участие актера. Пунктирная стрелка — UML include или extend.</text>
-<text x="980" y="1768.1799999999998" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">Offline-черновик может завершиться без сети. Наличие реальных экспертных участников еще требуется подтвердить.</text>
+<text x="980" y="1768.1799999999998" fill="#516b62" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="normal" text-anchor="middle" dominant-baseline="middle">UC-06, UC-07, UC-09 — будущее. UC-10/12 — операторские CLI; research не diagnostic release.</text>
 </svg>

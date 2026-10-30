@@ -1,6 +1,6 @@
 # AgroVision: технические решения и альтернативы
 
-**Статус:** исторический проектный документ от 21 октября 2026. Он описывает исходные решения, а не текущее состояние реализации; актуальная реализация и измерения находятся в [development](../../development/IMPLEMENTATION.md).
+**Статус:** решения сверены с реализованным Android online MVP. Исторические альтернативы сохранены; фактические ограничения и измерения: [implementation](../../development/IMPLEMENTATION.md), [verification](../../development/VERIFICATION.md), [model cases](../../evaluation/MEASURED_CASES.md). Числа из примеров Foundation не являются измерениями.
 
 Критерии: понятность для двух разработчиков, связь с ML на Python, стабильность контрактов/истории, восстановление после обрыва связи, небольшое число эксплуатационных компонентов и возможность независимо проверить качество. Численные benchmark-преимущества без измерений не заявляются.
 
@@ -30,7 +30,7 @@
 | **Один неразделенный HTTP-процесс со всей логикой** | Минимальный первый локальный эксперимент | CPU/load/restart связаны с HTTP; бизнес-правила, inference и storage быстро переплетаются; долговечность фоновых действий не возникает автоматически |
 | **Отдельные API, ML, catalog, history services** | Независимая эксплуатация и масштабирование действительно самостоятельных частей | Для двух студентов добавляет сетевые контракты, deployment, диагностику и согласование данных, пока нет соответствующей организационной потребности |
 
-**Выбор:** первый вариант. `identity`, `catalog`, `farms`, `observations`, `assessments`, `feedback` — модули, а не отдельные deployment units. `ml/runtime` — библиотека worker. Training/evaluation остаются offline-инструментами.
+**Выбор:** первый вариант. `identity`, `catalog`, `observations`, `photos`, `assessments` — фактические модули, а не отдельные deployment units. Feedback реализован внутри assessments; farms/fields и экспертная annotation отложены. `ml/runtime` — библиотека worker. Training/evaluation остаются offline-инструментами.
 
 **Когда пересмотреть:** устойчиво измеренный bottleneck, отдельная команда/эксплуатационный цикл либо существенно отличающиеся требования к отдельной части. Большой размер файла сам по себе решается модульным рефакторингом, а не обязательным сервисом.
 
@@ -42,11 +42,11 @@
 
 | Вариант | Преимущество | Цена / ограничение |
 |---|---|---|
-| **PostgreSQL + private S3-compatible storage** | Реляционные связи и транзакции для metadata/job, отдельно управляемые image/model bytes | DB и storage не имеют общей транзакции: требуются upload states, immutable keys и cleanup |
-| **PostgreSQL с image/model bytes в таблицах** | Один механизм транзакций/backup для данных | Для данного потока увеличивает размер БД/backup и связанность metadata с тяжелыми артефактами; перед выбором нужно измерить реальный объем |
+| **PostgreSQL + private local files через ImageStore** | Реляционные связи и транзакции для metadata/job, отдельный persistent volume для private photos и локальные проверяемые model bundles | DB и storage не имеют общей транзакции: требуются upload states, immutable keys и cleanup |
+| **PostgreSQL + S3-compatible storage** | Общее объектное хранилище для нескольких backend hosts | Разумно при переходе к нескольким hosts; требует отдельной настройки доступа, versioning, backup и интеграционных проверок |
 | **SQLite + локальные файлы** | Очень простой local prototype и хороший формат данных на мобильном устройстве | Для общего server API+worker придется отдельно продумать конкурентную запись, хранение и обслуживание; выбранный протокол PostgreSQL `SKIP LOCKED` не переносится автоматически |
 
-**Выбор:** PostgreSQL для server metadata/jobs, private S3-compatible storage для фото/моделей. SQLite используется для **локальной mobile draft queue**, где решает другую задачу. Нельзя описывать SQLite как заведомо непригодную для любого web: ее документация прямо содержит server/web сценарии; выбор PostgreSQL здесь связан с общим серверным доступом и конкретной queue-моделью.
+**Выбор:** PostgreSQL для server metadata/jobs и private local ImageStore для фото; Docker использует persistent volume. Model bundles читаются с локального диска, exact validated bytes передаются в ORT. S3 — будущий adapter. SQLite/persistent mobile draft queue пока не реализованы; несохраненный draft находится в памяти. Нельзя описывать SQLite как заведомо непригодную для любого web: ее документация прямо содержит server/web сценарии; выбор PostgreSQL здесь связан с общим серверным доступом и конкретной queue-моделью.
 
 **Последствия:** blob key и checksum вместо публичного URL; short-lived URLs после авторизации; `pending/ready/failed` upload lifecycle; регулярная уборка незавершенных uploads. Presigned direct upload возможен позже, с защитой готового input от повторной перезаписи по временной URL.
 
@@ -62,11 +62,11 @@
 | **Celery + Redis/RabbitMQ** | Готовые worker, routing/scheduling/workflow/monitoring возможности | Еще один сервис; DB commit и broker publish требуют outbox/согласования; idempotency и корректность side effects все равно нужны |
 | **Синхронный inference в запросе / in-process background callback** | Быстрый первый local proof of concept | Зависимость от request/process lifetime; устойчивость, recovery и распределение нагрузки ограничены; `BackgroundTasks` сам по себе не является durable queue |
 
-**Выбор:** узкая PostgreSQL очередь для одного типа inference jobs и отдельный worker. HTTP polling достаточно для статуса одного фото. При появлении кода проверить протокол полностью: claim короткой транзакцией, inference вне lock, точный model pinning, уникальный result, lease fencing, retries, terminal failure.
+**Выбор:** узкая PostgreSQL очередь для одного типа inference jobs и отдельный worker. HTTP polling достаточно для статуса одного фото. Реализованный и проверяемый протокол: claim короткой транзакцией, inference вне lock, точный model pinning, уникальный result, lease fencing, retries, terminal failure.
 
 **Гарантия:** at-least-once выполнение, один committed result на assessment. Не обещать exactly-once вычисление. Для replay сохранять idempotency scope/body hash; иной body с тем же key — `409`.
 
-**Когда пересмотреть:** потребность в большом числе task types, сложном scheduling, мониторинге нескольких worker pools или измеренном queue bottleneck. Уже работающую зрелую очередь в свежем проекте можно сохранить.
+**Когда пересмотреть:** потребность в большом числе task types, сложном scheduling, мониторинге нескольких worker pools или измеренном queue bottleneck. Переход на broker требует отдельного решения о transactional outbox и миграции текущих jobs.
 
 **Основание:** [PostgreSQL locking clause](https://www.postgresql.org/docs/current/sql-select.html), [Celery introduction](https://docs.celeryq.dev/en/stable/getting-started/introduction.html), [FastAPI background tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
 
@@ -80,9 +80,9 @@
 | **Server CPU/GPU + PyTorch** | Можно сохранить исходный model graph и preprocessing, если ONNX export проблемен | Framework/training зависимости могут увеличивать environment; GPU serving — дополнительный ресурс, его необходимость надо доказать |
 | **On-device ONNX в React Native** | Возможна оценка без сети после загрузки модели | Проверка operator/build/device compatibility, памяти, скорости, обновлений bundle и parity на каждом целевом типе устройств; это отдельный объем |
 
-**Выбор:** начать с CPU ONNX, если экспорт сохраняет требуемое поведение; при доказанной проблеме использовать PyTorch serving как осознанный fallback. Выбор architecture сети делает ML-эксперимент, а не этот ADR. Native offline в первой версии — draft/upload queue, не inference.
+**Выбор:** начать с CPU ONNX, если экспорт сохраняет требуемое поведение; при доказанной проблеме использовать PyTorch serving как осознанный fallback. Выбор architecture сети делает ML-эксперимент, а не этот ADR. Текущая версия — online Android; persistent offline draft/upload queue и on-device inference отложены.
 
-**Последствия:** versioned bundle содержит labels/preprocess/policy/score-space/metrics references; release-проверка отклоняет неготовую policy и null thresholds вместо permissive defaults; worker кеширует по checksum и загружает session заранее; измерять cold/warm время, CPU/RAM и p95, без обещаний скорости по названию технологии.
+**Последствия:** versioned bundle содержит labels/preprocess/policy/score-space/metrics references; release-проверка отклоняет неготовую policy и null thresholds вместо permissive defaults; worker кеширует session по artifact checksum, режиму и digest полного manifest; первая загрузка происходит лениво внутри общего predictor timeout; измерять cold/warm время, CPU/RAM и p95, без обещаний скорости по названию технологии.
 
 **Основание:** [ONNX Runtime Python](https://onnxruntime.ai/docs/get-started/with-python.html), [ONNX Runtime React Native](https://onnxruntime.ai/docs/get-started/with-javascript/react-native.html). Наличие native-пакета не является доказательством работоспособности конкретной модели.
 
@@ -104,6 +104,8 @@
 
 ## Следующие проверяемые решения
 
-Перед первой реализацией зафиксировать поддерживаемые class pairs по аудиту данных, целевые mobile OS/устройства, конкретную auth integration и параметры deployment CPU. После baseline — thresholds, разрешенную область применения и измеримый performance budget. До получения evidence нельзя выдавать произвольные значения за измеренные или согласованные.
+Реализованы Android Expo55/RN0.83, dev bearer и конфигурируемая OIDC validation, отдельный PostgreSQL worker и CPU ORT. Текущий research bundle обучен на допущенных PlantVillage/Wheat данных: 3 культуры, 9 source-label классов, всегда inconclusive. Это не диагностический release. Подробности split, parity, ошибок и ограничений — в измеренных отчетах выше.
+
+До production остаются конкретный OIDC provider и его login/refresh/revocation integration test, restricted DB role, reviewed model policy, независимая внешняя/локальная оценка и проверка физического Android-устройства. Persistent offline queue, S3, farms/fields и web требуют отдельных scoped increments.
 
 Источники проверены 21 октября 2026. Сведения о ценах/конкретных облачных тарифах не использованы; выбор поставщика storage/hosting остается открытым. Связи с требованиями: [REQUIREMENTS_AND_TRACEABILITY.md](../planning/REQUIREMENTS_AND_TRACEABILITY.md).
