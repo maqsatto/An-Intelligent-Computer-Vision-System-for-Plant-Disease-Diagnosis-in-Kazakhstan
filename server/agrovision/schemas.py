@@ -21,6 +21,24 @@ class MeRead(DTO):
     display_name: str | None = None
 
 
+class RegisterRequest(DTO):
+    email: Annotated[str, Field(min_length=3, max_length=254)]
+    password: Annotated[str, Field(min_length=8, max_length=128)]
+    display_name: Annotated[str | None, Field(max_length=80)] = None
+
+
+class LoginRequest(DTO):
+    email: Annotated[str, Field(min_length=3, max_length=254)]
+    password: Annotated[str, Field(min_length=1, max_length=128)]
+
+
+class TokenRead(DTO):
+    access_token: str
+    token_type: Literal["bearer"] = "bearer"
+    expires_in: int
+    account: MeRead
+
+
 class ModelRead(DTO):
     version: str
     artifact_sha256: str

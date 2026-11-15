@@ -34,3 +34,11 @@ coverage/
 *.aab
 *.jks
 *.keystore
+
+CLAUDE.md
+.claude/
+
+*.log
+demo-token.txt
+storage/
+artifacts/

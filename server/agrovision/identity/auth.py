@@ -55,6 +55,17 @@ def current_actor(request: Request, credentials: HTTPAuthorizationCredentials | 
                 issuer="agrovision-development",
                 options={"require": ["exp", "sub", "iss", "aud"]},
             )
+        elif unverified.get("iss") == "agrovision-accounts":
+            if not settings.account_secret:
+                raise jwt.InvalidTokenError("Account login is not configured")
+            payload = jwt.decode(
+                credentials.credentials,
+                settings.account_secret,
+                algorithms=["HS256"],
+                audience="agrovision-mobile",
+                issuer="agrovision-accounts",
+                options={"require": ["exp", "sub", "iss", "aud"]},
+            )
         else:
             if request.app.state.jwks is None or not settings.oidc_issuer:
                 raise jwt.InvalidTokenError("OIDC is not configured")

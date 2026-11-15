@@ -57,6 +57,23 @@ export class ApiClient {
   catalog(signal?: AbortSignal) {
     return this.request<Schemas["CatalogRead"]>("/v1/catalog", {}, signal);
   }
+  register(
+    body: { email: string; password: string; display_name?: string | null },
+    signal?: AbortSignal,
+  ) {
+    return this.request<Schemas["TokenRead"]>(
+      "/v1/auth/register",
+      { method: "POST", body: JSON.stringify(body) },
+      signal,
+    );
+  }
+  login(body: { email: string; password: string }, signal?: AbortSignal) {
+    return this.request<Schemas["TokenRead"]>(
+      "/v1/auth/login",
+      { method: "POST", body: JSON.stringify(body) },
+      signal,
+    );
+  }
   me(signal?: AbortSignal) {
     return this.request<Schemas["MeRead"]>("/v1/me", {}, signal);
   }

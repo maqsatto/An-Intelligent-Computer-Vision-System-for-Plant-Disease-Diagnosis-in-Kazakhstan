@@ -3,10 +3,22 @@ import * as SecureStore from "expo-secure-store";
 import * as WebBrowser from "expo-web-browser";
 WebBrowser.maybeCompleteAuthSession();
 const key = "agrovision.oidc.refresh";
+const accountKey = "agrovision.account.token";
 const issuer = process.env.EXPO_PUBLIC_OIDC_ISSUER ?? "";
 const clientId = process.env.EXPO_PUBLIC_OIDC_CLIENT_ID ?? "";
-export const authMode =
-  process.env.EXPO_PUBLIC_AUTH_MODE === "development" ? "development" : "oidc";
+// "password" (personal account, default) | "development" (operator token) | "oidc"
+export const authMode: "password" | "development" | "oidc" =
+  process.env.EXPO_PUBLIC_AUTH_MODE === "development"
+    ? "development"
+    : process.env.EXPO_PUBLIC_AUTH_MODE === "oidc"
+      ? "oidc"
+      : "password";
+export async function saveAccountToken(token: string) {
+  await SecureStore.setItemAsync(accountKey, token);
+}
+export async function restoreAccountToken() {
+  return SecureStore.getItemAsync(accountKey);
+}
 export async function signInOidc() {
   if (!issuer || !clientId)
     throw Error("Настройте OIDC issuer и client ID перед входом.");
@@ -51,6 +63,7 @@ export async function restoreOidc() {
   }
 }
 export async function clearSession() {
+  await SecureStore.deleteItemAsync(accountKey);
   const token = await SecureStore.getItemAsync(key);
   await SecureStore.deleteItemAsync(key);
   if (token && issuer && clientId) {

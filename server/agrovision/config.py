@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     dev_predictor: bool = False
     dev_token_secret: str = Field(default="", repr=False)
     download_secret: str = Field(default="", repr=False)
+    auth_secret: str = Field(default="", repr=False)
     storage_dir: Path = Path("storage/photos")
     bundle_dir: Path = Path("artifacts/active")
     research_bundle_dir: Path | None = None
@@ -45,15 +46,24 @@ class Settings(BaseSettings):
             raise ValueError("download_secret must contain at least 32 random characters")
         if self.environment != "production" and len(self.dev_token_secret) < 32:
             raise ValueError("development token secret must contain at least 32 random characters")
-        if self.environment == "production" and not (
-            self.oidc_issuer.startswith("https://") and self.oidc_jwks_url.startswith("https://")
+        if self.auth_secret and len(self.auth_secret) < 32:
+            raise ValueError("auth_secret must contain at least 32 random characters")
+        if (
+            self.environment == "production"
+            and not self.auth_secret
+            and not (self.oidc_issuer.startswith("https://") and self.oidc_jwks_url.startswith("https://"))
         ):
-            raise ValueError("Production requires HTTPS OIDC issuer and JWKS URL")
+            raise ValueError("Production requires AGRO_AUTH_SECRET or HTTPS OIDC issuer and JWKS URL")
         if not 0 < self.inference_timeout_seconds < self.lease_seconds:
             raise ValueError("lease must exceed bounded inference timeout")
         if self.max_attempts < 1 or self.retry_base_seconds < 0:
             raise ValueError("invalid retry configuration")
         return self
+
+    @property
+    def account_secret(self) -> str:
+        """Signing key for personal-account tokens; dev secret is only a non-production fallback."""
+        return self.auth_secret or (self.dev_token_secret if self.environment != "production" else "")
 
 
 @lru_cache

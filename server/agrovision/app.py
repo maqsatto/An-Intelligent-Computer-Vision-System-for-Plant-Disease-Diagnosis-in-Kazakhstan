@@ -30,7 +30,8 @@ def create_app(settings: Settings | None = None):
     app.state.settings = settings
     app.state.engine = make_engine(settings.database_url)
     app.state.sessions = make_sessions(app.state.engine)
-    app.state.jwks = jwt.PyJWKClient(settings.oidc_jwks_url, timeout=5) if settings.oidc_jwks_url else None
+    app.state.login_throttle = {}
+    app.state.jwks =jwt.PyJWKClient(settings.oidc_jwks_url, timeout=5) if settings.oidc_jwks_url else None
 
     @app.middleware("http")
     async def trace_and_limit(request: Request, call_next):
@@ -116,6 +117,46 @@ def create_app(settings: Settings | None = None):
         from .catalog.service import get_catalog
 
         return get_catalog(settings)
+
+    def token_response(account) -> dict:
+        from .identity.accounts import issue_token
+
+        if not settings.account_secret:
+            raise APIError(503, "auth_unavailable", "Вход по паролю не настроен на сервере.")
+        token, ttl = issue_token(settings.account_secret, account)
+        return {
+            "access_token": token,
+            "expires_in": ttl,
+            "account": {"id": account.id, "display_name": account.display_name},
+        }
+
+    @app.post(
+        "/v1/auth/register",
+        response_model=S.TokenRead,
+        status_code=201,
+        responses={409: {"model": S.ErrorRead}, 422: {"model": S.ErrorRead}, 503: {"model": S.ErrorRead}},
+        tags=["identity"],
+    )
+    def register(body: S.RegisterRequest, db: SessionDep):
+        from .identity.accounts import register as register_account
+
+        if not settings.account_secret:
+            raise APIError(503, "auth_unavailable", "Вход по паролю не настроен на сервере.")
+        return token_response(register_account(db, body.email, body.password, body.display_name))
+
+    @app.post(
+        "/v1/auth/login",
+        response_model=S.TokenRead,
+        responses={401: {"model": S.ErrorRead}, 429: {"model": S.ErrorRead}, 503: {"model": S.ErrorRead}},
+        tags=["identity"],
+    )
+    def login(body: S.LoginRequest, request: Request, db: SessionDep):
+        from .identity.accounts import authenticate
+
+        if not settings.account_secret:
+            raise APIError(503, "auth_unavailable", "Вход по паролю не настроен на сервере.")
+        client = request.client.host if request.client else "unknown"
+        return token_response(authenticate(db, app.state.login_throttle, body.email, body.password, client))
 
     @app.get("/v1/me", response_model=S.MeRead, responses=errors, tags=["identity"])
     def me(actor: ActorDep):

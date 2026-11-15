@@ -25,6 +25,16 @@ def uid():
     return str(uuid4())
 
 
+class Account(Base):
+    __tablename__ = "accounts"
+    id: Mapped[str] = mapped_column(Uuid(as_uuid=False), primary_key=True, default=uid)
+    email: Mapped[str] = mapped_column(String(254))
+    password_hash: Mapped[str] = mapped_column(String(255))
+    display_name: Mapped[str | None] = mapped_column(String(80))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    __table_args__ = (UniqueConstraint("email"),)
+
+
 class Observation(Base):
     __tablename__ = "observations"
     id: Mapped[str] = mapped_column(Uuid(as_uuid=False), primary_key=True, default=uid)

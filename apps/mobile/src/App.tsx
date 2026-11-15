@@ -32,7 +32,14 @@ import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import * as Crypto from "expo-crypto";
 import { ApiClient, ApiError, type Schemas } from "@agrovision/api-client";
-import { authMode, clearSession, restoreOidc, signInOidc } from "./auth";
+import {
+  authMode,
+  clearSession,
+  restoreAccountToken,
+  restoreOidc,
+  saveAccountToken,
+  signInOidc,
+} from "./auth";
 import {
   conditionLabel,
   delay,
@@ -164,6 +171,10 @@ function AppContent() {
   const [stage, setStage] = useState("");
   const [error, setError] = useState("");
   const [operatorToken, setOperatorToken] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [registering, setRegistering] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -247,6 +258,12 @@ function AppContent() {
   useEffect(() => {
     void loadCatalog();
     const epoch = sessionEpoch.current;
+    if (authMode === "password")
+      void restoreAccountToken()
+        .then((t) => {
+          if (t && epoch === sessionEpoch.current) setToken(t);
+        })
+        .catch(handleError);
     if (authMode === "oidc")
       void restoreOidc()
         .then((t) => {
@@ -287,17 +304,30 @@ function AppContent() {
     setBusy(true);
     setError("");
     try {
-      const t =
-        authMode === "development"
-          ? operatorToken.trim().replace(/^Bearer\s+/i, "")
-          : await signInOidc();
+      let t: string | null;
+      if (authMode === "password") {
+        const creds = { email: email.trim(), password };
+        const res = registering
+          ? await api.register({
+              ...creds,
+              display_name: displayName.trim() || null,
+            })
+          : await api.login(creds);
+        t = res.access_token;
+      } else if (authMode === "development") {
+        t = operatorToken.trim().replace(/^Bearer\s+/i, "");
+      } else {
+        t = await signInOidc();
+      }
       if (!t || epoch !== sessionEpoch.current) return;
       tokenRef.current = t;
       await api.me();
       if (epoch !== sessionEpoch.current) return;
+      if (authMode === "password") await saveAccountToken(t);
       sessionEpoch.current++;
       setToken(t);
       setOperatorToken("");
+      setPassword("");
       navigate("home");
     } catch (e) {
       tokenRef.current = null;
@@ -321,6 +351,7 @@ function AppContent() {
     setImage(null);
     setFeedback("");
     setOperatorToken("");
+    setPassword("");
     navigate("home");
     await clearSession();
   };
@@ -687,7 +718,45 @@ function AppContent() {
                 title="Ваши наблюдения — под защитой"
                 body="Войдите, чтобы сохранять снимки и видеть только свою историю."
               />
-              {authMode === "development" ? (
+              {authMode === "password" ? (
+                <>
+                  {registering && (
+                    <TextInput
+                      accessibilityLabel="Имя"
+                      style={s.input}
+                      value={displayName}
+                      onChangeText={setDisplayName}
+                      placeholder="Имя (необязательно)"
+                      maxLength={80}
+                    />
+                  )}
+                  <TextInput
+                    accessibilityLabel="Email"
+                    style={s.input}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    keyboardType="email-address"
+                    textContentType="emailAddress"
+                    value={email}
+                    onChangeText={setEmail}
+                    placeholder="Email"
+                  />
+                  <TextInput
+                    accessibilityLabel="Пароль"
+                    style={s.input}
+                    secureTextEntry
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    textContentType={registering ? "newPassword" : "password"}
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder={
+                      registering ? "Пароль (минимум 8 символов)" : "Пароль"
+                    }
+                    maxLength={128}
+                  />
+                </>
+              ) : authMode === "development" ? (
                 <>
                   <Notice
                     warning
@@ -713,11 +782,35 @@ function AppContent() {
               )}
               <Button
                 disabled={
-                  busy || (authMode === "development" && !operatorToken.trim())
+                  busy ||
+                  (authMode === "development" && !operatorToken.trim()) ||
+                  (authMode === "password" &&
+                    (!email.trim() ||
+                      (registering ? password.length < 8 : !password)))
                 }
-                label={busy ? "Подключаемся…" : "Войти"}
+                label={
+                  busy
+                    ? "Подключаемся…"
+                    : authMode === "password" && registering
+                      ? "Создать аккаунт"
+                      : "Войти"
+                }
                 onPress={() => void login()}
               />
+              {authMode === "password" && (
+                <Button
+                  secondary
+                  label={
+                    registering
+                      ? "У меня уже есть аккаунт"
+                      : "Создать аккаунт"
+                  }
+                  onPress={() => {
+                    setRegistering((v) => !v);
+                    setError("");
+                  }}
+                />
+              )}
               <Button
                 secondary
                 label="Вернуться на главную"

@@ -32,6 +32,8 @@ class LocalImageStore:
             handle.write(content)
             handle.flush()
             os.fsync(handle.fileno())
+        if not hasattr(os, "O_DIRECTORY"):  # Windows cannot fsync a directory handle
+            return
         directory = os.open(self.root, os.O_DIRECTORY)
         try:
             os.fsync(directory)
