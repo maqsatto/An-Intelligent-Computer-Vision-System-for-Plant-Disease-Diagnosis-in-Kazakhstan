@@ -18,7 +18,7 @@ build-backend = "hatchling.build"
 packages = ["server/agrovision", "ml/runtime/agrovision_runtime"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["server", "ml/runtime"]
+pythonpath = ["server", "ml/runtime", "."]
 [tool.ruff]
 line-length = 110
 target-version = "py312"
