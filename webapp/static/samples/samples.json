@@ -1,0 +1,100 @@
+[
+ {
+  "file": "wheat__stripe_rust.jpg",
+  "label": "wheat__stripe_rust",
+  "source": "Long et al. 2023, Wheat disease images (small dataset), John Innes Centre, Zenodo 7573133",
+  "license": "CC-BY-4.0",
+  "split": "test"
+ },
+ {
+  "file": "wheat__brown_rust.jpg",
+  "label": "wheat__brown_rust",
+  "source": "Long et al. 2023, Wheat disease images (small dataset), John Innes Centre, Zenodo 7573133",
+  "license": "CC-BY-4.0",
+  "split": "test"
+ },
+ {
+  "file": "wheat__septoria.jpg",
+  "label": "wheat__septoria",
+  "source": "Long et al. 2023, Wheat disease images (small dataset), John Innes Centre, Zenodo 7573133",
+  "license": "CC-BY-4.0",
+  "split": "test"
+ },
+ {
+  "file": "wheat__powdery_mildew.jpg",
+  "label": "wheat__powdery_mildew",
+  "source": "Long et al. 2023, Wheat disease images (small dataset), John Innes Centre, Zenodo 7573133",
+  "license": "CC-BY-4.0",
+  "split": "test"
+ },
+ {
+  "file": "wheat__healthy.jpg",
+  "label": "wheat__healthy",
+  "source": "Long et al. 2023, Wheat disease images (small dataset), John Innes Centre, Zenodo 7573133",
+  "license": "CC-BY-4.0",
+  "split": "test"
+ },
+ {
+  "file": "sunflower__downy_mildew.jpg",
+  "label": "sunflower__downy_mildew",
+  "source": "Sunflower disease classification (Project-AgML)",
+  "license": "CC-BY-4.0",
+  "split": "test"
+ },
+ {
+  "file": "sunflower__gray_mold.jpg",
+  "label": "sunflower__gray_mold",
+  "source": "Sunflower disease classification (Project-AgML)",
+  "license": "CC-BY-4.0",
+  "split": "test"
+ },
+ {
+  "file": "potato__late_blight.jpg",
+  "label": "potato__late_blight",
+  "source": "PlantDoc: Singh et al. 2020 (field photographs)",
+  "license": "CC-BY-SA-4.0",
+  "split": "field_test"
+ },
+ {
+  "file": "tomato__late_blight.jpg",
+  "label": "tomato__late_blight",
+  "source": "PlantDoc: Singh et al. 2020 (field photographs)",
+  "license": "CC-BY-SA-4.0",
+  "split": "field_test"
+ },
+ {
+  "file": "maize__common_rust.jpg",
+  "label": "maize__common_rust",
+  "source": "PlantDoc: Singh et al. 2020 (field photographs)",
+  "license": "CC-BY-SA-4.0",
+  "split": "field_test"
+ },
+ {
+  "file": "apple__scab.jpg",
+  "label": "apple__scab",
+  "source": "PlantDoc: Singh et al. 2020 (field photographs)",
+  "license": "CC-BY-SA-4.0",
+  "split": "field_test"
+ },
+ {
+  "file": "grape__black_rot.jpg",
+  "label": "grape__black_rot",
+  "source": "PlantVillage: Hughes & Salathe 2015; Mohanty et al. 2016",
+  "license": "CC-BY-SA-3.0",
+  "split": "test"
+ },
+ {
+  "file": "tomato__yellow_leaf_curl_virus.jpg",
+  "label": "tomato__yellow_leaf_curl_virus",
+  "source": "PlantVillage: Hughes & Salathe 2015; Mohanty et al. 2016",
+  "license": "CC-BY-SA-3.0",
+  "split": "test"
+ },
+ {
+  "file": "other__non_target.jpg",
+  "label": "other__non_target",
+  "source": "Tiny ImageNet (non-plant negative example)",
+  "license": "research use",
+  "split": "test"
+ }
+]

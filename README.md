@@ -2,7 +2,7 @@
 
 Android MVP for **An Intelligent Computer Vision System for Plant Disease Diagnosis in Kazakhstan**.
 
-Expo / React Native mobile, FastAPI API, PostgreSQL durable worker and an independent ONNX runtime. **No web UI.**
+Expo / React Native mobile, FastAPI API, PostgreSQL durable worker and an independent ONNX runtime, plus a standalone **web demo** (`webapp/`, no database) served by FastAPI with the KZ-agrosector model — see [Web demo](#web-demo-kazakhstan-agrosector-model).
 
 The system helps farmers, field workers and agronomists record visible leaf symptoms and revisit observations with the original photograph and model version. The project investigates how crop information affects recognition when the source of photographs changes. Expected outcomes are a reproducible evaluation, documented limits and an Android observation workflow; a confirmed agronomic diagnosis is outside the current release.
 
@@ -16,6 +16,20 @@ Scientific supervisor: **Кутпанова Зарина Алмабековна*
 [YouTrack project](https://maqsatto-qaisar.youtrack.cloud/projects/AIC/issues) · [Figma prototype](https://www.figma.com/design/07cVYgjO4tZw4IaR7kUxEz) · [Project scope](docs/PROJECT_OVERVIEW.md).
 
 The current local research bundle was actually trained on admitted PlantVillage and Wheat Leaf Dataset images: **3 crops, 9 source-label classes**. It returns exploratory candidates and always abstains (`inconclusive`). It is **not a validated diagnostic release** and does not establish accuracy in Kazakhstan. Production refuses research/synthetic models; absent validated models return `503 model_unavailable` without creating a job.
+
+## Web demo (Kazakhstan agrosector model)
+
+A self-contained browser UI (Russian) for leaf-photo diagnosis: crop selector or automatic crop detection, camera/file upload, ranked candidates with calibrated confidence, "uncertain" / "not recognized" states, photo-quality warnings, agronomic notes, local history and a model/benchmark page. It covers **wheat, sunflower, maize, potato, tomato, cucumber, apple and grape** and has an explicit rejection class for other plants and non-plant images.
+
+```powershell
+# the ONNX bundle is not in Git: copy it to webapp/models/active (see docs/development/WEB_DEMO_RU.md)
+./scripts/run_web.ps1          # Windows;  ./scripts/run_web.sh on Linux/macOS
+# open http://127.0.0.1:8080
+```
+
+Measured (held-out, never trained on): 99.3 % on lab-like test photos, 78 % on real PlantDoc field photos, 75 % across all conditions and 87 % crop identification on independent in-the-wild web photos (wheat 93.5 %), 94 % of other-plant photos rejected. **No photograph from Kazakhstan was available**, so applicability to Kazakhstani fields is not established; results are hypotheses, not diagnoses. The "wild" weights use PlantWild (CC BY-NC-ND 4.0, non-commercial research) and are not distributed; a data-clean fallback bundle is described in the benchmark report.
+
+Training, model comparison (9 backbones) and honest limits (lab vs. field accuracy): [docs/development/KZ_MODEL_BENCHMARK.md](docs/development/KZ_MODEL_BENCHMARK.md) and the Russian demo guide [WEB_DEMO_RU.md](docs/development/WEB_DEMO_RU.md). Pipeline code: `ml/kz/`.
 
 ## Show the MVP
 

@@ -42,3 +42,7 @@ CLAUDE.md
 demo-token.txt
 storage/
 artifacts/
+
+# Web demo model bundle (copied from the training server; large binaries)
+/webapp/models/
+/bundle*/

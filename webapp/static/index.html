@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgroVision KZ — диагностика болезней растений</title>
+  <meta name="description" content="Компьютерное зрение для диагностики болезней сельскохозяйственных культур Казахстана">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="brand" href="/" aria-label="AgroVision KZ">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28"><path d="M6 26C6 13 14 6 27 5c0 13-7 21-19 21z" fill="currentColor" opacity=".9"/><path d="M6 26 20 12" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+        </span>
+        <span class="brand-text"><b>AgroVision</b> KZ</span>
+      </a>
+      <nav>
+        <button class="link" id="open-model" type="button">О модели</button>
+        <button class="link" id="open-history" type="button">История <span class="badge" id="history-count" hidden>0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Диагностика болезней растений по фотографии листа</h1>
+      <p>Система обучена на культурах агросектора Казахстана: пшеница, подсолнечник, кукуруза, картофель, томат, огурец, яблоня, виноград. Результат — гипотеза для осмотра, а не окончательный диагноз.</p>
+    </section>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="step1">
+        <h2 id="step1"><span class="step">1</span> Культура</h2>
+        <div class="chips" id="crops" role="radiogroup" aria-label="Выберите культуру"></div>
+
+        <h2 id="step2"><span class="step">2</span> Фото листа (пшеница — лист или колос)</h2>
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Загрузить фото">
+          <img id="preview" alt="Предпросмотр загруженного фото" hidden>
+          <div class="drop-hint" id="drop-hint">
+            <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><path d="M8 34l10-12 8 9 5-6 9 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="5" y="9" width="38" height="30" rx="5" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="31" cy="18" r="3" fill="currentColor"/></svg>
+            <strong>Перетащите фото сюда</strong>
+            <span>или нажмите, чтобы выбрать файл (JPG, PNG, WebP)</span>
+          </div>
+        </div>
+        <input id="file" type="file" accept="image/*" hidden>
+        <input id="camera" type="file" accept="image/*" capture="environment" hidden>
+        <div class="actions">
+          <button class="btn secondary" id="pick" type="button">Выбрать файл</button>
+          <button class="btn secondary" id="shoot" type="button">Снять на камеру</button>
+          <button class="btn primary" id="analyze" type="button" disabled>Определить болезнь</button>
+        </div>
+        <h3 class="samples-title">Или попробуйте пример</h3>
+        <div class="samples" id="samples" aria-label="Примеры фотографий из тестовой выборки"></div>
+        <ul class="tips">
+          <li>Снимайте один лист крупным планом, при дневном свете.</li>
+          <li>Лист должен быть в фокусе и занимать большую часть кадра.</li>
+          <li>Если культура неизвестна — оставьте «Авто».</li>
+        </ul>
+      </section>
+
+      <section class="card result" id="result" aria-live="polite">
+        <div class="empty" id="empty">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path d="M10 52C10 28 24 12 54 10c0 24-13 40-38 40z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M10 52 38 24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <p>Здесь появится результат анализа.</p>
+          <p class="muted">Выберите культуру, загрузите фото листа и нажмите «Определить болезнь».</p>
+        </div>
+        <div class="loading" id="loading" hidden><div class="spinner"></div><p>Анализируем фото…</p></div>
+        <div class="out" id="out" hidden></div>
+      </section>
+    </div>
+
+    <p class="disclaimer">AgroVision — исследовательский прототип. Результат носит ориентировочный характер и не заменяет осмотр агронома или лабораторный анализ. Обработка фото выполняется на сервере и не сохраняется.</p>
+  </main>
+
+  <dialog id="model-dialog">
+    <form method="dialog"><button class="close" aria-label="Закрыть">×</button></form>
+    <div id="model-body">Загрузка…</div>
+  </dialog>
+  <dialog id="history-dialog">
+    <form method="dialog"><button class="close" aria-label="Закрыть">×</button></form>
+    <h2>История анализов</h2>
+    <p class="muted">Хранится только в этом браузере.</p>
+    <div id="history-body"></div>
+    <button class="btn secondary" id="clear-history" type="button">Очистить историю</button>
+  </dialog>
+  <script src="/static/app.js"></script>
+</body>
+</html>
